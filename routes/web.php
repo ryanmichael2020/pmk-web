@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('landing_page');
 });
+
+Route::get('/login', 'Web\Auth\WebAuthPageController@displayLoginPage');
+Route::get('/signup', 'Web\Auth\WebAuthPageController@displaySignupPage');

@@ -87,7 +87,7 @@ Header
 <!-- <div id="preloader"></div> -->
 
 <!-- JavaScript Libraries -->
-<script src="{{asset('old/old/lib/jquery/jquery.min.js')}}"></script>
+<script src="{{asset('old/lib/jquery/jquery.min.js')}}"></script>
 <script src="{{asset('old/lib/jquery/jquery-migrate.min.js')}}"></script>
 <script src="{{asset('old/lib/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('old/lib/easing/easing.min.js')}}"></script>
