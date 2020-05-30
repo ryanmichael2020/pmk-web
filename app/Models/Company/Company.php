@@ -2,6 +2,7 @@
 
 namespace App\Models\Company;
 
+use App\Models\Employee\EmployeeReview;
 use App\Models\Employer\Employer;
 use Illuminate\Database\Eloquent\Model;
 
@@ -37,5 +38,9 @@ class Company extends Model
     public function employers()
     {
         return $this->hasMany(Employer::class);
+    }
+
+    public function employeeReviews() {
+        return $this->hasMany(EmployeeReview::class);
     }
 }

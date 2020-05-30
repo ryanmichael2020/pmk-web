@@ -1,22 +1,19 @@
 <?php
 
-namespace App\Models\User;
+namespace App\Models\Employee;
 
+use App\Models\Company\Company;
 use Illuminate\Database\Eloquent\Model;
 
-class UserType extends Model
+class EmployeeReview extends Model
 {
-    public static $ADMIN = 1;
-    public static $EMPLOYER = 2;
-    public static $EMPLOYEE = 3;
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'type',
+        'company_id', 'employee_id', 'score',
     ];
 
     /**
@@ -37,8 +34,18 @@ class UserType extends Model
 
     ];
 
-    public function user()
+    public function company()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsTo(Company::class);
+    }
+
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class);
+    }
+
+    public function employeeReviewScores()
+    {
+        return $this->hasMany(EmployeeReviewScore::class);
     }
 }

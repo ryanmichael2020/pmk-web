@@ -1,22 +1,19 @@
 <?php
 
-namespace App\Models\User;
+namespace App\Models\JobPost;
 
+use App\Models\Employer\Employer;
 use Illuminate\Database\Eloquent\Model;
 
-class UserType extends Model
+class JobPost extends Model
 {
-    public static $ADMIN = 1;
-    public static $EMPLOYER = 2;
-    public static $EMPLOYEE = 3;
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'type',
+        'employer_id', 'job_post_status_id', 'position', 'description', 'max_applicants', 'approved_applicants',
     ];
 
     /**
@@ -37,8 +34,13 @@ class UserType extends Model
 
     ];
 
-    public function user()
+    public function employer()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsTo(Employer::class);
+    }
+
+    public function jobPostStatus()
+    {
+        return $this->belongsTo(JobPostStatus::class);
     }
 }

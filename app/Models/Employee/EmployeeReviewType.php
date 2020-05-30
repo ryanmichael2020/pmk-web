@@ -1,15 +1,11 @@
 <?php
 
-namespace App\Models\User;
+namespace App\Models\Employee;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserType extends Model
+class EmployeeReviewType extends Model
 {
-    public static $ADMIN = 1;
-    public static $EMPLOYER = 2;
-    public static $EMPLOYEE = 3;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -37,8 +33,8 @@ class UserType extends Model
 
     ];
 
-    public function user()
+    public function employeeReviewScores()
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(EmployeeReviewScore::class);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Models\Employer;
 
 use App\Models\Company\Company;
+use App\Models\JobPost\JobPost;
 use App\Models\User\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -43,5 +44,10 @@ class Employer extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function jobPosts()
+    {
+        return $this->hasMany(JobPost::class);
     }
 }
