@@ -29,10 +29,10 @@ class CreateEmployerRequest extends FormRequest
             'email' => 'required|email|max:255',
             'password' => 'required|string|max:32',
             'verify_password' => 'required|string|max:32',
-            'first_name' => 'required|string|max:64',
-            'last_name' => 'required|string|max:32',
-            'sex' => 'required|string|max:16',
-            'company_id' => 'required|integer',
+//            'first_name' => 'required|string|max:64',
+//            'last_name' => 'required|string|max:32',
+//            'sex' => 'required|string|max:16',
+//            'company_id' => 'required|integer',
         ];
     }
 

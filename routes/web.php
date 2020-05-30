@@ -31,4 +31,8 @@ Route::get('/admin/management/companies/create', 'Web\Company\WebCompanyManageme
 Route::get('/companies/datatable', 'Web\Company\WebCompanyController@getDataTable');
 Route::post('/companies/create', 'Web\Company\WebCompanyController@create');
 
+Route::get('/employers/datatable', 'Web\Employer\WebEmployerController@getDataTable');
+Route::post('/employers/create', 'Web\Employer\WebEmployerController@create');
+
+Route::get('/admin/management/employers', 'Web\Employer\WebEmployerManagementController@displayListPage');
 Route::get('/admin/management/employers/create', 'Web\Employer\WebEmployerManagementController@displayCreatePage');

@@ -5,6 +5,7 @@
 
     <div class="container">
         <form method="post" action="/employers/create">
+            @csrf
                 <div class="col-sm-12 col-lg-10 mx-auto my-6">
 
                 <div class="card">
