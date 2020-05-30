@@ -24,3 +24,11 @@ Route::post('/login', 'Web\Auth\WebAuthController@login');
 Route::post('/signup', 'Web\Auth\WebAuthController@signup');
 
 Route::get('/admin/dashboard', 'Web\Admin\WebAdminDashboardPageController@displayDashboardPage');
+
+Route::get('/admin/management/companies', 'Web\Company\WebCompanyManagementController@displayListPage');
+Route::get('/admin/management/companies/create', 'Web\Company\WebCompanyManagementController@displayCreatePage');
+
+Route::get('/companies/datatable', 'Web\Company\WebCompanyController@getDataTable');
+Route::post('/companies/create', 'Web\Company\WebCompanyController@create');
+
+Route::get('/admin/management/employers/create', 'Web\Employer\WebEmployerManagementController@displayCreatePage');

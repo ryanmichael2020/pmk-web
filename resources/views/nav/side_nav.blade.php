@@ -28,6 +28,33 @@
                         </a>
                     </li>
 
+                    {{-- Company Management --}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#parent_company_management" data-toggle="collapse"
+                           role="button"
+                           aria-expanded="false" aria-controls="navbar-tables" id="nav_company_management">
+                            <i class="fas fa-building"></i>
+                            <span class="nav-link-text">
+                                Manage Companies
+                            </span>
+                        </a>
+                        <div class="collapse" id="parent_company_management">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a href="/admin/management/companies/create" class="nav-link" id="employer_list">
+                                        Create Company
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/admin/management/companies" class="nav-link"
+                                       id="company_list">
+                                        View Companies
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
                     {{-- Employer Management --}}
                     <li class="nav-item">
                         <a class="nav-link" href="#parent_employer_management" data-toggle="collapse"
@@ -67,11 +94,6 @@
                         </a>
                         <div class="collapse" id="parent_employee_management">
                             <ul class="nav nav-sm flex-column">
-                                <li class="nav-item">
-                                    <a href="/admin/management/employees/create" class="nav-link" id="employee_list">
-                                        Create Employee
-                                    </a>
-                                </li>
                                 <li class="nav-item">
                                     <a href="/admin/management/employees" class="nav-link"
                                        id="employee_list">

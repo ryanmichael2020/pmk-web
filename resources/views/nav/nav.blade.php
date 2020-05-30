@@ -1,5 +1,5 @@
 <nav class="navbar navbar-horizontal navbar-expand-lg navbar-dark bg-default">
-    <div class="container">
+    <div class="container-fluid">
         <a class="navbar-brand" href="#">P.E.S.O Makati</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-default"
@@ -26,13 +26,13 @@
             </div>
 
             <ul class="navbar-nav ml-lg-auto">
-                @if(auth()->user() == null)
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-icon" href="/login">
-                            Login
-                        </a>
-                    </li>
-                @endif
+                {{--                @if(auth()->user() == null)--}}
+                {{--                    <li class="nav-item">--}}
+                {{--                        <a class="nav-link nav-link-icon" href="/login">--}}
+                {{--                            Login--}}
+                {{--                        </a>--}}
+                {{--                    </li>--}}
+                {{--                @endif--}}
                 {{--                <li class="nav-item">--}}
                 {{--                    <a class="nav-link nav-link-icon" href="#">--}}
                 {{--                        <i class="ni ni-favourite-28"></i>--}}

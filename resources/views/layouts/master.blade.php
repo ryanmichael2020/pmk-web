@@ -24,7 +24,6 @@
 </head>
 
 <body>
-
 @guest
     <div id="app">
         @yield('body')
@@ -69,6 +68,8 @@
 
 <!-- Argon JS -->
 <script src="{{ asset('js/argon.js') }}"></script>
+
+@yield('script')
 </body>
 
 </html>
