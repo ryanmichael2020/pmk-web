@@ -23,7 +23,7 @@ class WebAuthController extends Controller
 
             Log::debug($response);
             // TODO :: Update redirect based on user type
-            return redirect('/dashboard');
+            return redirect('/admin/dashboard');
         } else {
             session()->flash('response_type', 'error');
             session()->flash('message', $response['message'] . ' ' . $response['error']['message']);

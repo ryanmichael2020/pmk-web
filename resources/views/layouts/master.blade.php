@@ -14,11 +14,11 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 
     <!-- Icons -->
-    <link href="{{ asset('vendor/nucleo/css/nucleo.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('vendor/nucleo/css/nucleo.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" type="text/css">
 
     <!-- Argon CSS -->
-    <link type="text/css" href="{{ asset('css/argon.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/argon.css') }}" type="text/css">
 
     @yield('header')
 </head>
@@ -33,13 +33,7 @@
     @include('nav.side_nav')
 
     <div class="main-content" id="app">
-        <div class="container-fluid mt--6">
-            <div class="row">
-                <div class="col">
-                    @yield('body')
-                </div>
-            </div>
-        </div>
+        @yield('body')
 
         {{-- Logout Modal --}}
         <div class="modal fade" id="modal_logout" tabindex="-1" role="dialog" aria-labelledby="modal_lbl_logout"
@@ -70,9 +64,11 @@
 <!-- Core -->
 <script src="{{ asset('vendor/jquery/dist/jquery.min.js') }}"></script>
 <script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('vendor/js-cookie/js.cookie.js') }}"></script>
+<script src="{{ asset('vendor/jquery.scrollbar/jquery.scrollbar.min.js') }}"></script>
 
 <!-- Argon JS -->
-<script src="{{ asset('js/argon.min.js') }}"></script>
+<script src="{{ asset('js/argon.js') }}"></script>
 </body>
 
 </html>

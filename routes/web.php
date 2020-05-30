@@ -22,3 +22,5 @@ Route::get('/signup', 'Web\Auth\WebAuthPageController@displaySignupPage');
 
 Route::post('/login', 'Web\Auth\WebAuthController@login');
 Route::post('/signup', 'Web\Auth\WebAuthController@signup');
+
+Route::get('/admin/dashboard', 'Web\Admin\WebAdminDashboardPageController@displayDashboardPage');
