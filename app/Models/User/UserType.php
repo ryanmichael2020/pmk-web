@@ -2,6 +2,7 @@
 
 namespace App\Models\User;
 
+use App\Models\Module\UserTypeModule;
 use Illuminate\Database\Eloquent\Model;
 
 class UserType extends Model
@@ -40,5 +41,10 @@ class UserType extends Model
     public function user()
     {
         return $this->hasMany(User::class);
+    }
+
+    public function userTypeModules()
+    {
+        return $this->hasMany(UserTypeModule::class);
     }
 }
