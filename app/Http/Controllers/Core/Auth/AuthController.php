@@ -7,7 +7,6 @@ use App\Models\User\User;
 use App\Models\User\UserDetail;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -19,10 +18,12 @@ class AuthController extends Controller
         $response = array();
 
         try {
-            $user = User::where('email', $email)->first();
+            $user = User::with('userType', 'userDetail')
+                ->where('email', $email)
+                ->first();
             if ($user != null) { // if user is found
                 if (Hash::check($password, $user->password)) { // if password matches
-                    Auth::login($user);
+                    auth()->login($user);
 
                     $data = array();
                     $data['user'] = $user;
@@ -125,6 +126,27 @@ class AuthController extends Controller
 
             $response['error'] = $error;
             $response['message'] = ' Signup failed.';
+            $response['status_code'] = Response::HTTP_INTERNAL_SERVER_ERROR;
+        }
+
+        return $response;
+    }
+
+    public static function logout()
+    {
+        $response = array();
+
+        try {
+            auth()->logout();
+
+            $response['message'] = 'Logout successful.';
+            $response['status_code'] = Response::HTTP_OK;
+        } catch (\Exception $exception) {
+            $error = array();
+            $error['message'] = 'Unknown error occurred.';
+
+            $response['error'] = $error;
+            $response['message'] = ' Logout failed.';
             $response['status_code'] = Response::HTTP_INTERNAL_SERVER_ERROR;
         }
 

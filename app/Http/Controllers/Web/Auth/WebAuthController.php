@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Core\Auth\AuthController;
 use App\Http\Requests\Auth\AuthLoginRequest;
 use App\Http\Requests\Auth\AuthSignupRequest;
+use App\Models\User\UserType;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 
@@ -21,9 +22,14 @@ class WebAuthController extends Controller
             session()->flash('response_type', 'success');
             session()->flash('message', $response['message']);
 
-            Log::debug($response);
-            // TODO :: Update redirect based on user type
-            return redirect('/admin/dashboard');
+            $user_type_id = $response['data']['user']['user_type']['id'];
+            if ($user_type_id == UserType::$ADMIN) {
+                return redirect('/admin/dashboard');
+            } else if ($user_type_id == UserType::$EMPLOYER) {
+                return redirect('/employer/dashboard');
+            } else {
+                return redirect('/dashboard');
+            }
         } else {
             session()->flash('response_type', 'error');
             session()->flash('message', $response['message'] . ' ' . $response['error']['message']);
@@ -49,6 +55,23 @@ class WebAuthController extends Controller
             session()->flash('message', $response['message']);
 
             return redirect('/signup');
+        } else {
+            session()->flash('response_type', 'error');
+            session()->flash('message', $response['message'] . ' ' . $response['error']['message']);
+
+            return redirect()->back();
+        }
+    }
+
+    public function logout()
+    {
+        $response = AuthController::logout();
+
+        if ($response['status_code'] = Response::HTTP_OK) {
+            session()->flash('response_type', 'success');
+            session()->flash('message', $response['message']);
+
+            return redirect('/');
         } else {
             session()->flash('response_type', 'error');
             session()->flash('message', $response['message'] . ' ' . $response['error']['message']);

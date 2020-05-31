@@ -37,4 +37,9 @@ class EmployeeTraining extends Model
     {
         return $this->belongsTo(Employee::class);
     }
+
+    public function trainingSimpleDate()
+    {
+        return $this->start_month . '/' . $this->start_year . ' - ' . $this->end_month . '/' . $this->end_year;
+    }
 }

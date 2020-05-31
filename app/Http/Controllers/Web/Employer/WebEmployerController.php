@@ -5,9 +5,7 @@ namespace App\Http\Controllers\Web\Employer;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Core\Employer\EmployerController;
 use App\Http\Requests\Employer\CreateEmployerRequest;
-use App\Models\Employer\Employer;
 use App\Models\User\User;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Yajra\DataTables\DataTables;
 
@@ -31,7 +29,7 @@ class WebEmployerController extends Controller
         $first_name = $request->first_name;
         $last_name = $request->last_name;
         $sex = $request->sex;
-        $company_id=  1;
+        $company_id = 1;
 
         $response = EmployerController::create($email, $password, $verify_password, $first_name, $last_name, $sex, $company_id);
         if ($response['status_code'] == Response::HTTP_OK) {
@@ -47,7 +45,8 @@ class WebEmployerController extends Controller
         }
     }
 
-    public function getDataTable() {
+    public function getDataTable()
+    {
         $employers = User::all();
 
         $data = DataTables::of($employers)
@@ -60,5 +59,5 @@ class WebEmployerController extends Controller
             ->make(true);
 
         return $data;
-}
+    }
 }

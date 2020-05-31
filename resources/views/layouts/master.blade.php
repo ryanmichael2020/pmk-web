@@ -29,7 +29,11 @@
         @yield('body')
     </div>
 @else
-    @include('nav.side_nav')
+    @if(auth()->user() != null)
+        @if(auth()->user()->user_type_id == \App\Models\User\UserType::$ADMIN)
+            @include('nav.side_nav')
+        @endif
+    @endif
 
     <div class="main-content" id="app">
         @yield('body')
@@ -49,10 +53,14 @@
                         Are you sure you want to logout?
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <a href="/logout">
-                            <button type="button" class="btn btn-danger">Logout</button>
-                        </a>
+                        <form method="post" action="/logout">
+                            {{ csrf_field() }}
+
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">
+                                Logout
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
