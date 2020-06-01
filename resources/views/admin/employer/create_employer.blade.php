@@ -70,10 +70,19 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="company_id">Company</label>
-                                    <select id="company_id" name="company_id" class="form-control">
-                                        <option>Male</option>
-                                        <option>Female</option>
+                                    <label for="user_type_id">Company</label>
+                                    <select id="user_type_id" name="user_type_id" class="form-control">
+                                        @foreach($company as $company)
+                                            @if(old('company_id') != null)
+                                                @if(old('company_id') == $user_type->id)
+                                                    <option value="{{ $company->id }}" selected>{{ ucfirst($company->name) }}</option>
+                                                @else
+                                                    <option value="{{ $company->id }}">{{ ucfirst($company->name) }}</option>
+                                                @endif
+                                            @else
+                                                <option value="{{ $company->id }}">{{ ucfirst($company->name) }}</option>
+                                            @endif
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

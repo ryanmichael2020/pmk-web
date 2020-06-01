@@ -13,7 +13,7 @@
                 </div>
 
                 <div class="card-body">
-                    <table id="tbl_companies" class="table" style="width: 100%">
+                    <table id="tbl_employers" class="table" style="width: 100%">
                         <thead>
                         <tr>
                             <th>ID</th>
@@ -35,7 +35,7 @@
     <script src="{{ asset('js/datatables.min.js') }}" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#tbl_companies').DataTable({
+            $('#tbl_employers').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: {

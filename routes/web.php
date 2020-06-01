@@ -47,3 +47,8 @@ Route::get('/dashboard', 'Web\Employee\WebEmployeeDashboardPageController@displa
 
 // Employee Profile Routes
 Route::get('/profile', 'Web\Employee\WebEmployeeProfileManagementPageController@displayProfileDashboardPage');
+
+//Job Post Routes
+Route::post('/jobpost/create', 'Web\Company\WebJobPostController@create');
+
+Route::get('/admin/management/jobpost/create', 'Web\Employer\WebJobPostManagementController@displayCreatePage');
