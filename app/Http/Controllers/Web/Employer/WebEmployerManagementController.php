@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web\Employer;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company\Company;
 
 class WebEmployerManagementController extends Controller
 {
@@ -12,6 +13,8 @@ class WebEmployerManagementController extends Controller
     }
     public function displayCreatePage()
     {
-        return view('admin.employer.create_employer');
+        $company = Company::all();
+        return view('admin.employer.create_employer')
+            ->with('company', $company);;
     }
 }
