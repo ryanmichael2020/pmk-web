@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Employer\Employer;
 use App\Models\User\User;
 use App\Models\User\UserDetail;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -51,9 +52,10 @@ class EmployerController extends Controller
         } catch (QueryException $exception) {
             Log::error($exception->getMessage());
             Log::error($exception->getTraceAsString());
-            $error_code = $exception->errorInfo[1];
 
+            $error_code = $exception->errorInfo[1];
             Log::error($error_code);
+
             if ($error_code == 1062) {
                 $error = array();
                 $error['message'] = 'Employer name already exists.';
