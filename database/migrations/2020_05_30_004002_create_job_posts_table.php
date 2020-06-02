@@ -20,7 +20,7 @@ class CreateJobPostsTable extends Migration
             $table->string('position', 128);
             $table->string('description', 8096);
             $table->integer('max_applicants');
-            $table->integer('approved_applicants');
+            $table->integer('approved_applicants')->default(0);
             $table->timestamps();
         });
     }

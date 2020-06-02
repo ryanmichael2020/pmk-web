@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class JobPostStatus extends Model
 {
+    public static $OPEN = 1;
+    public static $FILLED = 2;
+    public static $CANCELLED = 3;
+
     /**
      * The attributes that are mass assignable.
      *
