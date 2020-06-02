@@ -33,7 +33,7 @@ class JobPostController extends Controller
             $data['job_post'] = $job_post;
 
             $response['data'] = $data;
-            $response['message'] = 'Job post created successfully.';
+            $response['message'] = 'Job post successfully created.';
             $response['status_code'] = Response::HTTP_OK;
         } catch (QueryException $exception) {
             Log::error($exception->getMessage());
@@ -88,7 +88,7 @@ class JobPostController extends Controller
                     $data['job_post'] = $job_post;
 
                     $response['data'] = $data;
-                    $response['message'] = 'Job post updated successfully.';
+                    $response['message'] = 'Job post successfully updated.';
                     $response['status_code'] = Response::HTTP_OK;
                 } else {
                     // if max applicants is lower than currently approved applicants
@@ -129,6 +129,59 @@ class JobPostController extends Controller
 
             $response['error'] = $error;
             $response['message'] = ' Failed to update job post.';
+            $response['status_code'] = Response::HTTP_INTERNAL_SERVER_ERROR;
+        }
+
+        return $response;
+    }
+
+    public static function delete($job_post_id)
+    {
+        $response = array();
+
+        try {
+            $job_post = JobPost::where('id', $job_post_id)->first();
+
+            if ($job_post != null) {
+                // if job post exists
+                DB::beginTransaction();
+
+                $job_post->delete();
+
+                DB::commit();
+
+                $response['message'] = 'Job post successfully deleted.';
+                $response['status_code'] = Response::HTTP_OK;
+            } else {
+                // if job post does not exist
+                $error = array();
+                $error['message'] = 'Job post not found.';
+
+                $response['error'] = $error;
+                $response['message'] = 'Failed to delete job post.';
+                $response['status_code'] = Response::HTTP_BAD_REQUEST;
+            }
+        } catch (QueryException $exception) {
+            Log::error($exception->getMessage());
+            Log::error($exception->getTraceAsString());
+            $error_code = $exception->errorInfo[1];
+
+            Log::error($error_code);
+            $error = array();
+            $error['message'] = 'Query exception occurred.';
+
+            $response['error'] = $error;
+            $response['message'] = ' Failed to delete job post.';
+            $response['status_code'] = Response::HTTP_BAD_REQUEST;
+        } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
+            Log::error($exception->getTraceAsString());
+
+            $error = array();
+            $error['message'] = 'Unknown error occurred.';
+
+            $response['error'] = $error;
+            $response['message'] = ' Failed to delete job post.';
             $response['status_code'] = Response::HTTP_INTERNAL_SERVER_ERROR;
         }
 
