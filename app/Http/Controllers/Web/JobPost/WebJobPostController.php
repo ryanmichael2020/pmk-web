@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Web\JobPost;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Core\Employer\EmployerController;
+use App\Http\Controllers\Core\JobPost\JobPostController;
 use App\Http\Requests\Employer\CreateEmployerRequest;
+use App\Http\Requests\JobPost\CreateJobPostRequest;
+use App\Models\JobPost\JobPost;
 use App\Models\User\User;
 use Illuminate\Http\Request;
 
@@ -12,26 +15,26 @@ class WebJobPostController extends Controller
 {
     private function detailedViewRoute($id)
     {
-        return "/admin/management/employer/$id";
+        return "/admin/management/jobpost/$id";
     }
 
     private function editRoute($id)
     {
-        return "/admin/management/employer/$id/update";
+        return "/admin/management/jobpost/$id/update";
     }
 
-    public function create(CreateEmployerRequest $request)
+    public function create(CreateJobPostRequest $request)
     {
         $position = $request->position;
         $description = $request->description;
         $max_applicants = $request->max_applicants;
 
-        $response = EmployerController::create($position, $description, $max_applicants);
+        $response = JobPostController::create($position, $description, $max_applicants);
         if ($response['status_code'] == Response::HTTP_OK) {
             session()->flash('response_type', 'success');
             session()->flash('message', $response['message']);
 
-            return redirect('/admin/management/employers');
+            return redirect('/admin/management/jobpost');
         } else {
             session()->flash('response_type', 'error');
             session()->flash('message', $response['message'] . ' ' . $response['error']['message']);
@@ -42,7 +45,7 @@ class WebJobPostController extends Controller
 
     public function getDataTable()
     {
-        $employers = User::all();
+        $employers = JobPost::all();
 
         $data = DataTables::of($employers)
             ->addColumn('action', function ($data) {
