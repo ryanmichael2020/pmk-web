@@ -2,10 +2,10 @@
 
 namespace App\Models\JobPost;
 
-use App\Models\Employer\Employer;
+use App\Models\Employee\Employee;
 use Illuminate\Database\Eloquent\Model;
 
-class JobPost extends Model
+class JobPostApplication extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -13,7 +13,7 @@ class JobPost extends Model
      * @var array
      */
     protected $fillable = [
-        'employer_id', 'job_post_status_id', 'position', 'description', 'max_applicants', 'approved_applicants',
+        'job_post_application_status_id', 'job_post_id', 'employee_id',
     ];
 
     /**
@@ -34,18 +34,18 @@ class JobPost extends Model
 
     ];
 
-    public function employer()
+    public function jobPostApplicationStatus()
     {
-        return $this->belongsTo(Employer::class);
+        return $this->belongsTo(JobPostApplicationStatus::class);
     }
 
-    public function jobPostStatus()
+    public function jobPost()
     {
-        return $this->belongsTo(JobPostStatus::class);
+        return $this->belongsTo(JobPost::class);
     }
 
-    public function jobPostApplications()
+    public function employee()
     {
-        return $this->hasMany(JobPostApplication::class);
+        return $this->belongsTo(Employee::class);
     }
 }
