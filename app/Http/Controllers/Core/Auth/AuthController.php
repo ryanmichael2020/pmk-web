@@ -100,9 +100,10 @@ class AuthController extends Controller
         } catch (QueryException $exception) {
             Log::error($exception->getMessage());
             Log::error($exception->getTraceAsString());
-            $error_code = $exception->errorInfo[1];
 
+            $error_code = $exception->errorInfo[1];
             Log::error($error_code);
+
             if ($error_code == 1062) {
                 $error = array();
                 $error['message'] = 'This email is already in use. Please use a different email.';
