@@ -45,7 +45,7 @@ class JobPostController extends Controller
             $error['message'] = 'Query exception occurred.';
 
             $response['error'] = $error;
-            $response['message'] = ' Failed to create job post.';
+            $response['message'] = 'Failed to create job post.';
             $response['status_code'] = Response::HTTP_BAD_REQUEST;
         } catch (\Exception $exception) {
             Log::error($exception->getMessage());
@@ -55,7 +55,7 @@ class JobPostController extends Controller
             $error['message'] = 'Unknown error occurred.';
 
             $response['error'] = $error;
-            $response['message'] = ' Failed to create job post.';
+            $response['message'] = 'Failed to create job post.';
             $response['status_code'] = Response::HTTP_INTERNAL_SERVER_ERROR;
         }
 
@@ -118,7 +118,7 @@ class JobPostController extends Controller
             $error['message'] = 'Query exception occurred.';
 
             $response['error'] = $error;
-            $response['message'] = ' Failed to update job post.';
+            $response['message'] = 'Failed to update job post.';
             $response['status_code'] = Response::HTTP_BAD_REQUEST;
         } catch (\Exception $exception) {
             Log::error($exception->getMessage());
@@ -128,7 +128,7 @@ class JobPostController extends Controller
             $error['message'] = 'Unknown error occurred.';
 
             $response['error'] = $error;
-            $response['message'] = ' Failed to update job post.';
+            $response['message'] = 'Failed to update job post.';
             $response['status_code'] = Response::HTTP_INTERNAL_SERVER_ERROR;
         }
 
@@ -171,7 +171,7 @@ class JobPostController extends Controller
             $error['message'] = 'Query exception occurred.';
 
             $response['error'] = $error;
-            $response['message'] = ' Failed to delete job post.';
+            $response['message'] = 'Failed to delete job post.';
             $response['status_code'] = Response::HTTP_BAD_REQUEST;
         } catch (\Exception $exception) {
             Log::error($exception->getMessage());
@@ -181,7 +181,7 @@ class JobPostController extends Controller
             $error['message'] = 'Unknown error occurred.';
 
             $response['error'] = $error;
-            $response['message'] = ' Failed to delete job post.';
+            $response['message'] = 'Failed to delete job post.';
             $response['status_code'] = Response::HTTP_INTERNAL_SERVER_ERROR;
         }
 

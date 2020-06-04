@@ -43,13 +43,14 @@ class CompanyController extends Controller
                 $error['message'] = 'Company name already exists.';
 
                 $response['error'] = $error;
-                $response['message'] = ' Failed to create company.';
+                $response['message'] = 'Failed to create company.';
+                $response['status_code'] = Response::HTTP_BAD_REQUEST;
             } else {
                 $error = array();
                 $error['message'] = 'Query exception occurred.';
 
                 $response['error'] = $error;
-                $response['message'] = ' Failed to create company.';
+                $response['message'] = 'Failed to create company.';
                 $response['status_code'] = Response::HTTP_BAD_REQUEST;
             }
         } catch (\Exception $exception) {
@@ -60,7 +61,7 @@ class CompanyController extends Controller
             $error['message'] = 'Unknown error occurred.';
 
             $response['error'] = $error;
-            $response['message'] = ' Failed to create company.';
+            $response['message'] = 'Failed to create company.';
             $response['status_code'] = Response::HTTP_INTERNAL_SERVER_ERROR;
         }
 
@@ -111,13 +112,14 @@ class CompanyController extends Controller
                 $error['message'] = 'Company name already exists.';
 
                 $response['error'] = $error;
-                $response['message'] = ' Failed to update company.';
+                $response['message'] = 'Failed to update company.';
+                $response['status_code'] = Response::HTTP_BAD_REQUEST;
             } else {
                 $error = array();
                 $error['message'] = 'Query exception occurred.';
 
                 $response['error'] = $error;
-                $response['message'] = ' Failed to update company.';
+                $response['message'] = 'Failed to update company.';
                 $response['status_code'] = Response::HTTP_BAD_REQUEST;
             }
         } catch (\Exception $exception) {
@@ -128,7 +130,7 @@ class CompanyController extends Controller
             $error['message'] = 'Unknown error occurred.';
 
             $response['error'] = $error;
-            $response['message'] = ' Failed to update company.';
+            $response['message'] = 'Failed to update company.';
             $response['status_code'] = Response::HTTP_INTERNAL_SERVER_ERROR;
         }
 
@@ -176,7 +178,7 @@ class CompanyController extends Controller
             $error['message'] = 'Query exception occurred.';
 
             $response['error'] = $error;
-            $response['message'] = ' Failed to delete company.';
+            $response['message'] = 'Failed to delete company.';
             $response['status_code'] = Response::HTTP_BAD_REQUEST;
         } catch (\Exception $exception) {
             Log::error($exception->getMessage());
@@ -186,7 +188,7 @@ class CompanyController extends Controller
             $error['message'] = 'Unknown error occurred.';
 
             $response['error'] = $error;
-            $response['message'] = ' Failed to delete company.';
+            $response['message'] = 'Failed to delete company.';
             $response['status_code'] = Response::HTTP_INTERNAL_SERVER_ERROR;
         }
 

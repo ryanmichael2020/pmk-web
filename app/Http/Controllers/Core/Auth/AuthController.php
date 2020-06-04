@@ -108,13 +108,14 @@ class AuthController extends Controller
                 $error['message'] = 'This email is already in use. Please use a different email.';
 
                 $response['error'] = $error;
-                $response['message'] = ' Signup failed.';
+                $response['message'] = 'Signup failed.';
+                $response['status_code'] = Response::HTTP_BAD_REQUEST;
             } else {
                 $error = array();
                 $error['message'] = 'Query exception occurred.';
 
                 $response['error'] = $error;
-                $response['message'] = ' Signup failed.';
+                $response['message'] = 'Signup failed.';
                 $response['status_code'] = Response::HTTP_BAD_REQUEST;
             }
         } catch (\Exception $exception) {
@@ -125,7 +126,7 @@ class AuthController extends Controller
             $error['message'] = 'Unknown error occurred.';
 
             $response['error'] = $error;
-            $response['message'] = ' Signup failed.';
+            $response['message'] = 'Signup failed.';
             $response['status_code'] = Response::HTTP_INTERNAL_SERVER_ERROR;
         }
 
@@ -146,7 +147,7 @@ class AuthController extends Controller
             $error['message'] = 'Unknown error occurred.';
 
             $response['error'] = $error;
-            $response['message'] = ' Logout failed.';
+            $response['message'] = 'Logout failed.';
             $response['status_code'] = Response::HTTP_INTERNAL_SERVER_ERROR;
         }
 
