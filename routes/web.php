@@ -50,8 +50,12 @@ Route::get('/profile', 'Web\Employee\WebEmployeeProfileManagementPageController@
 Route::get('/profile/account/update', 'Web\Employee\WebEmployeeProfileManagementPageController@displayProfileAccountUpdatePage');
 Route::get('/profile/details/update', 'Web\Employee\WebEmployeeProfileManagementPageController@displayProfileDetailsUpdatePage');
 
+Route::get('/profile/educations/management', 'Web\Employee\WebEmployeeProfileManagementPageController@displayProfileEducationManagementPage');
+Route::get('/profile/educations/add', 'Web\Employee\WebEmployeeProfileManagementPageController@displayProfileEducationCreatePage');
+
 Route::post('/profile/account/update', 'Web\Employee\WebEmployeeProfileManagementController@updateEmployeeAccount');
 Route::post('/profile/details/update', 'Web\Employee\WebEmployeeProfileManagementController@updateEmployeeDetails');
+Route::post('/profile/education/add', 'Web\Employee\WebEmployeeProfileManagementController@addEmployeeEducation');
 
 //Job Post Routes
 Route::post('/jobpost/create', 'Web\Company\WebJobPostController@create');

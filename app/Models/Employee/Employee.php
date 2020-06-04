@@ -45,7 +45,7 @@ class Employee extends Model
         return $this->hasMany(EmployeeSkill::class);
     }
 
-    public function employeeEducation()
+    public function employeeEducations()
     {
         return $this->hasMany(EmployeeEducation::class);
     }

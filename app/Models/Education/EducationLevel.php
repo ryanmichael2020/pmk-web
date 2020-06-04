@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class EducationLevel extends Model
 {
-
     /**
      * The attributes that are mass assignable.
      *

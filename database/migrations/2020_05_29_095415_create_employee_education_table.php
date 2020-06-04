@@ -19,7 +19,7 @@ class CreateEmployeeEducationTable extends Migration
             $table->foreignId('education_level_id')->references('id')->on('education_levels');
             $table->string('school', 128);
             $table->string('start_year', 4);
-            $table->string('end_year', 4);
+            $table->string('end_year', 4)->nullable();
             $table->timestamps();
         });
     }

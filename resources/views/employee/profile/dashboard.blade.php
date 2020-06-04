@@ -73,7 +73,7 @@
                             </div>
 
                             <div class="col-auto ml-auto my-auto">
-                                <a href="#">
+                                <a href="/profile/educations/management">
                                     <i class="fas fa-edit float-right"></i>
                                 </a>
                             </div>
@@ -82,17 +82,29 @@
 
                     <div class="card-body">
                         <ul class="list-group">
-                            @if(auth()->user()->employeeEducation != null)
-                                @foreach(auth()->user()->employeeEducation as $employeeEducation)
+                            @if(auth()->user()->employee->employeeEducations != null)
+                                @foreach(auth()->user()->employee->employeeEducations as $employeeEducation)
                                     <li class="list-group-item">
                                         <strong>School</strong>
                                         <p>{{ $employeeEducation->school }}</p>
 
-                                        <strong>Level</strong>
-                                        <p>{{ $employeeEducation->employeeEducationLevel->level }}</p>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <strong>Level</strong>
+                                                <p>{{ $employeeEducation->educationLevel->level }}</p>
+                                            </div>
 
-                                        <strong>Year</strong>
-                                        <p>{{ $employeeEducation->start_year }} - {{ $employeeEducation->end_year }}</p>
+                                            <div class="col-md-6">
+                                                <strong>Year</strong>
+
+                                                @if($employeeEducation->end_year != null)
+                                                    <p>{{ $employeeEducation->start_year }}
+                                                        - {{ $employeeEducation->end_year }}</p>
+                                                @else
+                                                    <p>{{ $employeeEducation->start_year }}</p>
+                                                @endif
+                                            </div>
+                                        </div>
                                     </li>
                                 @endforeach
                             @else
