@@ -16,9 +16,9 @@ class CreateEmployeesTable extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
-            $table->string('age', 2);
-            $table->string('address', 512);
-            $table->string('mobile', 16);
+            $table->string('age', 2)->nullable();
+            $table->string('address', 512)->nullable();
+            $table->string('mobile', 16)->nullable();
             $table->timestamps();
         });
     }

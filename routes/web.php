@@ -47,6 +47,11 @@ Route::get('/dashboard', 'Web\Employee\WebEmployeeDashboardPageController@displa
 
 // Employee Profile Routes
 Route::get('/profile', 'Web\Employee\WebEmployeeProfileManagementPageController@displayProfileDashboardPage');
+Route::get('/profile/account/update', 'Web\Employee\WebEmployeeProfileManagementPageController@displayProfileAccountUpdatePage');
+Route::get('/profile/details/update', 'Web\Employee\WebEmployeeProfileManagementPageController@displayProfileDetailsUpdatePage');
+
+Route::post('/profile/account/update', 'Web\Employee\WebEmployeeProfileManagementController@updateEmployeeAccount');
+Route::post('/profile/details/update', 'Web\Employee\WebEmployeeProfileManagementController@updateEmployeeDetails');
 
 //Job Post Routes
 Route::post('/jobpost/create', 'Web\Company\WebJobPostController@create');

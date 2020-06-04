@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Core\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Employee\Employee;
 use App\Models\User\User;
 use App\Models\User\UserDetail;
 use Illuminate\Database\QueryException;
@@ -79,6 +80,10 @@ class AuthController extends Controller
                 $userDetail->last_name = $last_name;
                 $userDetail->sex = $sex;
                 $userDetail->save();
+
+                $employee = new Employee();
+                $employee->user_id = $user->id;
+                $employee->save();
 
                 DB::commit();
 

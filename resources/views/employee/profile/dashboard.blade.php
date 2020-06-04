@@ -11,7 +11,17 @@
                 {{-- Account --}}
                 <div class="card">
                     <div class="card-header">
-                        <h1>Account</h1>
+                        <div class="row">
+                            <div class="col-auto">
+                                <h1 class="my-0">Account</h1>
+                            </div>
+
+                            <div class="col-auto ml-auto my-auto">
+                                <a href="/profile/account/update">
+                                    <i class="fas fa-edit float-right"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="card-body">
@@ -20,31 +30,54 @@
 
                         <strong>Name</strong>
                         <p>{{ auth()->user()->userDetail->name() }}</p>
+
+                        <strong>Sex</strong>
+                        <p>{{ auth()->user()->userDetail->sex }}</p>
                     </div>
                 </div>
 
                 {{-- Details --}}
                 <div class="card">
                     <div class="card-header">
-                        <h1>Details</h1>
+                        <div class="row">
+                            <div class="col-auto">
+                                <h1 class="my-0">Details</h1>
+                            </div>
+
+                            <div class="col-auto ml-auto my-auto">
+                                <a href="/profile/details/update">
+                                    <i class="fas fa-edit float-right"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="card-body">
                         <strong>Age</strong>
-                        <p> {{ auth()->user()->employee != null ? auth()->user()->employee->age : "-" }}</p>
+                        <p> {{ auth()->user()->employee->age != null ? auth()->user()->employee->age : "-" }}</p>
 
                         <strong>Address</strong>
-                        <p> {{ auth()->user()->employee != null ? auth()->user()->employee->address : "-" }}</p>
+                        <p> {{ auth()->user()->employee->address != null ? auth()->user()->employee->address : "-" }}</p>
 
                         <strong>Mobile</strong>
-                        <p> {{ auth()->user()->employee != null ? auth()->user()->employee->mobile : "-" }}</p>
+                        <p> {{ auth()->user()->employee->mobile != null ? auth()->user()->employee->mobile : "-" }}</p>
                     </div>
                 </div>
 
                 {{-- Education --}}
                 <div class="card">
                     <div class="card-header">
-                        <h1>Education</h1>
+                        <div class="row">
+                            <div class="col-auto">
+                                <h1 class="my-0">Education</h1>
+                            </div>
+
+                            <div class="col-auto ml-auto my-auto">
+                                <a href="#">
+                                    <i class="fas fa-edit float-right"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="card-body">
@@ -91,7 +124,17 @@
                 {{-- Skills --}}
                 <div class="card">
                     <div class="card-header">
-                        <h1>Skills</h1>
+                        <div class="row">
+                            <div class="col-auto">
+                                <h1 class="my-0">Skills</h1>
+                            </div>
+
+                            <div class="col-auto ml-auto my-auto">
+                                <a href="#">
+                                    <i class="fas fa-edit float-right"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="card-body">
@@ -109,7 +152,17 @@
                 {{-- Trainings --}}
                 <div class="card">
                     <div class="card-header">
-                        <h1>Education</h1>
+                        <div class="row">
+                            <div class="col-auto">
+                                <h1 class="my-0">Education</h1>
+                            </div>
+
+                            <div class="col-auto ml-auto my-auto">
+                                <a href="#">
+                                    <i class="fas fa-edit float-right"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="card-body">
