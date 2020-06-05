@@ -2,6 +2,7 @@
 
 namespace App\Models\Employee;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class EmployeeTraining extends Model
@@ -12,7 +13,7 @@ class EmployeeTraining extends Model
      * @var array
      */
     protected $fillable = [
-        'employee_id', 'training', 'start_month', 'end_month', 'start_year', 'end_year',
+        'employee_id', 'training', 'month', 'year',
     ];
 
     /**
@@ -40,6 +41,6 @@ class EmployeeTraining extends Model
 
     public function trainingSimpleDate()
     {
-        return $this->start_month . '/' . $this->start_year . ' - ' . $this->end_month . '/' . $this->end_year;
+        return Carbon::create(0, $this->month)->monthName . ' ' . $this->year;
     }
 }

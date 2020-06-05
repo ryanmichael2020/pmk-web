@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Core\Employee\EmployeeController;
 use App\Http\Controllers\Core\Employee\EmployeeEducationController;
 use App\Http\Controllers\Core\Employee\EmployeeSkillController;
+use App\Http\Controllers\Core\Employee\EmployeeTrainingController;
 use App\Http\Controllers\Core\User\UserController;
 use App\Http\Requests\Core\Employee\CreateEmployeeEducationRequest;
+use App\Http\Requests\Employee\CreateEmployeeTrainingRequest;
 use App\Http\Requests\Employee\UpdateEmployeeRequest;
 use App\Http\Requests\Employee\UpdateEmployeeSkillsRequest;
 use App\Http\Requests\User\UpdateUserRequest;
@@ -93,5 +95,24 @@ class WebEmployeeProfileManagementController extends Controller
         }
 
         return redirect('/profile/skills/update');
+    }
+
+    public function addTraining(CreateEmployeeTrainingRequest $request)
+    {
+        $training = $request->training;
+        $month = $request->month;
+        $year = $request->year;
+        $employee_id = auth()->user()->employee->id;
+
+        $response = EmployeeTrainingController::create($employee_id, $training, $month, $year);
+        if ($response['status_code'] == Response::HTTP_OK) {
+            session()->flash('response_type', 'success');
+            session()->flash('message', $response['message']);
+        } else {
+            session()->flash('response_type', 'error');
+            session()->flash('message', $response['message'] . ' ' . $response['error']['message']);
+        }
+
+        return redirect('/profile/trainings/management');
     }
 }

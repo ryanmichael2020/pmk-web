@@ -192,7 +192,7 @@
                             </div>
 
                             <div class="col-auto ml-auto my-auto">
-                                <a href="#">
+                                <a href="/profile/trainings/management">
                                     <i class="fas fa-edit float-right"></i>
                                 </a>
                             </div>
@@ -204,11 +204,17 @@
                             @if(count(auth()->user()->employee->employeeTrainings) > 0)
                                 @foreach(auth()->user()->employee->employeeTrainings as $employeeTraining)
                                     <li class="list-group-item">
-                                        <strong>Training</strong>
-                                        <p>{{ $employeeTraining->training }}</p>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-6">
+                                                <strong>Training</strong>
+                                                <p>{{ $employeeTraining->training }}</p>
+                                            </div>
 
-                                        <strong>Date</strong>
-                                        <p>{{ $employeeTraining->trainingSimpleDate() }}</p>
+                                            <div class="col-sm-12 col-md-6">
+                                                <strong>Date</strong>
+                                                <p>{{ $employeeTraining->trainingSimpleDate() }}</p>
+                                            </div>
+                                        </div>
                                     </li>
                                 @endforeach
                             @else

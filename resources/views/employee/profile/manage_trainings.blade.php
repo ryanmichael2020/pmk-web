@@ -17,35 +17,27 @@
                             </div>
 
                             <div class="col-auto my-auto">
-                                <h1 class="mb-0">Employee Education</h1>
+                                <h1 class="mb-0">Employee Trainings</h1>
                             </div>
                         </div>
                     </div>
 
                     <div class="card-body">
-                        @if(count($employee_educations) > 0)
+                        @if(count($employee_trainings) > 0)
                             <ul class="list-group">
-                                @foreach($employee_educations as $employee_education)
+                                @foreach($employee_trainings as $employee_training)
                                     <li class="list-group-item my-2">
                                         <div class="row">
                                             <div class="col-sm-12 col-lg-4">
-                                                <strong>School</strong>
-                                                <p class="mb-0">{{ $employee_education->school }}</p>
+                                                <strong>Training</strong>
+                                                <p class="mb-0">{{ $employee_training->training }}</p>
                                             </div>
 
                                             <div class="col-sm-12 col-lg-4">
-                                                <strong>Level</strong>
-                                                <p class="mb-0">{{ $employee_education->educationLevel->level }}</p>
-                                            </div>
-
-                                            <div class="col-sm-12 col-lg-4">
-                                                <strong>Year</strong>
-                                                @if($employee_education->end_year != null)
-                                                    <p class="mb-0">{{ $employee_education->start_year }}
-                                                        - {{ $employee_education->end_year }}</p>
-                                                @else
-                                                    <p class="mb-0">{{ $employee_education->start_year }}</p>
-                                                @endif
+                                                <strong>Date</strong>
+                                                <p class="mb-0">
+                                                    {{ $employee_training->trainingSimpleDate() }}
+                                                </p>
                                             </div>
 
                                             <div style="position: absolute; top: -12px; right: -12px;">
@@ -62,17 +54,12 @@
                             <li class="list-group-item">
                                 <div class="row">
                                     <div class="col-sm-12 col-md-6">
-                                        <strong>School</strong>
+                                        <strong>Training</strong>
                                         <p>-</p>
                                     </div>
 
                                     <div class="col-sm-12 col-md-3">
-                                        <strong>Level</strong>
-                                        <p>-</p>
-                                    </div>
-
-                                    <div class="col-sm-12 col-md-3">
-                                        <strong>Year</strong>
+                                        <strong>Date</strong>
                                         <p>-</p>
                                     </div>
                                 </div>
@@ -82,9 +69,9 @@
                     </div>
 
                     <div class="card-footer">
-                        <a href="/profile/educations/add">
+                        <a href="/profile/trainings/add">
                             <button type="button" class="btn btn-primary">
-                                Add Education
+                                Add Training
                             </button>
                         </a>
                     </div>

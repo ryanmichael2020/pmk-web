@@ -17,10 +17,8 @@ class CreateEmployeeTrainingsTable extends Migration
             $table->id();
             $table->foreignId('employee_id')->references('id')->on('employees');
             $table->string('training', 64);
-            $table->string('start_month', 16);
-            $table->string('end_month', 16);
-            $table->string('start_year', 4);
-            $table->string('end_year', 4);
+            $table->string('month', 2);
+            $table->string('year', 4);
             $table->timestamps();
         });
     }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Employee\Employee;
 use App\Models\Employee\EmployeeEducation;
 use App\Models\Employee\EmployeeSkill;
+use App\Models\Employee\EmployeeTraining;
 use App\Models\User\User;
 
 class WebEmployeeProfileManagementPageController extends Controller
@@ -50,12 +51,27 @@ class WebEmployeeProfileManagementPageController extends Controller
     {
         $employee_id = auth()->user()->employee->id;
         $employee_skills = EmployeeSkill::where('employee_id', $employee_id)
-            ->orderBy('skill', 'desc')->get()->pluck('skill')->toArray();
+            ->get()->pluck('skill')->toArray();
 
         $employee_skills_imploded = implode(",", $employee_skills);
 
         return view('employee.profile.update_skills')
             ->with('employee_skills', $employee_skills)
             ->with('employee_skills_imploded', $employee_skills_imploded);
+    }
+
+    public function displayProfileTrainingsManagementPage()
+    {
+        $employee_id = auth()->user()->employee->id;
+        $employee_trainings = EmployeeTraining::where('employee_id', $employee_id)
+            ->orderBy('year', 'desc')->get();
+
+        return view('employee.profile.manage_trainings')
+            ->with('employee_trainings', $employee_trainings);
+    }
+
+    public function displayProfileTrainingCreatePage()
+    {
+        return view('employee.profile.add_training');
     }
 }

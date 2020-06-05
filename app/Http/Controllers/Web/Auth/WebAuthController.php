@@ -8,7 +8,6 @@ use App\Http\Requests\Auth\AuthLoginRequest;
 use App\Http\Requests\Auth\AuthSignupRequest;
 use App\Models\User\UserType;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Log;
 
 class WebAuthController extends Controller
 {
@@ -48,7 +47,6 @@ class WebAuthController extends Controller
         $sex = $request->sex;
 
         $response = AuthController::signup($email, $password, $verify_password, $first_name, $last_name, $sex);
-        Log::debug($response);
 
         if ($response['status_code'] = Response::HTTP_OK) {
             session()->flash('response_type', 'success');

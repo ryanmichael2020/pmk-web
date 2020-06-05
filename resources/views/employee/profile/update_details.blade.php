@@ -33,16 +33,16 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="address">Address</label>
-                                <input id="address" name="address" type="text" class="form-control" maxlength="512"
-                                       placeholder="Enter address" value="{{ $employee->address }}"
+                                <label for="mobile">Mobile</label>
+                                <input id="mobile" name="mobile" type="text" class="form-control" maxlength="16"
+                                       placeholder="Enter mobile" value="{{ $employee->mobile }}"
                                        required>
                             </div>
 
                             <div class="form-group">
-                                <label for="mobile">Mobile</label>
-                                <input id="mobile" name="mobile" type="text" class="form-control" maxlength="16"
-                                       placeholder="Enter mobile" value="{{ $employee->mobile }}"
+                                <label for="address">Address</label>
+                                <input id="address" name="address" type="text" class="form-control" maxlength="512"
+                                       placeholder="Enter address" value="{{ $employee->address }}"
                                        required>
                             </div>
                         </div>

@@ -52,7 +52,7 @@ class Employee extends Model
 
     public function employeeTrainings()
     {
-        return $this->hasMany(EmployeeTraining::class);
+        return $this->hasMany(EmployeeTraining::class)->orderBy('year', 'desc');
     }
 
     public function employeeReviews()
