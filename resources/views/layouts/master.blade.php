@@ -23,7 +23,7 @@
     @yield('header')
 </head>
 
-<body>
+<body class="bg-primary">
 @guest
     <div id="app">
         @yield('body')

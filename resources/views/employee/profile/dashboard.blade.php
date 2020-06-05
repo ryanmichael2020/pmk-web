@@ -6,10 +6,20 @@
     <div class="container my-6">
         <div class="row">
 
-            <div class="col-sm-12 col-md-8 col-lg-6 mx-auto">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header align-middle">
+                        <h1 class="text-center mb-0">Employee Profile</h1>
+                    </div>
+                </div>
+            </div>
+
+            @include('nav.employee.profile.quick_links', ['classes' => 'col-sm-12 col-md-4 col-lg-3'])
+
+            <div class="col-sm-12 col-md-8 col-lg-9 mx-auto">
 
                 {{-- Account --}}
-                <div class="card">
+                <div id="account" class="card">
                     <div class="card-header">
                         <div class="row">
                             <div class="col-auto">
@@ -28,16 +38,22 @@
                         <strong>Email</strong>
                         <p>{{ auth()->user()->email }}</p>
 
-                        <strong>Name</strong>
-                        <p>{{ auth()->user()->userDetail->name() }}</p>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6">
+                                <strong>Name</strong>
+                                <p>{{ auth()->user()->userDetail->name() }}</p>
+                            </div>
 
-                        <strong>Sex</strong>
-                        <p>{{ auth()->user()->userDetail->sex }}</p>
+                            <div class="col-sm-12 col-md-6">
+                                <strong>Sex</strong>
+                                <p>{{ auth()->user()->userDetail->sex }}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 {{-- Details --}}
-                <div class="card">
+                <div id="details" class="card">
                     <div class="card-header">
                         <div class="row">
                             <div class="col-auto">
@@ -53,19 +69,25 @@
                     </div>
 
                     <div class="card-body">
-                        <strong>Age</strong>
-                        <p> {{ auth()->user()->employee->age != null ? auth()->user()->employee->age : "-" }}</p>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6">
+                                <strong>Age</strong>
+                                <p> {{ auth()->user()->employee->age != null ? auth()->user()->employee->age : "-" }}</p>
+                            </div>
+
+                            <div class="col-sm-12 col-md-6">
+                                <strong>Mobile</strong>
+                                <p> {{ auth()->user()->employee->mobile != null ? auth()->user()->employee->mobile : "-" }}</p>
+                            </div>
+                        </div>
 
                         <strong>Address</strong>
                         <p> {{ auth()->user()->employee->address != null ? auth()->user()->employee->address : "-" }}</p>
-
-                        <strong>Mobile</strong>
-                        <p> {{ auth()->user()->employee->mobile != null ? auth()->user()->employee->mobile : "-" }}</p>
                     </div>
                 </div>
 
                 {{-- Education --}}
-                <div class="card">
+                <div id="education" class="card">
                     <div class="card-header">
                         <div class="row">
                             <div class="col-auto">
@@ -82,7 +104,7 @@
 
                     <div class="card-body">
                         <ul class="list-group">
-                            @if(auth()->user()->employee->employeeEducations != null)
+                            @if(count(auth()->user()->employee->employeeEducations) > 0)
                                 @foreach(auth()->user()->employee->employeeEducations as $employeeEducation)
                                     <li class="list-group-item">
                                         <strong>School</strong>
@@ -134,7 +156,7 @@
                 </div>
 
                 {{-- Skills --}}
-                <div class="card">
+                <div id="skills" class="card">
                     <div class="card-header">
                         <div class="row">
                             <div class="col-auto">
@@ -150,7 +172,7 @@
                     </div>
 
                     <div class="card-body">
-                        @if(auth()->user()->employee->employeeSkills != null)
+                        @if(count(auth()->user()->employee->employeeSkills) > 0)
                             @foreach(auth()->user()->employee->employeeSkills as $employeeSkill)
                                 <span class="badge badge-pill badge-default"
                                       style="font-size: 14px;">{{ $employeeSkill->skill }}</span>
@@ -162,7 +184,7 @@
                 </div>
 
                 {{-- Trainings --}}
-                <div class="card">
+                <div id="trainings" class="card">
                     <div class="card-header">
                         <div class="row">
                             <div class="col-auto">
@@ -179,7 +201,7 @@
 
                     <div class="card-body">
                         <ul class="list-group">
-                            @if(auth()->user()->employee->employeeTrainings != null)
+                            @if(count(auth()->user()->employee->employeeTrainings) > 0)
                                 @foreach(auth()->user()->employee->employeeTrainings as $employeeTraining)
                                     <li class="list-group-item">
                                         <strong>Training</strong>
