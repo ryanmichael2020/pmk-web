@@ -1,5 +1,9 @@
 <div class="{{ $classes }}">
     <div class="list-group">
+        <div class="list-group-item">
+            Quick Links
+        </div>
+
         <a href="#account" class="list-group-item">
             Account
         </a>
