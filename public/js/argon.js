@@ -2,11 +2,11 @@
 /*!
 
 =========================================================
-* Argon Dashboard PRO - v1.1.0
+* Argon Dashboard PRO - v1.2.0
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/argon-dashboard
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
+* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro
+* Copyright 2020 Creative Tim (https://www.creative-tim.com)
 
 * Coded by www.creative-tim.com
 
@@ -58,7 +58,25 @@ var Layout = (function() {
         if(Cookies.get('sidenav-state') == 'unpinned') {
             unpinSidenav()
         }
+
+        $(window).resize(function() {
+            if( $('body').hasClass('g-sidenav-show') && !$('body').hasClass('g-sidenav-pinned')) {
+                $('body').removeClass('g-sidenav-show').addClass('g-sidenav-hidden');
+            }
+        })
     }
+
+    if($(window).width() < 1200){
+      $('body').removeClass('g-sidenav-hide').addClass('g-sidenav-hidden');
+      $('body').removeClass('g-sidenav-show');
+      $(window).resize(function() {
+          if( $('body').hasClass('g-sidenav-show') && !$('body').hasClass('g-sidenav-pinned')) {
+              $('body').removeClass('g-sidenav-show').addClass('g-sidenav-hidden');
+          }
+      })
+    }
+
+
 
     $("body").on("click", "[data-action]", function(e) {
 
@@ -873,10 +891,6 @@ function initMap() {
     google.maps.event.addListener(marker, 'click', function() {
         infowindow.open(map, marker);
     });
-}
-
-if($map.length) {
-    google.maps.event.addDomListener(window, 'load', initMap);
 }
 
 //

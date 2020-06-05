@@ -43,7 +43,3 @@ function initMap() {
         infowindow.open(map, marker);
     });
 }
-
-if($map.length) {
-    google.maps.event.addDomListener(window, 'load', initMap);
-}
