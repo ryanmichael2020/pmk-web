@@ -14,7 +14,7 @@
                 </div>
             </div>
 
-            @include('nav.employee.profile.quick_links', ['classes' => 'col-sm-12 col-md-4 col-lg-3'])
+            @include('nav.employee.profile.quick_links', ['classes' => 'col-sm-12 col-md-4 col-lg-3 mb-4'])
 
             <div class="col-sm-12 col-md-8 col-lg-9 mx-auto">
 
