@@ -142,7 +142,7 @@
                             </div>
 
                             <div class="col-auto ml-auto my-auto">
-                                <a href="#">
+                                <a href="/profile/skills/update">
                                     <i class="fas fa-edit float-right"></i>
                                 </a>
                             </div>
@@ -150,8 +150,8 @@
                     </div>
 
                     <div class="card-body">
-                        @if(auth()->user()->employeeSkills != null)
-                            @foreach(auth()->user()->employeeSkills as $employeeSkill)
+                        @if(auth()->user()->employee->employeeSkills != null)
+                            @foreach(auth()->user()->employee->employeeSkills as $employeeSkill)
                                 <span class="badge badge-pill badge-default"
                                       style="font-size: 14px;">{{ $employeeSkill->skill }}</span>
                             @endforeach
@@ -166,7 +166,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-auto">
-                                <h1 class="my-0">Education</h1>
+                                <h1 class="my-0">Trainings</h1>
                             </div>
 
                             <div class="col-auto ml-auto my-auto">
@@ -179,8 +179,8 @@
 
                     <div class="card-body">
                         <ul class="list-group">
-                            @if(auth()->user()->employeeTrainings != null)
-                                @foreach(auth()->user()->employeeTrainings as $employeeTraining)
+                            @if(auth()->user()->employee->employeeTrainings != null)
+                                @foreach(auth()->user()->employee->employeeTrainings as $employeeTraining)
                                     <li class="list-group-item">
                                         <strong>Training</strong>
                                         <p>{{ $employeeTraining->training }}</p>

@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\User;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Log;
 
 class UpdateUserRequest extends FormRequest
 {
@@ -29,5 +31,11 @@ class UpdateUserRequest extends FormRequest
             'last_name' => 'required|string|max:32',
             'sex' => 'required|string|max:16',
         ];
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        Log::error($validator->getMessageBag());
+        parent::failedValidation($validator);
     }
 }

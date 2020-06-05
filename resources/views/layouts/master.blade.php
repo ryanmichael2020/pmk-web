@@ -74,10 +74,11 @@
 <script src="{{ asset('vendor/js-cookie/js.cookie.js') }}"></script>
 <script src="{{ asset('vendor/jquery.scrollbar/jquery.scrollbar.min.js') }}"></script>
 
+@yield('script')
+
 <!-- Argon JS -->
 <script src="{{ asset('js/argon.js') }}"></script>
 
-@yield('script')
 </body>
 
 </html>

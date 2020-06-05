@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Web\Employee;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Core\Employee\EmployeeController;
 use App\Http\Controllers\Core\Employee\EmployeeEducationController;
+use App\Http\Controllers\Core\Employee\EmployeeSkillController;
 use App\Http\Controllers\Core\User\UserController;
 use App\Http\Requests\Core\Employee\CreateEmployeeEducationRequest;
 use App\Http\Requests\Employee\UpdateEmployeeRequest;
+use App\Http\Requests\Employee\UpdateEmployeeSkillsRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use Illuminate\Http\Response;
 
@@ -73,5 +75,23 @@ class WebEmployeeProfileManagementController extends Controller
         }
 
         return redirect('/profile/educations/management');
+    }
+
+    public function updateSkills(UpdateEmployeeSkillsRequest $request)
+    {
+        $skills = $request->skills;
+        $skills_list = explode(',', $skills);
+        $employee_id = auth()->user()->employee->id;
+
+        $response = EmployeeSkillController::update($employee_id, $skills_list);
+        if ($response['status_code'] == Response::HTTP_OK) {
+            session()->flash('response_type', 'success');
+            session()->flash('message', $response['message']);
+        } else {
+            session()->flash('response_type', 'error');
+            session()->flash('message', $response['message'] . ' ' . $response['error']['message']);
+        }
+
+        return redirect('/profile/skills/update');
     }
 }

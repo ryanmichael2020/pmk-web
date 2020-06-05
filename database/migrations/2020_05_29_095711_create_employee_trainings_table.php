@@ -15,6 +15,12 @@ class CreateEmployeeTrainingsTable extends Migration
     {
         Schema::create('employee_trainings', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('employee_id')->references('id')->on('employees');
+            $table->string('training', 64);
+            $table->string('start_month', 16);
+            $table->string('end_month', 16);
+            $table->string('start_year', 4);
+            $table->string('end_year', 4);
             $table->timestamps();
         });
     }

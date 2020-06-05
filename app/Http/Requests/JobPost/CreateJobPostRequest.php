@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\JobPost;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Log;
 
 class CreateJobPostRequest extends FormRequest
 {
@@ -24,8 +26,14 @@ class CreateJobPostRequest extends FormRequest
     public function rules()
     {
         return [
-            'postion' => 'required|string|max:64',
-            'description' => 'required|string|max:300',
+            'position' => 'required|string|max:128',
+            'description' => 'required|string|max:8096',
         ];
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        Log::error($validator->getMessageBag());
+        parent::failedValidation($validator);
     }
 }

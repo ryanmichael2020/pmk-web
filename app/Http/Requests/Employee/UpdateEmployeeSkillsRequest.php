@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Core\Employee;
+namespace App\Http\Requests\Employee;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Log;
 
-class CreateEmployeeEducationRequest extends FormRequest
+class UpdateEmployeeSkillsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,11 +26,7 @@ class CreateEmployeeEducationRequest extends FormRequest
     public function rules()
     {
         return [
-            'employee_id' => 'integer',
-            'education_level_id' => 'required|integer',
-            'school' => 'required|string|max:128',
-            'start_year' => 'required|string|max:4',
-            'end_year' => 'nullable|string|max:4',
+            'skills' => 'required|nullable|string',
         ];
     }
 

@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Employee;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Log;
 
 class UpdateEmployeeRequest extends FormRequest
 {
@@ -28,5 +30,11 @@ class UpdateEmployeeRequest extends FormRequest
             'address' => 'required|string|max:512',
             'mobile' => 'required|string|max:16',
         ];
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        Log::error($validator->getMessageBag());
+        parent::failedValidation($validator);
     }
 }
