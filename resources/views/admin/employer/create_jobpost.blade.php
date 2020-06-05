@@ -4,7 +4,7 @@
     @include('nav.nav')
 
     <div class="container">
-        <form method="post" action="/companies/create">
+        <form method="post" action="/jobpost/create">
             {{ csrf_field() }}
 
             <div class="col-sm-12 col-lg-6 mx-auto my-6">
@@ -12,12 +12,12 @@
                     <div class="card-header">
                         <h1>
                             <i class="fas fa-building" style="margin-right: 8px;"></i>
-                            Create Company
+                            Create Job Post
                         </h1>
                     </div>
 
                     <div class="card-body">
-                        <h3>Company Details</h3>
+                        <h3>Job Details</h3>
                         <div class="form-group">
                             <label for="position">Position</label>
                             <input id="position" name="position" type="text" class="form-control" maxlength="128"

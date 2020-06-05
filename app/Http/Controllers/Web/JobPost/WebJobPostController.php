@@ -10,6 +10,8 @@ use App\Http\Requests\JobPost\CreateJobPostRequest;
 use App\Models\JobPost\JobPost;
 use App\Models\User\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class WebJobPostController extends Controller
 {
@@ -28,8 +30,9 @@ class WebJobPostController extends Controller
         $position = $request->position;
         $description = $request->description;
         $max_applicants = $request->max_applicants;
-
-        $response = JobPostController::create($position, $description, $max_applicants);
+        $employer_id = 1;
+        $response = JobPostController::create($employer_id, $position, $description, $max_applicants);
+        Log::debug(json_encode($response));
         if ($response['status_code'] == Response::HTTP_OK) {
             session()->flash('response_type', 'success');
             session()->flash('message', $response['message']);
@@ -39,15 +42,16 @@ class WebJobPostController extends Controller
             session()->flash('response_type', 'error');
             session()->flash('message', $response['message'] . ' ' . $response['error']['message']);
 
+            Log::debug(json_encode($response));
             return redirect()->back();
         }
     }
 
     public function getDataTable()
     {
-        $employers = JobPost::all();
+        $jobpost = JobPost::all();
 
-        $data = DataTables::of($employers)
+        $data = DataTables::of($jobpost)
             ->addColumn('action', function ($data) {
                 $button = '<a href="' . $this->editRoute($data->id) . '" class="mx-1" title="Edit"><i class="fas fa-edit fa-lg"></i></a>';
                 $button .= '<a href="' . $this->detailedViewRoute($data->id) . '" class="mx-1" title="View"><i class="fas fa-eye fa-lg"></i></a>';

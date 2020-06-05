@@ -30,8 +30,7 @@ class JobPostController extends Controller
             DB::commit();
 
             $data = array();
-            $data['job_post'] = $job_post;
-
+            $data['jobpost'] = $job_post;
             $response['data'] = $data;
             $response['message'] = 'Job post successfully created.';
             $response['status_code'] = Response::HTTP_OK;

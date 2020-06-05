@@ -64,7 +64,8 @@ Route::post('/profile/skills/update', 'Web\Employee\WebEmployeeProfileManagement
 Route::post('/profile/trainings/add', 'Web\Employee\WebEmployeeProfileManagementController@addTraining');
 
 //Job Post Routes
-Route::post('/jobpost/create', 'Web\Company\WebJobPostController@create');
+Route::post('/jobpost/create', 'Web\JobPost\WebJobPostController@create');
+Route::get('/jobpost/datatable', 'Web\JobPost\WebJobPostController@getDataTable');
 
-Route::get('/admin/management/jobpost', 'Web\Employer\WebJobPostManagementController@displayListPage');
-Route::get('/admin/management/jobpost/create', 'Web\Employer\WebJobPostManagementController@displayCreatePage');
+Route::get('/admin/management/jobpost', 'Web\JobPost\WebJobPostManagementController@displayListPage');
+Route::get('/admin/management/jobpost/create', 'Web\JobPost\WebJobPostManagementController@displayCreatePage');
