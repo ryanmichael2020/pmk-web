@@ -8,7 +8,7 @@ use App\Http\Controllers\Core\Employee\EmployeeEducationController;
 use App\Http\Controllers\Core\Employee\EmployeeSkillController;
 use App\Http\Controllers\Core\Employee\EmployeeTrainingController;
 use App\Http\Controllers\Core\User\UserController;
-use App\Http\Requests\Core\Employee\CreateEmployeeEducationRequest;
+use App\Http\Requests\Employee\CreateEmployeeEducationRequest;
 use App\Http\Requests\Employee\CreateEmployeeTrainingRequest;
 use App\Http\Requests\Employee\UpdateEmployeeRequest;
 use App\Http\Requests\Employee\UpdateEmployeeSkillsRequest;

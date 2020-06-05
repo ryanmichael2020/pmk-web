@@ -48,7 +48,7 @@ class WebAuthController extends Controller
 
         $response = AuthController::signup($email, $password, $verify_password, $first_name, $last_name, $sex);
 
-        if ($response['status_code'] = Response::HTTP_OK) {
+        if ($response['status_code'] == Response::HTTP_OK) {
             session()->flash('response_type', 'success');
             session()->flash('message', $response['message']);
 
@@ -65,7 +65,7 @@ class WebAuthController extends Controller
     {
         $response = AuthController::logout();
 
-        if ($response['status_code'] = Response::HTTP_OK) {
+        if ($response['status_code'] == Response::HTTP_OK) {
             session()->flash('response_type', 'success');
             session()->flash('message', $response['message']);
 

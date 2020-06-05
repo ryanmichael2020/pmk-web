@@ -7,6 +7,10 @@
         <div class="row">
 
             <div class="col-sm-12">
+                @include('response_notifiers.response_card')
+            </div>
+
+            <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header align-middle">
                         <h1 class="text-center mb-0">Employee Profile</h1>

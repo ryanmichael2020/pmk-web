@@ -11,6 +11,8 @@
                 <form method="post" action="/profile/skills/update">
                     {{ csrf_field() }}
 
+                    @include('response_notifiers.response_card')
+
                     <div class="card">
                         <div class="card-header">
                             <div class="row">

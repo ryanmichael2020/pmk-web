@@ -10,6 +10,8 @@
                 <form method="post" action="/profile/education/add">
                     {{ csrf_field() }}
 
+                    @include('response_notifiers.response_card')
+
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
