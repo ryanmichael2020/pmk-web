@@ -8,6 +8,9 @@
             {{ csrf_field() }}
 
             <div class="col-sm-12 col-lg-6 mx-auto my-6">
+
+                @include('response_notifiers.response_card')
+
                 <div class="card">
                     <div class="card-header">
                         <h1>

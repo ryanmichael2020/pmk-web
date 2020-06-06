@@ -5,8 +5,13 @@
 @endsection
 
 @section('body')
+    @include('nav.nav')
+
     <div class="container-fluid">
         <div class="my-4">
+
+            @include('response_notifiers.response_card')
+
             <div class="card">
                 <div class="card-header">
                     <h1>Employer Management</h1>
