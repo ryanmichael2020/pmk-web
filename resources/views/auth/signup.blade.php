@@ -8,7 +8,9 @@
                 <form method="post" action="/signup">
                     {{ csrf_field() }}
 
-                    @include('response_notifiers.response_card')
+                    <div class="mt-4">
+                        @include('response_notifiers.response_card')
+                    </div>
 
                     <div class="card">
                         <div class="card-header">
