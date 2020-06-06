@@ -31,12 +31,12 @@ class WebEmployerController extends Controller
         $last_name = $request->last_name;
         $sex = $request->sex;
         $company_id = $request->company_id;
-        $image = time() . '.' . $request->image->extension();
+        $image = $request->image;
         $response = EmployerController::create($email, $password, $verify_password, $first_name, $last_name, $sex, $company_id, $image);
+
         if ($response['status_code'] == Response::HTTP_OK) {
             session()->flash('response_type', 'success');
             session()->flash('message', $response['message']);
-            $request->image->move(public_path('img/avatar'), $image);
             return redirect('/admin/management/employers');
         } else {
             session()->flash('response_type', 'error');

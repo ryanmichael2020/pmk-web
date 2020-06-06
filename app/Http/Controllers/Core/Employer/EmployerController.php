@@ -28,12 +28,20 @@ class EmployerController extends Controller
                 $user->user_type_id = 1;
                 $user->save();
 
+                $image_path = public_path() . '/images/profile_pictures';
+                $image_extension = $image->extension();
+                $image_name = uniqid() . '.' . $image_extension;
+                $image->move($image_path, $image_name);
+
+                // image path stored in database
+                $image_public_path = '/images/profile_pictures/' . $image_name;
+
                 $user_detail = new UserDetail();
                 $user_detail->user_id = $user->id;
                 $user_detail->first_name = $first_name;
                 $user_detail->last_name = $last_name;
                 $user_detail->sex = $sex;
-                $user_detail->image = $image;
+                $user_detail->image = $image_public_path;
                 $user_detail->save();
 
                 $employer = new Employer();
