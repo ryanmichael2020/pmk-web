@@ -35,6 +35,9 @@ class Employer extends Model
     protected $casts = [
 
     ];
+    /**
+     * @var mixed
+     */
 
     public function company()
     {

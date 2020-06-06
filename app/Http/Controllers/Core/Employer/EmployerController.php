@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Log;
 
 class EmployerController extends Controller
 {
-    public static function create($email, $password, $verify_password, $first_name, $last_name, $sex, $company_id)
+    public static function create($email, $password, $verify_password, $first_name, $last_name, $sex, $company_id, $image)
     {
         $response = array();
 
@@ -33,6 +33,7 @@ class EmployerController extends Controller
                 $user_detail->first_name = $first_name;
                 $user_detail->last_name = $last_name;
                 $user_detail->sex = $sex;
+                $user_detail->image = $image;
                 $user_detail->save();
 
                 $employer = new Employer();

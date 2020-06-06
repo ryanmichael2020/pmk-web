@@ -7,6 +7,7 @@ use App\Http\Controllers\Core\Employer\EmployerController;
 use App\Http\Requests\Employer\CreateEmployerRequest;
 use App\Models\User\User;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\DataTables;
 
 class WebEmployerController extends Controller
@@ -29,13 +30,13 @@ class WebEmployerController extends Controller
         $first_name = $request->first_name;
         $last_name = $request->last_name;
         $sex = $request->sex;
-        $company_id = 1;
-
-        $response = EmployerController::create($email, $password, $verify_password, $first_name, $last_name, $sex, $company_id);
+        $company_id = $request->company_id;
+        $image = time().'.'.$request->image->extension();
+        $response = EmployerController::create($email, $password, $verify_password, $first_name, $last_name, $sex, $company_id, $image);
         if ($response['status_code'] == Response::HTTP_OK) {
             session()->flash('response_type', 'success');
             session()->flash('message', $response['message']);
-
+            $request->image->move(public_path('img/avatar'), $image);
             return redirect('/admin/management/employers');
         } else {
             session()->flash('response_type', 'error');

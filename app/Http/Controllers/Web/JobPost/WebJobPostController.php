@@ -27,12 +27,12 @@ class WebJobPostController extends Controller
 
     public function create(CreateJobPostRequest $request)
     {
+
         $position = $request->position;
         $description = $request->description;
         $max_applicants = $request->max_applicants;
-        $employer_id = 1;
+        $employer_id = auth()->id();
         $response = JobPostController::create($employer_id, $position, $description, $max_applicants);
-        Log::debug(json_encode($response));
         if ($response['status_code'] == Response::HTTP_OK) {
             session()->flash('response_type', 'success');
             session()->flash('message', $response['message']);
@@ -42,7 +42,6 @@ class WebJobPostController extends Controller
             session()->flash('response_type', 'error');
             session()->flash('message', $response['message'] . ' ' . $response['error']['message']);
 
-            Log::debug(json_encode($response));
             return redirect()->back();
         }
     }

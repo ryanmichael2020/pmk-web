@@ -70,8 +70,13 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="company">Company</label>
-                                    <select id="company" name="company" class="form-control">
+                                    <label for="image">Image</label>
+                                    <input type="file" name="image" id="image" class="form-control">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="company_id">Company</label>
+                                    <select id="company_id" name="company_id" class="form-control">
                                         @foreach($company as $company)
                                             @if(old('company_id') != null)
                                                 @if(old('company_id') == $company->id)
