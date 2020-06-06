@@ -18,6 +18,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
+                            <th>Email</th>
                             <th>Contact</th>
                             <th>Created</th>
                             <th>Updated</th>
@@ -44,12 +45,18 @@
                     "type": "GET",
                 },
                 columns: [
-                    {data: 'id', name: 'id',},
-                    {data: 'email', name: 'email',},
-                    {data: 'password', name: 'password',},
-                    {data: 'created_at', name: 'created_at',},
-                    {data: 'updated_at', name: 'updated_at',},
-                    {data: 'action', name: 'action',}
+                    {data: 'id', name: 'id'},
+                    {
+                        data: null,
+                        render: function (data, type, row) {
+                            return row.user_detail.first_name + ' ' + row.user_detail.last_name;
+                        }
+                    },
+                    {data: 'email', name: 'email'},
+                    {data: 'employer.company.contact', name: 'employer.company.contact'},
+                    {data: 'created_at', name: 'created_at'},
+                    {data: 'updated_at', name: 'updated_at'},
+                    {data: 'action', name: 'action'},
                 ],
                 orderable: true,
             })

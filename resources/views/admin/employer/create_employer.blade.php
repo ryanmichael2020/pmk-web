@@ -4,9 +4,10 @@
     @include('nav.nav')
 
     <div class="container">
-        <form method="post" action="/employers/create">
-            @csrf
-                <div class="col-sm-12 col-lg-10 mx-auto my-6">
+        <form method="post" action="/employers/create" enctype="multipart/form-data">
+            {{ csrf_field() }}
+
+            <div class="col-sm-12 col-lg-10 mx-auto my-6">
 
                 <div class="card">
                     <div class="card-header">
@@ -71,7 +72,7 @@
 
                                 <div class="form-group">
                                     <label for="image">Image</label>
-                                    <input type="file" name="image" id="image" class="form-control">
+                                    <input type="file" name="image" id="image" class="form-control" required>
                                 </div>
 
                                 <div class="form-group">
@@ -80,12 +81,15 @@
                                         @foreach($company as $company)
                                             @if(old('company_id') != null)
                                                 @if(old('company_id') == $company->id)
-                                                    <option value="{{ $company->id }}" selected>{{ ucfirst($company->name) }}</option>
+                                                    <option value="{{ $company->id }}"
+                                                            selected>{{ ucfirst($company->name) }}</option>
                                                 @else
-                                                    <option value="{{ $company->id }}">{{ ucfirst($company->name) }}</option>
+                                                    <option
+                                                        value="{{ $company->id }}">{{ ucfirst($company->name) }}</option>
                                                 @endif
                                             @else
-                                                <option value="{{ $company->id }}">{{ ucfirst($company->name) }}</option>
+                                                <option
+                                                    value="{{ $company->id }}">{{ ucfirst($company->name) }}</option>
                                             @endif
                                         @endforeach
                                     </select>

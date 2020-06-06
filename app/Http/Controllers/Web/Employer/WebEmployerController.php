@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Web\Employer;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Core\Employer\EmployerController;
 use App\Http\Requests\Employer\CreateEmployerRequest;
+use App\Models\Employer\Employer;
 use App\Models\User\User;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\DataTables;
 
 class WebEmployerController extends Controller
@@ -31,7 +31,7 @@ class WebEmployerController extends Controller
         $last_name = $request->last_name;
         $sex = $request->sex;
         $company_id = $request->company_id;
-        $image = time().'.'.$request->image->extension();
+        $image = time() . '.' . $request->image->extension();
         $response = EmployerController::create($email, $password, $verify_password, $first_name, $last_name, $sex, $company_id, $image);
         if ($response['status_code'] == Response::HTTP_OK) {
             session()->flash('response_type', 'success');
@@ -48,7 +48,9 @@ class WebEmployerController extends Controller
 
     public function getDataTable()
     {
-        $employers = User::all();
+        $employer_user_ids = Employer::all()->pluck('user_id');
+        $employers = User::with('userDetail', 'employer.company')
+            ->whereIn('id', $employer_user_ids)->get();
 
         $data = DataTables::of($employers)
             ->addColumn('action', function ($data) {

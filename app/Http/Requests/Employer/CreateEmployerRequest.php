@@ -33,7 +33,7 @@ class CreateEmployerRequest extends FormRequest
             'last_name' => 'required|string|max:32',
             'sex' => 'required|string|max:16',
             'company_id' => 'required|integer',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg',
         ];
     }
 
