@@ -9,7 +9,7 @@ class WebEmployerManagementController extends Controller
 {
     public function displayListPage()
     {
-        return view('admin.employer.manage_employer');
+        return view('admin.employer.manage_employers');
     }
     public function displayCreatePage()
     {
