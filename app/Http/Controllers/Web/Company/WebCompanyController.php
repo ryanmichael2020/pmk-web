@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web\Company;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Core\Company\CompanyController;
 use App\Http\Requests\Company\CreateCompanyRequest;
+use App\Http\Requests\Company\UpdateCompanyRequest;
 use App\Models\Company\Company;
 use Illuminate\Http\Response;
 use Yajra\DataTables\DataTables;
@@ -40,7 +41,27 @@ class WebCompanyController extends Controller
         }
     }
 
-    public function getDataTable() {
+    public function update(UpdateCompanyRequest $request)
+    {
+        $company_id = $request->company_id;
+        $name = $request->name;
+        $contact = $request->contact;
+
+        $response = CompanyController::update($company_id, $name, $contact);
+        if ($response['status_code'] == Response::HTTP_OK) {
+            session()->flash('response_type', 'success');
+            session()->flash('message', $response['message']);
+
+        } else {
+            session()->flash('response_type', 'error');
+            session()->flash('message', $response['message'] . ' ' . $response['error']['message']);
+        }
+
+        return redirect()->back();
+    }
+
+    public function getDataTable()
+    {
         $companies = Company::all();
 
         $data = DataTables::of($companies)

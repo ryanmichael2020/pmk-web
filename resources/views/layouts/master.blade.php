@@ -23,7 +23,7 @@
     @yield('header')
 </head>
 
-<body>
+<body class="g-sidenav-pinned">
 @guest
     <div id="app">
         @yield('body')

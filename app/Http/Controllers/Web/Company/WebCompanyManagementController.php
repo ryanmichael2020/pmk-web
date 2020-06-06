@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web\Company;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company\Company;
 
 class WebCompanyManagementController extends Controller
 {
@@ -14,5 +15,13 @@ class WebCompanyManagementController extends Controller
     public function displayCreatePage()
     {
         return view('admin.company.create_company');
+    }
+
+    public function displayUpdatePage($company_id)
+    {
+        $company = Company::where('id', $company_id)->first();
+
+        return view('admin.company.update_company')
+            ->with('company', $company);
     }
 }
