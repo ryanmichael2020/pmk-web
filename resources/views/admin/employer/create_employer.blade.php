@@ -90,21 +90,26 @@
 
                                 <div class="form-group">
                                     <label for="company_id">Company</label>
-                                    <select id="company_id" name="company_id" class="form-control">
-                                        @foreach($companies as $company)
-                                            @if(old('company_id') != null)
-                                                @if(old('company_id') == $company->id)
-                                                    <option value="{{ $company->id }}"
-                                                            selected>{{ ucfirst($company->name) }}</option>
+                                    <select id="company_id" name="company_id" class="form-control"
+                                            @if(count($companies) < 1) disabled @endif>
+                                        @if(count($companies) > 0)
+                                            @foreach($companies as $company)
+                                                @if(old('company_id') != null)
+                                                    @if(old('company_id') == $company->id)
+                                                        <option value="{{ $company->id }}"
+                                                                selected>{{ ucfirst($company->name) }}</option>
+                                                    @else
+                                                        <option
+                                                            value="{{ $company->id }}">{{ ucfirst($company->name) }}</option>
+                                                    @endif
                                                 @else
                                                     <option
                                                         value="{{ $company->id }}">{{ ucfirst($company->name) }}</option>
                                                 @endif
-                                            @else
-                                                <option
-                                                    value="{{ $company->id }}">{{ ucfirst($company->name) }}</option>
-                                            @endif
-                                        @endforeach
+                                            @endforeach
+                                        @else
+                                            <option>No companies found</option>
+                                        @endif
                                     </select>
                                 </div>
                             </div>
