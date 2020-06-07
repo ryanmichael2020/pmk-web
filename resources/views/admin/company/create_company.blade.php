@@ -13,10 +13,21 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h1>
-                            <i class="fas fa-building" style="margin-right: 8px;"></i>
-                            Create Company
-                        </h1>
+                        <div class="row">
+                            <div class="col-auto">
+                                <a href="/admin/management/companies"
+                                   class="btn btn-secondary icon icon-shape rounded-circle">
+                                    <i class="fas fa-arrow-left"></i>
+                                </a>
+                            </div>
+
+                            <div class="col-auto my-auto">
+                                <h1 class="mb-0">
+                                    <i class="fas fa-building" style="margin-right: 8px;"></i>
+                                    Create Company
+                                </h1>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="card-body">

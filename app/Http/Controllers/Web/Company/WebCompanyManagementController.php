@@ -24,4 +24,12 @@ class WebCompanyManagementController extends Controller
         return view('admin.company.update_company')
             ->with('company', $company);
     }
+
+    public function displayViewPage($company_id)
+    {
+        $company = Company::where('id', $company_id)->first();
+
+        return view('admin.company.view_company')
+            ->with('company', $company);
+    }
 }

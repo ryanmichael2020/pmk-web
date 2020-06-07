@@ -32,6 +32,7 @@ Route::get('/admin/dashboard', 'Web\Admin\WebAdminDashboardPageController@displa
 Route::get('/admin/management/companies', 'Web\Company\WebCompanyManagementController@displayListPage');
 Route::get('/admin/management/companies/create', 'Web\Company\WebCompanyManagementController@displayCreatePage');
 Route::get('/admin/management/company/{id}/update', 'Web\Company\WebCompanyManagementController@displayUpdatePage');
+Route::get('/admin/management/company/{id}', 'Web\Company\WebCompanyManagementController@displayViewPage');
 
 Route::get('/companies/datatable', 'Web\Company\WebCompanyController@getDataTable');
 Route::post('/companies/create', 'Web\Company\WebCompanyController@create');
