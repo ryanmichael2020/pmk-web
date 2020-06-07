@@ -13,10 +13,21 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h1>
-                            <i class="fas fa-user-tie" style="margin-right: 8px;"></i>
-                            Create Employer
-                        </h1>
+                        <div class="row">
+                            <div class="col-auto">
+                                <a href="/admin/management/employers"
+                                   class="btn btn-secondary icon icon-shape rounded-circle">
+                                    <i class="fas fa-arrow-left"></i>
+                                </a>
+                            </div>
+
+                            <div class="col-auto my-auto">
+                                <h1 class="mb-0">
+                                    <i class="fas fa-user-tie" style="margin-right: 8px;"></i>
+                                    Create Employer
+                                </h1>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="card-body">
@@ -80,7 +91,7 @@
                                 <div class="form-group">
                                     <label for="company_id">Company</label>
                                     <select id="company_id" name="company_id" class="form-control">
-                                        @foreach($company as $company)
+                                        @foreach($companies as $company)
                                             @if(old('company_id') != null)
                                                 @if(old('company_id') == $company->id)
                                                     <option value="{{ $company->id }}"
@@ -101,7 +112,8 @@
                     </div>
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary form-control">
+                        <button type="submit" class="btn btn-primary form-control"
+                                @if(count($companies) < 1) disabled @endif>
                             Create Employer
                         </button>
                     </div>

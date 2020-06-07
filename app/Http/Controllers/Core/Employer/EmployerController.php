@@ -9,6 +9,7 @@ use App\Models\User\UserDetail;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 
 class EmployerController extends Controller
@@ -24,7 +25,7 @@ class EmployerController extends Controller
 
                 $user = new User();
                 $user->email = $email;
-                $user->password = $password;
+                $user->password = Hash::make($password);
                 $user->user_type_id = 1;
                 $user->save();
 
@@ -96,7 +97,7 @@ class EmployerController extends Controller
         return $response;
     }
 
-    public static function update($employer_id, $email, $password, $verify_password, $first_name, $last_name, $sex, $company_id)
+    public static function update($employer_id, $email, $first_name, $last_name, $sex, $company_id, $image = null, $password = null, $verify_password = null)
     {
         $response = array();
 
@@ -111,15 +112,32 @@ class EmployerController extends Controller
 
                     $user = User::where('id', $employer->user_id)->first();
                     $user->email = $email;
-                    $user->password = $password;
+                    if ($password != null && $verify_password != null) {
+                        $user->password = Hash::make($password);
+                    }
                     $user->user_type_id = 1;
                     $user->save();
+
+                    if ($image != null) {
+                        $image_path = public_path() . '/images/profile_pictures';
+                        $image_extension = $image->extension();
+                        $image_name = uniqid() . '.' . $image_extension;
+                        $image->move($image_path, $image_name);
+
+                        // image path stored in database
+                        $image_public_path = '/images/profile_pictures/' . $image_name;
+                    }
 
                     $user_detail = UserDetail::where('user_id', $user->id)->first();
                     $user_detail->user_id = $user->id;
                     $user_detail->first_name = $first_name;
                     $user_detail->last_name = $last_name;
                     $user_detail->sex = $sex;
+
+                    if ($image != null) {
+                        $user_detail->image = $image_public_path;
+                    }
+
                     $user_detail->save();
 
                     $employer->company_id = $company_id;

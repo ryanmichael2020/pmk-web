@@ -39,11 +39,15 @@ Route::post('/companies/create', 'Web\Company\WebCompanyController@create');
 Route::post('/company/update', 'Web\Company\WebCompanyController@update');
 
 // ADMIN -- Employer Routes
-Route::get('/employers/datatable', 'Web\Employer\WebEmployerController@getDataTable');
-Route::post('/employers/create', 'Web\Employer\WebEmployerController@create');
 
 Route::get('/admin/management/employers', 'Web\Employer\WebEmployerManagementController@displayListPage');
 Route::get('/admin/management/employers/create', 'Web\Employer\WebEmployerManagementController@displayCreatePage');
+Route::get('/admin/management/employer/{id}/update', 'Web\Employer\WebEmployerManagementController@displayUpdatePage');
+Route::get('/admin/management/employer/{id}', 'Web\Employer\WebEmployerManagementController@displayViewPage');
+
+Route::get('/employers/datatable', 'Web\Employer\WebEmployerController@getDataTable');
+Route::post('/employers/create', 'Web\Employer\WebEmployerController@create');
+Route::post('/employer/update', 'Web\Employer\WebEmployerController@update');
 
 // Employee Routes
 Route::get('/dashboard', 'Web\Employee\WebEmployeeDashboardPageController@displayDashboardPage');

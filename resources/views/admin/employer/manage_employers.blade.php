@@ -56,7 +56,7 @@
                     "type": "GET",
                 },
                 columns: [
-                    {data: 'id', name: 'id',},
+                    {data: 'employer.id', name: 'employer.id',},
                     {
                         data: null,
                         render: function (data, type, row) {
