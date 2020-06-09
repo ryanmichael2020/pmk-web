@@ -126,6 +126,66 @@ class JobPostApplicationController extends Controller
         return $response;
     }
 
+    public static function updateEmployeeApplicationStatus($job_post_application_id, $employee_id, $job_post_application_status_id)
+    {
+        $response = array();
+
+        try {
+            $job_post_application = JobPostApplication::where('id', $job_post_application_id)
+                ->where('employee_id', $employee_id)->first();
+
+            if ($job_post_application != null) {
+                // if employee job post application exists
+                DB::beginTransaction();
+
+                $job_post_application->job_post_application_status_id = $job_post_application_status_id;
+                $job_post_application->save();
+
+                DB::commit();
+
+                $data = array();
+                $data['job_post_application'] = $job_post_application;
+
+                $response['data'] = $data;
+                $response['message'] = 'Job post application successfully updated.';
+                $response['status_code'] = Response::HTTP_OK;
+            } else {
+                // if employee job application does not exist
+                $error = array();
+                $error['message'] = 'Employee job application not found.';
+
+                $response['error'] = $error;
+                $response['message'] = 'Failed to update job post application.';
+                $response['status_code'] = Response::HTTP_BAD_REQUEST;
+            }
+        } catch (QueryException $exception) {
+            Log::error($exception->getMessage());
+            Log::error($exception->getTraceAsString());
+
+            $error_code = $exception->errorInfo[1];
+            Log::error($error_code);
+
+            $error = array();
+            $error['message'] = 'Query exception occurred.';
+
+            $response['error'] = $error;
+            $response['message'] = 'Failed to update job post application.';
+            $response['status_code'] = Response::HTTP_BAD_REQUEST;
+        } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
+            Log::error($exception->getTraceAsString());
+
+            $error = array();
+            $error['message'] = 'Unknown error occurred.';
+
+            $response['error'] = $error;
+            $response['message'] = 'Failed to update job post application.';
+            $response['status_code'] = Response::HTTP_INTERNAL_SERVER_ERROR;
+        }
+
+        return $response;
+    }
+
     public static function delete($job_post_application_id)
     {
         $response = array();
