@@ -99,6 +99,9 @@ class WebEmployeeProfileManagementController extends Controller
 
     public function addTraining(CreateEmployeeTrainingRequest $request)
     {
+
+
+
         $training = $request->training;
         $month = $request->month;
         $year = $request->year;

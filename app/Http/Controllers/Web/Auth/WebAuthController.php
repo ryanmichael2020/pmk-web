@@ -46,6 +46,7 @@ class WebAuthController extends Controller
         $last_name = $request->last_name;
         $sex = $request->sex;
 
+
         $response = AuthController::signup($email, $password, $verify_password, $first_name, $last_name, $sex);
 
         if ($response['status_code'] == Response::HTTP_OK) {

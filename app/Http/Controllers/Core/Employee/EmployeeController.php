@@ -15,6 +15,7 @@ class EmployeeController extends Controller
     {
         $response = array();
 
+
         try {
             $employee = Employee::where('id', $employee_id)->first();
 

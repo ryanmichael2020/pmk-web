@@ -13,6 +13,7 @@ class WebAuthPageController extends Controller
 
     public function displaySignupPage()
     {
+
         return view('auth.signup');
     }
 }
