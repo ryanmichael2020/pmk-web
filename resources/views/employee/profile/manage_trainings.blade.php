@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('body')
-    @include('nav.employee_nav')
+    @include('nav.employee.nav')
 
     <div class="container my-6">
         <div class="row">

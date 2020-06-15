@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 class WebEmployerDashboardPageController extends Controller
 {
     public function displayDashboardPage() {
-
+        return view('employer.dashboard');
     }
 }

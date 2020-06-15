@@ -1,5 +1,5 @@
 @extends('layouts.master')
 
 @section('body')
-    @include('nav.employee_nav')
+    @include('nav.employee.nav')
 @endsection

@@ -28,6 +28,7 @@ class CreateJobPostRequest extends FormRequest
         return [
             'position' => 'required|string|max:128',
             'description' => 'required|string|max:8096',
+            'max_applicants' => 'required|numeric|min:1|max:999',
         ];
     }
 
