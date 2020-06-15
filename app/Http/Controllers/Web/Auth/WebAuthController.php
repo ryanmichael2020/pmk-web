@@ -8,6 +8,7 @@ use App\Http\Requests\Auth\AuthLoginRequest;
 use App\Http\Requests\Auth\AuthSignupRequest;
 use App\Models\User\UserType;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 
 class WebAuthController extends Controller
 {
@@ -21,7 +22,7 @@ class WebAuthController extends Controller
             session()->flash('response_type', 'success');
             session()->flash('message', $response['message']);
 
-            $user_type_id = $response['data']['user']['user_type']['id'];
+            $user_type_id = $response['data']['user']['user_type_id'];
             if ($user_type_id == UserType::$ADMIN) {
                 return redirect('/admin/dashboard');
             } else if ($user_type_id == UserType::$EMPLOYER) {

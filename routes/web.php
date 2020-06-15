@@ -74,6 +74,11 @@ Route::post('/profile/education/add', 'Web\Employee\WebEmployeeProfileManagement
 Route::post('/profile/skills/update', 'Web\Employee\WebEmployeeProfileManagementController@updateSkills');
 Route::post('/profile/trainings/add', 'Web\Employee\WebEmployeeProfileManagementController@addTraining');
 
+
+// Employer Routes
+Route::get('/employer/dashboard', 'Web\Employer\WebEmployerDashboardPageController@displayDashboardPage');
+
+
 //Job Post Routes
 Route::post('/jobpost/create', 'Web\JobPost\WebJobPostController@create');
 Route::get('/jobpost/datatable', 'Web\JobPost\WebJobPostController@getDataTable');
