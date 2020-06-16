@@ -1,0 +1,52 @@
+@extends('layouts.master')
+
+@section('body')
+    @include('nav.employer.nav')
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-12 col-md-10 col-lg-8 mx-auto my-6">
+
+                @include('response_notifiers.response_card')
+
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="mb-0">Job Posts</h1>
+                    </div>
+                </div>
+
+                @foreach($job_posts as $job_post)
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>{{ $job_post->position }}</h2>
+                        </div>
+
+                        <div class="card-body">
+                            <p>
+                                {{ $job_post->description }}
+                            </p>
+                        </div>
+
+                        <div class="card-footer">
+                            <p class="mr-4">
+                                <b>Max Applicants:</b> {{ $job_post->max_applicants }}
+                            </p>
+                            <p class="mr-4 mb-0">
+                                <b>Approved Applicants:</b> {{ $job_post->approved_applicants }}
+                            </p>
+                        </div>
+
+                        <div class="card-footer">
+                            <button type="button" class="btn btn-primary">
+                                View Applicants
+                            </button>
+                        </div>
+                    </div>
+                @endforeach
+
+            </div>
+
+        </div>
+    </div>
+@endsection

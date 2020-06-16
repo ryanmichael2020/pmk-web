@@ -9,7 +9,10 @@ class WebEmployerJobPostManagementController extends Controller
 {
     public function displayListPage()
     {
-        return view('employer.job_post.manage_job_posts');
+        $job_posts = JobPost::all();
+
+        return view('employer.job_post.manage_job_posts')
+            ->with('job_posts', $job_posts);
     }
 
     public function displayCreatePage()

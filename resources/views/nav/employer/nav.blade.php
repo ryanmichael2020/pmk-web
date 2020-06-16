@@ -50,19 +50,20 @@
                 <li class="nav-item dropdown text-white">
                     <a class="nav-link nav-link-icon" href="#" id="navbar-user-icon-dropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ strtoupper(auth()->user()->userDetail->name()) }}
+                        <img class="avatar rounded-circle" src="{{ auth()->user()->userDetail->image }}" style="height: 48px; width: 48px;">
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-user-icon-dropdown">
-                        {{--                        <span class="dropdown-item">--}}
-                        {{--                            <strong>--}}
-                        {{--                                {{ strtoupper(auth()->user()->userDetail->name()) }}--}}
-                        {{--                            </strong>--}}
-                        {{--                        </span>--}}
-                        <a class="dropdown-item" href="/profile">
-                            <i class="fas fa-user"></i>
-                            Profile
-                        </a>
+                        <span class="dropdown-item">
+                            <img class="avatar rounded-circle" src="{{ auth()->user()->userDetail->image }}" style="height: 32px; width: 32px;">
+                            <strong>
+                                {{ strtoupper(auth()->user()->userDetail->name()) }}
+                            </strong>
+                        </span>
+                        {{--                        <a class="dropdown-item" href="/profile">--}}
+                        {{--                            <i class="fas fa-user"></i>--}}
+                        {{--                            Profile--}}
+                        {{--                        </a>--}}
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item" data-toggle="modal" data-target="#modal_logout">
                             <i class="fas fa-sign-out-alt"></i>
