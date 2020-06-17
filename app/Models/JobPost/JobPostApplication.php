@@ -48,4 +48,15 @@ class JobPostApplication extends Model
     {
         return $this->belongsTo(Employee::class);
     }
+
+    public function cancellable()
+    {
+        if ($this->job_post_application_status_id == JobPostApplicationStatus::$CANCELLED) {
+            return false;
+        } else if ($this->job_post_application_status_id == JobPostApplicationStatus::$ACCEPTED) {
+            return false;
+        }
+
+        return true;
+    }
 }

@@ -79,6 +79,7 @@ Route::get('/job_posts', 'Web\Employee\JobPost\WebEmployeeJobPostManagementContr
 Route::post('/job_posts/apply', 'Web\Employee\JobPost\WebEmployeeJobPostController@apply');
 
 Route::get('/job_applications', 'Web\Employee\JobPostApplication\WebEmployeeJobPostApplicationManagementController@displayListPage');
+Route::post('/job_application/cancel', 'Web\Employee\JobPostApplication\WebEmployeeJobPostApplicationController@cancelJobPostApplication');
 
 // Employer Routes
 Route::get('/employer/dashboard', 'Web\Employer\WebEmployerDashboardPageController@displayDashboardPage');

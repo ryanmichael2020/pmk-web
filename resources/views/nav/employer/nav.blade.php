@@ -1,4 +1,4 @@
-<nav class="navbar navbar-horizontal navbar-expand-lg navbar-dark bg-default py-0">
+<nav class="navbar navbar-horizontal navbar-expand-lg navbar-dark bg-default ">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">P.E.S.O Makati</a>
 
@@ -26,8 +26,8 @@
                 </div>
             </div>
 
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown text-white">
+            <ul class="navbar-nav ml-lg-auto">
+                <li class="nav-item dropdown text-white my-auto">
                     <a class="nav-link nav-link-icon" href="#" id="navbar-job-posts-dropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Job Posts
@@ -45,11 +45,9 @@
                         </a>
                     </div>
                 </li>
-            </ul>
 
-            <ul class="navbar-nav ml-lg-auto">
                 <li class="nav-item dropdown text-white">
-                    <a class="nav-link nav-link-icon" href="#" id="navbar-user-icon-dropdown" role="button"
+                    <a class="nav-link nav-link-icon py-0" href="#" id="navbar-user-icon-dropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img class="avatar rounded-circle py-0" src="{{ auth()->user()->userDetail->image }}" style="height: 48px; width: 48px;">
                     </a>
