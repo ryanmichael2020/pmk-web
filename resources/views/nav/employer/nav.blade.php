@@ -6,6 +6,7 @@
                 aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbar-default">
             <div class="navbar-collapse-header">
                 <div class="row">
@@ -60,10 +61,6 @@
                                 {{ strtoupper(auth()->user()->userDetail->name()) }}
                             </strong>
                         </span>
-                        {{--                        <a class="dropdown-item" href="/profile">--}}
-                        {{--                            <i class="fas fa-user"></i>--}}
-                        {{--                            Profile--}}
-                        {{--                        </a>--}}
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item" data-toggle="modal" data-target="#modal_logout">
                             <i class="fas fa-sign-out-alt"></i>
