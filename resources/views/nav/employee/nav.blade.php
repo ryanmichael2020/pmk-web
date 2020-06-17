@@ -6,6 +6,7 @@
                 aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbar-default">
             <div class="navbar-collapse-header">
                 <div class="row">
@@ -27,16 +28,28 @@
 
             <ul class="navbar-nav ml-lg-auto">
                 <li class="nav-item dropdown text-white">
+                    <a href="/job_posts" class="nav-link nav-link-icon">
+                        Job Posts
+                    </a>
+                </li>
+
+                <li class="nav-item text-white">
+                    <a href="/job_applications" class="nav-link nav-link-icon">
+                        Job Applications
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown text-white">
                     <a class="nav-link nav-link-icon" href="#" id="navbar-user-icon-dropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ strtoupper(auth()->user()->userDetail->name()) }}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-user-icon-dropdown">
-{{--                        <span class="dropdown-item">--}}
-{{--                            <strong>--}}
-{{--                                {{ strtoupper(auth()->user()->userDetail->name()) }}--}}
-{{--                            </strong>--}}
-{{--                        </span>--}}
+                        <span class="dropdown-item">
+                            <strong>
+                                {{ strtoupper(auth()->user()->userDetail->name()) }}
+                            </strong>
+                        </span>
                         <a class="dropdown-item" href="/profile">
                             <i class="fas fa-user"></i>
                             Profile

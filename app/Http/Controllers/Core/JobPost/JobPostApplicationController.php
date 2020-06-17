@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Core\JobPost;
 
 use App\Http\Controllers\Controller;
+use App\Models\JobPost\JobPost;
 use App\Models\JobPost\JobPostApplication;
 use App\Models\JobPost\JobPostApplicationStatus;
 use Illuminate\Database\QueryException;
@@ -75,8 +76,16 @@ class JobPostApplicationController extends Controller
                 $job_post_application->job_post_id = $job_post_id;
                 $job_post_application->employee_id = $employee_id;
 
+                // TODO :: Add validation to prevent adding more applicants if max (approved) applicants has been reached
                 if ($job_post_application_status_id != null) {
                     $job_post_application->job_post_application_status_id = $job_post_application_status_id;
+
+                    if ($job_post_application_status_id == JobPostApplicationStatus::$ACCEPTED) {
+                        $job_post = JobPost::where('id', $job_post_application->job_post_id)->first();
+
+                        $job_post->approved_applications++;
+                        $job_post->save();
+                    }
                 }
 
                 $job_post_application->save();

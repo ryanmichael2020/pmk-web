@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Employer\Employer;
 use App\Models\User\User;
 use App\Models\User\UserDetail;
+use App\Models\User\UserType;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -26,7 +27,7 @@ class EmployerController extends Controller
                 $user = new User();
                 $user->email = $email;
                 $user->password = Hash::make($password);
-                $user->user_type_id = 1;
+                $user->user_type_id = UserType::$EMPLOYER;
                 $user->save();
 
                 $image_path = public_path() . '/images/profile_pictures';

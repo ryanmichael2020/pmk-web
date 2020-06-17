@@ -48,4 +48,16 @@ class JobPost extends Model
     {
         return $this->hasMany(JobPostApplication::class);
     }
+
+    public function hasApplication($employee_id)
+    {
+        $job_post_applications = JobPostApplication::where('job_post_id', $this->id)->get();
+
+        foreach ($job_post_applications as $job_post_application) {
+            if ($job_post_application->employee_id == $employee_id)
+                return true;
+        }
+
+        return false;
+    }
 }

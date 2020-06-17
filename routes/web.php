@@ -74,9 +74,23 @@ Route::post('/profile/education/add', 'Web\Employee\WebEmployeeProfileManagement
 Route::post('/profile/skills/update', 'Web\Employee\WebEmployeeProfileManagementController@updateSkills');
 Route::post('/profile/trainings/add', 'Web\Employee\WebEmployeeProfileManagementController@addTraining');
 
-//Job Post Routes
-Route::post('/jobpost/create', 'Web\JobPost\WebJobPostController@create');
-Route::get('/jobpost/datatable', 'Web\JobPost\WebJobPostController@getDataTable');
+// Job Post Routes
+Route::get('/job_posts', 'Web\Employee\JobPost\WebEmployeeJobPostManagementController@displayListPage');
+Route::post('/job_posts/apply', 'Web\Employee\JobPost\WebEmployeeJobPostController@apply');
 
+Route::get('/job_applications', 'Web\Employee\JobPostApplication\WebEmployeeJobPostApplicationManagementController@displayListPage');
+
+// Employer Routes
+Route::get('/employer/dashboard', 'Web\Employer\WebEmployerDashboardPageController@displayDashboardPage');
+
+//Job Post Routes
+Route::get('/employer/job_posts', 'Web\Employer\JobPost\WebEmployerJobPostManagementController@displayListPage');
+Route::get('/employer/job_post/create', 'Web\Employer\JobPost\WebEmployerJobPostManagementController@displayCreatePage');
+Route::get('/employer/job_post/update/{job_post_id}', 'Web\Employer\JobPost\WebEmployerJobPostManagementController@displayUpdatePage');
+
+Route::post('/job_posts/create', 'Web\JobPost\WebJobPostController@create');
+// TODO :: Add update and delete routes and functions
+
+// TODO :: Remove routes below
 Route::get('/admin/management/jobpost', 'Web\JobPost\WebJobPostManagementController@displayListPage');
 Route::get('/admin/management/jobpost/create', 'Web\JobPost\WebJobPostManagementController@displayCreatePage');
