@@ -7,7 +7,6 @@
 @section('body')
     @include('nav.nav')
 
-
     <div class="container-fluid">
         <div class="my-4">
 

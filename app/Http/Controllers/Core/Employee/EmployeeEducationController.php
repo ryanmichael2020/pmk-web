@@ -14,7 +14,6 @@ class EmployeeEducationController extends Controller
 {
     public static function create($employee_id, $school, $education_level_id, $start_year, $end_year = null)
     {
-
         $response = array();
 
         try {
