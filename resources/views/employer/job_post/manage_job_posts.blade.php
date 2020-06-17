@@ -14,6 +14,11 @@
                     <div class="card-header">
                         <h1 class="mb-0">Job Posts</h1>
                     </div>
+                    <div class="card-footer">
+                        <a href="/employer/job_post/create">
+                            Create a job post
+                        </a>
+                    </div>
                 </div>
 
                 @foreach($job_posts as $job_post)
