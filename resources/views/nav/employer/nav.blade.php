@@ -1,4 +1,4 @@
-<nav class="navbar navbar-horizontal navbar-expand-lg navbar-dark bg-default">
+<nav class="navbar navbar-horizontal navbar-expand-lg navbar-dark bg-default py-0">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">P.E.S.O Makati</a>
 
@@ -51,16 +51,16 @@
                 <li class="nav-item dropdown text-white">
                     <a class="nav-link nav-link-icon" href="#" id="navbar-user-icon-dropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="avatar rounded-circle" src="{{ auth()->user()->userDetail->image }}" style="height: 48px; width: 48px;">
+                        <img class="avatar rounded-circle py-0" src="{{ auth()->user()->userDetail->image }}" style="height: 48px; width: 48px;">
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-user-icon-dropdown">
-                        <span class="dropdown-item">
-                            <img class="avatar rounded-circle" src="{{ auth()->user()->userDetail->image }}" style="height: 32px; width: 32px;">
+                        <a href="#" class="dropdown-item">
+                            {{-- <img class="avatar rounded-circle" src="{{ auth()->user()->userDetail->image }}" style="height: 32px; width: 32px;"> --}}
                             <strong>
                                 {{ strtoupper(auth()->user()->userDetail->name()) }}
                             </strong>
-                        </span>
+                        </a>
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item" data-toggle="modal" data-target="#modal_logout">
                             <i class="fas fa-sign-out-alt"></i>

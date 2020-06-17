@@ -17,9 +17,20 @@
                 </div>
 
                 @foreach($job_posts as $job_post)
-                    <div class="card">
+                    <div class="card mb-0" style="border-radius: 0px">
                         <div class="card-header">
-                            <h2>{{ $job_post->position }}</h2>
+                            <div class="row">
+                                <div class="col">
+                                    <h2 class="mb-0">{{ $job_post->position }}</h2>
+                                </div>
+
+                                <div class="col-auto my-auto">
+                                    <span class="mb-0 pr-2" data-toggle="tooltip" data-placement="right"
+                                          title="{{ $job_post->created_at }}">
+                                        {{ \Carbon\Carbon::createFromTimeString($job_post->created_at)->diffForHumans() }}
+                                    </span>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="card-body">
