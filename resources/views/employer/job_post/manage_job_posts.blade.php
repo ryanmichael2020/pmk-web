@@ -54,9 +54,9 @@
                         </div>
 
                         <div class="card-footer">
-                            <button type="button" class="btn btn-primary">
+                            <a href="/employer/job_post/{{ $job_post->id }}/applicants" class="btn btn-primary">
                                 View Applicants
-                            </button>
+                            </a>
                         </div>
                     </div>
                 @endforeach
