@@ -5,7 +5,7 @@
         <div class="container d-flex h-100vh">
 
             <div class="col-sm-12 col-md-8 col-lg-6 mx-auto my-auto">
-                <form method="post" action="/signup">
+                <form method="post" action="/signup" enctype="multipart/form-data">
                     {{ csrf_field() }}
 
                     <div class="mt-4">
@@ -66,6 +66,14 @@
 
                             <h3>User Details</h3>
                             <div class="row">
+
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="image">Image</label>
+                                        <input type="file" name="image" id="image" class="form-control" required>
+                                    </div>
+                                </div>
+
                                 <div class="col-sm-12 col-md">
                                     <div class="form-group">
                                         <label for="first_name">First Name</label>

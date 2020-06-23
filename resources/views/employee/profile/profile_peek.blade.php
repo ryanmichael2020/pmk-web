@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('body')
-    @include('nav.employee.nav')
+    @include('nav.employer.nav')
 
     <hr class="my-0 bg-default">
     <div class="bg-primary-dark">
@@ -23,39 +23,33 @@
                 @include('response_notifiers.response_card')
             </div>
 
-            @include('nav.employee.profile.quick_links', ['classes' => 'col-sm-12 col-md-4 col-lg-3 mb-4'])
+            @include('nav.employee.profile.peek_quick_links', ['classes' => 'col-sm-12 col-md-4 col-lg-3 mb-4'])
 
             <div class="col-sm-12 col-md-8 col-lg-9 mx-auto">
 
-                {{-- Account --}}
-                <div id="account" class="card">
+                {{-- Employee --}}
+                <div id="employee" class="card">
                     <div class="card-header">
                         <div class="row">
                             <div class="col-auto">
-                                <h1 class="my-0">Account</h1>
-                            </div>
-
-                            <div class="col-auto ml-auto my-auto">
-                                <a href="/profile/account/update">
-                                    <i class="fas fa-edit float-right"></i>
-                                </a>
+                                <h1 class="my-0">Employee</h1>
                             </div>
                         </div>
                     </div>
 
                     <div class="card-body">
                         <strong>Email</strong>
-                        <p>{{ auth()->user()->email }}</p>
+                        <p>{{ $user->email }}</p>
 
                         <div class="row">
                             <div class="col-sm-12 col-md-6">
                                 <strong>Name</strong>
-                                <p>{{ auth()->user()->userDetail->name() }}</p>
+                                <p>{{ $user->userDetail->name() }}</p>
                             </div>
 
                             <div class="col-sm-12 col-md-6">
                                 <strong>Sex</strong>
-                                <p>{{ auth()->user()->userDetail->sex }}</p>
+                                <p>{{ $user->userDetail->sex }}</p>
                             </div>
                         </div>
                     </div>
@@ -68,12 +62,6 @@
                             <div class="col-auto">
                                 <h1 class="my-0">Details</h1>
                             </div>
-
-                            <div class="col-auto ml-auto my-auto">
-                                <a href="/profile/details/update">
-                                    <i class="fas fa-edit float-right"></i>
-                                </a>
-                            </div>
                         </div>
                     </div>
 
@@ -81,17 +69,17 @@
                         <div class="row">
                             <div class="col-sm-12 col-md-6">
                                 <strong>Age</strong>
-                                <p> {{ auth()->user()->employee->age != null ? auth()->user()->employee->age : "-" }}</p>
+                                <p> {{ $user->employee->age != null ? $user->employee->age : "-" }}</p>
                             </div>
 
                             <div class="col-sm-12 col-md-6">
                                 <strong>Mobile</strong>
-                                <p> {{ auth()->user()->employee->mobile != null ? auth()->user()->employee->mobile : "-" }}</p>
+                                <p> {{ $user->employee->mobile != null ? $user->employee->mobile : "-" }}</p>
                             </div>
                         </div>
 
                         <strong>Address</strong>
-                        <p> {{ auth()->user()->employee->address != null ? auth()->user()->employee->address : "-" }}</p>
+                        <p> {{ $user->employee->address != null ? $user->employee->address : "-" }}</p>
                     </div>
                 </div>
 
@@ -102,19 +90,13 @@
                             <div class="col-auto">
                                 <h1 class="my-0">Education</h1>
                             </div>
-
-                            <div class="col-auto ml-auto my-auto">
-                                <a href="/profile/educations/management">
-                                    <i class="fas fa-edit float-right"></i>
-                                </a>
-                            </div>
                         </div>
                     </div>
 
                     <div class="card-body">
                         <ul class="list-group">
-                            @if(count(auth()->user()->employee->employeeEducations) > 0)
-                                @foreach(auth()->user()->employee->employeeEducations as $employeeEducation)
+                            @if(count($user->employee->employeeEducations) > 0)
+                                @foreach($user->employee->employeeEducations as $employeeEducation)
                                     <li class="list-group-item">
                                         <strong>School</strong>
                                         <p>{{ $employeeEducation->school }}</p>
@@ -171,18 +153,12 @@
                             <div class="col-auto">
                                 <h1 class="my-0">Skills</h1>
                             </div>
-
-                            <div class="col-auto ml-auto my-auto">
-                                <a href="/profile/skills/update">
-                                    <i class="fas fa-edit float-right"></i>
-                                </a>
-                            </div>
                         </div>
                     </div>
 
                     <div class="card-body">
-                        @if(count(auth()->user()->employee->employeeSkills) > 0)
-                            @foreach(auth()->user()->employee->employeeSkills as $employeeSkill)
+                        @if(count($user->employee->employeeSkills) > 0)
+                            @foreach($user->employee->employeeSkills as $employeeSkill)
                                 <span class="badge badge-pill badge-default"
                                       style="font-size: 14px;">{{ $employeeSkill->skill }}</span>
                             @endforeach
@@ -199,19 +175,13 @@
                             <div class="col-auto">
                                 <h1 class="my-0">Trainings</h1>
                             </div>
-
-                            <div class="col-auto ml-auto my-auto">
-                                <a href="/profile/trainings/management">
-                                    <i class="fas fa-edit float-right"></i>
-                                </a>
-                            </div>
                         </div>
                     </div>
 
                     <div class="card-body">
                         <ul class="list-group">
-                            @if(count(auth()->user()->employee->employeeTrainings) > 0)
-                                @foreach(auth()->user()->employee->employeeTrainings as $employeeTraining)
+                            @if(count($user->employee->employeeTrainings) > 0)
+                                @foreach($user->employee->employeeTrainings as $employeeTraining)
                                     <li class="list-group-item">
                                         <div class="row">
                                             <div class="col-sm-12 col-md-6">

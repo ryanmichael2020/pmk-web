@@ -11,6 +11,16 @@ use App\Models\User\User;
 
 class WebEmployeeProfileManagementPageController extends Controller
 {
+    public function displayProfilePeekPage($employee_id)
+    {
+        $employee = Employee::where('id', $employee_id)->first();
+        $user = User::where('id', $employee->user_id)->first();
+
+        return view('employee.profile.profile_peek')
+            ->with('user', $user)
+            ->with('employee', $employee);
+    }
+
     public function displayProfileDashboardPage()
     {
         return view('employee.profile.dashboard');

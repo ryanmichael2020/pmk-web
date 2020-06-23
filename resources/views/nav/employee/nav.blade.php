@@ -40,16 +40,17 @@
                 </li>
 
                 <li class="nav-item dropdown text-white">
-                    <a class="nav-link nav-link-icon" href="#" id="navbar-user-icon-dropdown" role="button"
+                    <a class="nav-link nav-link-icon py-0" href="#" id="navbar-user-icon-dropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ strtoupper(auth()->user()->userDetail->name()) }}
+                        <img class="avatar rounded-circle py-0" src="{{ auth()->user()->userDetail->image }}" style="height: 48px; width: 48px;">
                     </a>
+
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-user-icon-dropdown">
-                        <span class="dropdown-item">
+                        <a href="#" class="dropdown-item">
                             <strong>
                                 {{ strtoupper(auth()->user()->userDetail->name()) }}
                             </strong>
-                        </span>
+                        </a>
                         <a class="dropdown-item" href="/profile">
                             <i class="fas fa-user"></i>
                             Profile

@@ -57,6 +57,8 @@ Route::get('/employees/datatable', 'Web\Employee\WebEmployeeController@getDataTa
 Route::get('/dashboard', 'Web\Employee\WebEmployeeDashboardPageController@displayDashboardPage');
 
 // Employee Profile Routes
+Route::get('/employee/{employee_id}/profile', 'Web\Employee\WebEmployeeProfileManagementPageController@displayProfilePeekPage');
+
 Route::get('/profile', 'Web\Employee\WebEmployeeProfileManagementPageController@displayProfileDashboardPage');
 Route::get('/profile/account/update', 'Web\Employee\WebEmployeeProfileManagementPageController@displayProfileAccountUpdatePage');
 Route::get('/profile/details/update', 'Web\Employee\WebEmployeeProfileManagementPageController@displayProfileDetailsUpdatePage');
@@ -79,7 +81,7 @@ Route::get('/job_posts', 'Web\Employee\JobPost\WebEmployeeJobPostManagementContr
 Route::post('/job_posts/apply', 'Web\Employee\JobPost\WebEmployeeJobPostController@apply');
 
 Route::get('/job_applications', 'Web\Employee\JobPostApplication\WebEmployeeJobPostApplicationManagementController@displayListPage');
-Route::post('/job_application/cancel', 'Web\Employee\JobPostApplication\WebEmployeeJobPostApplicationController@cancelJobPostApplication');
+Route::post('/job_application/update', 'Web\Employee\JobPostApplication\WebEmployeeJobPostApplicationController@updateJobPostApplication');
 
 // Employer Routes
 Route::get('/employer/dashboard', 'Web\Employer\WebEmployerDashboardPageController@displayDashboardPage');

@@ -59,10 +59,6 @@ class WebEmployerController extends Controller
         $company_id = $request->company_id;
         $image = $request->image;
 
-        if ($image == null) {
-            Log::debug('Image is null');
-        }
-
         $response = EmployerController::update($employer_id, $email, $first_name, $last_name, $sex, $company_id, $image);
 
         if ($response['status_code'] == Response::HTTP_OK) {
