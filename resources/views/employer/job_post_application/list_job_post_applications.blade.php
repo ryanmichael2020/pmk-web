@@ -28,9 +28,15 @@
 
                 <div class="card my-2">
                     <div class="card-header">
-                        <h2 class="mb-0">
-                            Job Post Details
-                        </h2>
+                        <div class="d-flex">
+                            <h2 class="mb-0 flex-grow-1">
+                                Job Post Details
+                            </h2>
+
+                            <a href="/employer/job_post/update/{{ $job_post->id }}" class="my-auto text-orange">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </div>
                     </div>
 
                     <div class="card-body">
@@ -42,6 +48,12 @@
                         <p class="mb-0" style="font-size: 14px;">
                             {{ $job_post->description }}
                         </p>
+                    </div>
+
+                    <div class="card-footer">
+                        <p class="mb-0" style="font-size: 14px;">Max Applicants: {{ $job_post->max_applicants }}</p>
+                        <p class="mb-0" style="font-size: 14px;">Approved
+                            Applicants: {{ $job_post->approved_applicants }}</p>
                     </div>
                 </div>
 
@@ -59,7 +71,8 @@
 
                                         <div class="col pl-1">
                                             <h2 class="mb-0">{{ $job_post_application->employee->user->userDetail->name() }}</h2>
-                                            <a href="/employee/{{ $job_post_application->employee->id }}/profile" style="font-size: 14px;">
+                                            <a href="/employee/{{ $job_post_application->employee->id }}/profile"
+                                               style="font-size: 14px;">
                                                 View Profile
                                             </a>
                                         </div>
@@ -75,12 +88,12 @@
                             </div>
                         </div>
 
-{{--                        <div class="card-body">--}}
-{{--                            --}}{{-- TODO :: Replace with employee profile --}}
-{{--                            <p class="mb-0">--}}
+                        {{--                        <div class="card-body">--}}
+                        {{--                            --}}{{-- TODO :: Replace with employee profile --}}
+                        {{--                            <p class="mb-0">--}}
 
-{{--                            </p>--}}
-{{--                        </div>--}}
+                        {{--                            </p>--}}
+                        {{--                        </div>--}}
 
                         <div class="card-footer">
                             <p class="mb-0" style="width: auto; flex: fit-content; font-size: 14px;">
@@ -93,33 +106,44 @@
                             <p class="mb-0" style="font-size: 14px;">
                                 Application Status: {{ $job_post_application->jobPostApplicationStatus->status }}
                             </p>
-                            <p class="mb-0" style="font-size: 14px;">
-                                Job Post Status: {{ $job_post_application->jobPost->jobPostStatus->status }}
-                            </p>
                         </div>
 
                         <div class="card-footer">
-                            @if($job_post_application->reviewable())
-                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#review_job_application_{{ $job_post_application->id }}">
-                                    Place under review
-                                </button>
-                            @elseif($job_post_application->acceptable())
-                                <button type="button" class="btn btn-success" data-toggle="modal"
-                                        data-target="#accept_job_application_{{ $job_post_application->id }}">
-                                    Accept Applicant
-                                </button>
+                            @if($job_post_application->job_post_application_status_id == \App\Models\JobPost\JobPostApplicationStatus::$ACCEPTED)
+                                <span class="mb-0 d-inline-flex align-middle mr-2 text-green">
+                                    <span class="my-auto mr-2"><b>Applicant Accepted</b></span>
+                                    <i class="fas fa-check-circle text-green fa-2x my-auto"></i>
+                                </span>
                             @endif
 
-                            @if($job_post_application->cancellable())
-                                <button type="button" class="btn btn-warning" data-toggle="modal"
-                                        data-target="#cancel_job_application_{{ $job_post_application->id }}">
-                                    Cancel Application
-                                </button>
+                            @if($job_post->max_applicants > $job_post->approved_applicants)
+                                @if($job_post_application->reviewable())
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                            data-target="#review_job_application_{{ $job_post_application->id }}">
+                                        Place under review
+                                    </button>
+                                @elseif($job_post_application->acceptable())
+                                    <button type="button" class="btn btn-success" data-toggle="modal"
+                                            data-target="#accept_job_application_{{ $job_post_application->id }}">
+                                        Accept Applicant
+                                    </button>
+                                @endif
+
+                                @if($job_post_application->cancellable())
+                                    <button type="button" class="btn btn-warning" data-toggle="modal"
+                                            data-target="#cancel_job_application_{{ $job_post_application->id }}">
+                                        Cancel Application
+                                    </button>
+                                @else
+                                    <button type="button" class="btn btn-warning" disabled>
+                                        Cancel Application
+                                    </button>
+                                @endif
                             @else
-                                <button type="button" class="btn btn-warning" disabled>
-                                    Cancel Application
-                                </button>
+                                <p class="mb-0 text-red" style="font-size: 14px;">
+                                    Max applicants reached. If you wish to accept more applicants for this
+                                    position, update the job posting, and increase the number of max applicants.
+                                </p>
                             @endif
                         </div>
                     </div>
@@ -168,7 +192,7 @@
                         <input type="hidden" name="job_post_application_id"
                                value="{{ $job_post_application->id }}">
                         <input type="hidden" name="job_post_application_status_id"
-                               value="{{ \App\Models\JobPost\JobPostApplicationStatus::$UNDER_REVIEW }}">
+                               value="{{ \App\Models\JobPost\JobPostApplicationStatus::$ACCEPTED }}">
 
                         <div class="modal fade" id="accept_job_application_{{ $job_post_application->id }}"
                              tabindex="-1" role="dialog"

@@ -39,13 +39,13 @@
                             <div class="form-group">
                                 <label for="description">Description</label>
                                 <textarea id="description" name="description" class="form-control" minlength="128"
-                                          maxlength="8096" placeholder="Enter description" required></textarea>
+                                          maxlength="8096" placeholder="Enter description" rows="5" required></textarea>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group mb-0">
                                 <label for="max_applicants">Max Applicants (minimum of 1)</label>
                                 <input id="max_applicants" name="max_applicants" type="number" class="form-control"
-                                       minlength="1" maxlength="3" placeholder="Enter max applicants (e.g. 1)"
+                                       min="1" minlength="1" maxlength="3" placeholder="Enter max applicants (e.g. 1)"
                                        required/>
                             </div>
                         </div>

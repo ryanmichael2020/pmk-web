@@ -50,6 +50,14 @@ class JobPostApplication extends Model
         return $this->belongsTo(Employee::class);
     }
 
+    public function isAccepted() {
+        if ($this->job_post_application_status_id == JobPostApplicationStatus::$ACCEPTED) {
+            return true;
+        }
+
+        return false;
+    }
+
     public function acceptable()
     {
         if ($this->job_post_application_status_id == JobPostApplicationStatus::$UNDER_REVIEW) {

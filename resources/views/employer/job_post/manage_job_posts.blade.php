@@ -8,10 +8,12 @@
         <div class="container">
             <div class="row pt-3 pb-4">
                 <div class="col-sm-12 px-0">
-                    <h1 class="mb-0 text-white">Job Posts</h1>
-                    <a href="/employer/job_post/create" class="btn btn-primary mt-3">
-                        Create a job post
-                    </a>
+                    <div class="d-flex mx-4">
+                        <h1 class="mb-0 text-white mr-2">Job Posts</h1>
+                        <a href="/employer/job_post/create" class="btn btn-primary mx-2 my-auto">
+                            Create a job post
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -27,17 +29,17 @@
                 @foreach($job_posts as $job_post)
                     <div class="card my-2" style="border-radius: 0px">
                         <div class="card-header">
-                            <div class="row">
-                                <div class="col">
-                                    <h2 class="mb-0">{{ $job_post->position }}</h2>
-                                </div>
+                            <div class="d-flex">
+                                <h2 class="mb-0 flex-grow-1">{{ $job_post->position }}</h2>
 
-                                <div class="col-auto my-auto">
-                                    <span class="mb-0 pr-2" data-toggle="tooltip" data-placement="right"
-                                          title="{{ $job_post->created_at }}">
-                                        {{ \Carbon\Carbon::createFromTimeString($job_post->created_at)->diffForHumans() }}
-                                    </span>
-                                </div>
+                                <span class="mb-0 my-auto mx-4 pr-2" data-toggle="tooltip" data-placement="right"
+                                  title="{{ $job_post->created_at }}">
+                                    {{ \Carbon\Carbon::createFromTimeString($job_post->created_at)->diffForHumans() }}
+                                </span>
+
+                                <a href="/employer/job_post/update/{{ $job_post->id }}" class="my-auto text-orange">
+                                    <i class="fas fa-edit"></i>
+                                </a>
                             </div>
                         </div>
 
