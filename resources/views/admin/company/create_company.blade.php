@@ -1,7 +1,22 @@
 @extends('layouts.master')
 
 @section('body')
-    @include('nav.nav')
+    <div class="p-4 bg-primary-dark">
+        <div class="d-flex">
+            <h1 class="text-white my-auto">Create Company</h1>
+        </div>
+
+        <ol class="breadcrumb breadcrumb-custom px-0">
+            <li class="breadcrumb-item"><a href="/admin/management/companies">Company</a></li>
+            <li class="breadcrumb-item"><a href="/admin/management/companies">Create Company</a></li>
+        </ol>
+
+        <div class="mt-4">
+            <a href="/admin/management/companies" class="btn btn-primary">
+                Go Back
+            </a>
+        </div>
+    </div>
 
     <div class="container">
         <form method="post" action="/companies/create">
@@ -12,24 +27,6 @@
                 @include('response_notifiers.response_card')
 
                 <div class="card">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col-auto">
-                                <a href="/admin/management/companies"
-                                   class="btn btn-secondary icon icon-shape rounded-circle">
-                                    <i class="fas fa-arrow-left"></i>
-                                </a>
-                            </div>
-
-                            <div class="col-auto my-auto">
-                                <h1 class="mb-0">
-                                    <i class="fas fa-building" style="margin-right: 8px;"></i>
-                                    Create Company
-                                </h1>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="card-body">
                         <h3>Company Details</h3>
                         <div class="form-group">
@@ -38,7 +35,7 @@
                                    placeholder="Enter company name" required>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group mb-0">
                             <label for="contact">Contact Number</label>
                             <input id="contact" name="contact" type="text" class="form-control"
                                    maxlength="16"
