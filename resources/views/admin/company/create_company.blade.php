@@ -27,6 +27,10 @@
                 @include('response_notifiers.response_card')
 
                 <div class="card">
+                    <div class="card-header">
+                        <h1 class="mb-0">Create Company</h1>
+                    </div>
+
                     <div class="card-body">
                         <h3>Company Details</h3>
                         <div class="form-group">
