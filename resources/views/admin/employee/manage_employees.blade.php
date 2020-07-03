@@ -5,7 +5,22 @@
 @endsection
 
 @section('body')
-    @include('nav.nav')
+    <div class="p-4 bg-primary-dark">
+        <div class="d-flex">
+            <h1 class="text-white my-auto">Employees</h1>
+        </div>
+
+        <ol class="breadcrumb breadcrumb-custom px-0">
+            <li class="breadcrumb-item"><a href="#">Employee</a></li>
+            <li class="breadcrumb-item"><a href="/admin/management/employees">Management</a></li>
+        </ol>
+
+        {{--        <div class="mt-4">--}}
+        {{--            <a href="/admin/management/companies/create" class="btn btn-success">--}}
+        {{--                Create--}}
+        {{--            </a>--}}
+        {{--        </div>--}}
+    </div>
 
     <div class="container-fluid">
         <div class="my-4">
@@ -13,10 +28,6 @@
             @include('response_notifiers.response_card')
 
             <div class="card">
-                <div class="card-header">
-                    <h1>Employee Management</h1>
-                </div>
-
                 <div class="card-body px-0">
                     <table id="tbl_employees" class="table table-flush table-hover" style="width: 100%">
                         <thead class="thead-light">
