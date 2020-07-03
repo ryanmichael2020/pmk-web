@@ -5,6 +5,9 @@
         <div class="container d-flex h-100vh">
 
             <div class="col-sm-12 col-md-8 col-lg-6 mx-auto my-auto">
+
+                @include('response_notifiers.response_card')
+
                 <form method="post" action="/login">
                     {{ csrf_field() }}
 
