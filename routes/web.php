@@ -57,6 +57,8 @@ Route::get('/employees/datatable', 'Web\Employee\WebEmployeeController@getDataTa
 Route::get('/dashboard', 'Web\Employee\WebEmployeeDashboardPageController@displayDashboardPage');
 
 // Employee Profile Routes
+Route::get('/employee/{employee_id}/profile', 'Web\Employee\WebEmployeeProfileManagementPageController@displayProfilePeekPage');
+
 Route::get('/profile', 'Web\Employee\WebEmployeeProfileManagementPageController@displayProfileDashboardPage');
 Route::get('/profile/account/update', 'Web\Employee\WebEmployeeProfileManagementPageController@displayProfileAccountUpdatePage');
 Route::get('/profile/details/update', 'Web\Employee\WebEmployeeProfileManagementPageController@displayProfileDetailsUpdatePage');
@@ -79,7 +81,7 @@ Route::get('/job_posts', 'Web\Employee\JobPost\WebEmployeeJobPostManagementContr
 Route::post('/job_posts/apply', 'Web\Employee\JobPost\WebEmployeeJobPostController@apply');
 
 Route::get('/job_applications', 'Web\Employee\JobPostApplication\WebEmployeeJobPostApplicationManagementController@displayListPage');
-Route::post('/job_application/cancel', 'Web\Employee\JobPostApplication\WebEmployeeJobPostApplicationController@cancelJobPostApplication');
+Route::post('/job_application/update', 'Web\Employee\JobPostApplication\WebEmployeeJobPostApplicationController@updateJobPostApplication');
 
 // Employer Routes
 Route::get('/employer/dashboard', 'Web\Employer\WebEmployerDashboardPageController@displayDashboardPage');
@@ -90,6 +92,12 @@ Route::get('/employer/job_post/create', 'Web\Employer\JobPost\WebEmployerJobPost
 Route::get('/employer/job_post/update/{job_post_id}', 'Web\Employer\JobPost\WebEmployerJobPostManagementController@displayUpdatePage');
 
 Route::post('/job_posts/create', 'Web\JobPost\WebJobPostController@create');
+Route::post('/job_post/update', 'Web\JobPost\WebJobPostController@update');
+
+// Job Post Application Routes
+Route::get('/employer/job_post/{job_post_id}/applicants', 'Web\Employer\JobPostApplication\WebEmployerJobPostApplicationManagementController@displayJobPostApplicants');
+
+
 // TODO :: Add update and delete routes and functions
 
 // TODO :: Remove routes below

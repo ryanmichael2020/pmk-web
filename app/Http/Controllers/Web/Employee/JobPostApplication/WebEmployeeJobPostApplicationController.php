@@ -10,11 +10,12 @@ use Illuminate\Http\Response;
 
 class WebEmployeeJobPostApplicationController extends Controller
 {
-    public function cancelJobPostApplication(UpdateJobPostApplicationRequest $request)
+    public function updateJobPostApplication(UpdateJobPostApplicationRequest $request)
     {
         $job_post_application_id = $request->job_post_application_id;
+        $job_post_application_status_id = $request->job_post_application_status_id;
 
-        $response = JobPostApplicationController::update($job_post_application_id, JobPostApplicationStatus::$CANCELLED);
+        $response = JobPostApplicationController::update($job_post_application_id, $job_post_application_status_id);
         if ($response['status_code'] == Response::HTTP_OK) {
             session()->flash('response_type', 'success');
             session()->flash('message', $response['message']);

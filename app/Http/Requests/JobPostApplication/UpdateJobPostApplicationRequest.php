@@ -25,6 +25,7 @@ class UpdateJobPostApplicationRequest extends FormRequest
     {
         return [
             'job_post_application_id' => 'required|integer',
+            'job_post_application_status_id' => 'required|integer',
         ];
     }
 }

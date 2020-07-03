@@ -3,20 +3,25 @@
 @section('body')
     @include('nav.employee.nav')
 
-    <div class="row">
+    <hr class="my-0 bg-default">
+    <div class="bg-primary-dark">
         <div class="container">
+            <div class="row pt-3 pb-4 mb-0">
+                <div class="col-sm-12 px-0">
+                    <h1 class="mb-0 text-white">Job Posts</h1>
+                </div>
+            </div>
+        </div>
+    </div>
 
-            <div class="col-sm-12 col-md-10 col-lg-8 mx-auto my-6">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-12 col-md-10 col-lg-8 mx-auto my-4">
                 @include('response_notifiers.response_card')
 
-                <div class="card">
-                    <div class="card-header">
-                        <h1 class="mb-0">Job Posts</h1>
-                    </div>
-                </div>
-
                 @foreach($job_posts as $job_post)
-                    <div class="card mb-0" style="border-radius: 0px">
+                    <div class="card my-2" style="border-radius: 0px">
                         <div class="card-header">
                             <div class="row">
                                 <div class="col">
@@ -30,7 +35,7 @@
                                     </span>
                                 </div>
                             </div>
-                            <p class="mb-0">
+                            <p class="mb-0" style="font-size: 12px;">
                                 Posted by: {{ $job_post->employer->user->userDetail->name() }}
                             </p>
                         </div>
@@ -42,23 +47,27 @@
                         </div>
 
                         <div class="card-footer">
-                            {{ $job_post->employer->company->name }}
-                        </div>
+                            <div class="row">
+                                <div class="col my-auto">
+                                    {{ $job_post->employer->company->name }}
+                                </div>
 
-                        <div class="card-footer">
-                            @if($job_post->hasApplication(auth()->user()->employee->id))
-                                <span data-toggle="tooltip"
-                                      data-placement="right" title="You have already applied for this position">
+                                <div class="col text-right">
+                                    @if($job_post->hasApplication(auth()->user()->employee->id))
+                                        <span data-toggle="tooltip"
+                                              data-placement="right" title="You have already applied for this position">
                                     <button type="button" class="btn btn-primary mr-2" disabled>
                                         Apply for Position
                                     </button>
                                 </span>
-                            @else
-                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#submit_application_{{ $job_post->id }}">
-                                    Apply for Position
-                                </button>
-                            @endif
+                                    @else
+                                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                data-target="#submit_application_{{ $job_post->id }}">
+                                            Apply for Position
+                                        </button>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
                     </div>
 

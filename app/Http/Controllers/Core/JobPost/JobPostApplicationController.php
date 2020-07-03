@@ -80,7 +80,7 @@ class JobPostApplicationController extends Controller
                     if ($job_post_application_status_id == JobPostApplicationStatus::$ACCEPTED) {
                         $job_post = JobPost::where('id', $job_post_application->job_post_id)->first();
 
-                        $job_post->approved_applications++;
+                        $job_post->approved_applicants++;
                         $job_post->save();
                     }
                 }

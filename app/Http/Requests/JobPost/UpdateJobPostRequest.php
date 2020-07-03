@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Auth;
+namespace App\Http\Requests\JobPost;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Log;
 
-class AuthSignupRequest extends FormRequest
+class UpdateJobPostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,23 +26,15 @@ class AuthSignupRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email|max:255',
-            'password' => 'required|string|max:32',
-            'verify_password' => 'required|string|max:32',
-            'first_name' => 'required|string|max:64',
-            'last_name' => 'required|string|max:32',
-            'sex' => 'required|string|max:16',
-            'image' => 'required|image|mimes:jpeg,png,jpg',
+            'job_post_id' => 'required|integer',
+            'position' => 'required|string|max:128',
+            'description' => 'required|string|max:8096',
+            'max_applicants' => 'required|numeric|min:1|max:999',
         ];
     }
 
     protected function failedValidation(Validator $validator)
     {
-        if ($validator->errors()->has('email')) {
-            session()->flash('response_type', 'error');
-            session()->flash('message', 'Invalid email format.');
-        }
-
         Log::error($validator->getMessageBag());
         parent::failedValidation($validator);
     }
