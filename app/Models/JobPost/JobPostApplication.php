@@ -4,6 +4,7 @@ namespace App\Models\JobPost;
 
 use App\Models\Employee\Employee;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class JobPostApplication extends Model
 {
@@ -47,5 +48,62 @@ class JobPostApplication extends Model
     public function employee()
     {
         return $this->belongsTo(Employee::class);
+    }
+
+    public function isAccepted() {
+        if ($this->job_post_application_status_id == JobPostApplicationStatus::$ACCEPTED) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function acceptable()
+    {
+        if ($this->job_post_application_status_id == JobPostApplicationStatus::$UNDER_REVIEW) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function reviewable()
+    {
+        if ($this->job_post_application_status_id == JobPostApplicationStatus::$PENDING) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function rejectable()
+    {
+        if ($this->job_post_application_status_id == JobPostApplicationStatus::$CANCELLED) {
+            return false;
+        } else if ($this->job_post_application_status_id == JobPostApplicationStatus::$REJECTED) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function revokable()
+    {
+        if ($this->job_post_application_status_id == JobPostApplicationStatus::$ACCEPTED) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function cancellable()
+    {
+        if ($this->job_post_application_status_id == JobPostApplicationStatus::$CANCELLED) {
+            return false;
+        } else if ($this->job_post_application_status_id == JobPostApplicationStatus::$ACCEPTED) {
+            return false;
+        }
+
+        return true;
     }
 }

@@ -62,7 +62,7 @@ class JobPostApplicationController extends Controller
         return $response;
     }
 
-    public static function update($job_post_application_id, $job_post_id, $employee_id, $job_post_application_status_id = null)
+    public static function update($job_post_application_id, $job_post_application_status_id = null)
     {
         $response = array();
 
@@ -73,9 +73,6 @@ class JobPostApplicationController extends Controller
                 // if job post application exists
                 DB::beginTransaction();
 
-                $job_post_application->job_post_id = $job_post_id;
-                $job_post_application->employee_id = $employee_id;
-
                 // TODO :: Add validation to prevent adding more applicants if max (approved) applicants has been reached
                 if ($job_post_application_status_id != null) {
                     $job_post_application->job_post_application_status_id = $job_post_application_status_id;
@@ -83,7 +80,7 @@ class JobPostApplicationController extends Controller
                     if ($job_post_application_status_id == JobPostApplicationStatus::$ACCEPTED) {
                         $job_post = JobPost::where('id', $job_post_application->job_post_id)->first();
 
-                        $job_post->approved_applications++;
+                        $job_post->approved_applicants++;
                         $job_post->save();
                     }
                 }

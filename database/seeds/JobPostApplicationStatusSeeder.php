@@ -26,7 +26,10 @@ class JobPostApplicationStatusSeeder extends Seeder
             ],
             [
                 'status' => 'Cancelled',
-            ]
+            ],
+            [
+                'status' => 'Revoked',
+            ],
         ]);
     }
 }

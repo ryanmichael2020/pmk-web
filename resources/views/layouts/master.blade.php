@@ -19,6 +19,7 @@
 
     <!-- Argon CSS -->
     <link rel="stylesheet" href="{{ asset('css/argon.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}" type="text/css">
 
     @yield('header')
 </head>
@@ -49,8 +50,10 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        Are you sure you want to logout?
+                    <div class="modal-body py-0">
+                        <p class="mb-0">
+                            Are you sure you want to logout?
+                        </p>
                     </div>
                     <div class="modal-footer">
                         <form method="post" action="/logout">

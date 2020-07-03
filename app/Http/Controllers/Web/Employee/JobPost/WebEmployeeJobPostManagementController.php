@@ -9,7 +9,7 @@ class WebEmployeeJobPostManagementController extends Controller
 {
     public function displayListPage()
     {
-        $job_posts = JobPost::all();
+        $job_posts = JobPost::orderBy('created_at', 'desc')->get();
 
         return view('employee.job_post.list_job_posts')
             ->with('job_posts', $job_posts);
