@@ -97,7 +97,6 @@ Route::post('/job_post/update', 'Web\JobPost\WebJobPostController@update');
 // Job Post Application Routes
 Route::get('/employer/job_post/{job_post_id}/applicants', 'Web\Employer\JobPostApplication\WebEmployerJobPostApplicationManagementController@displayJobPostApplicants');
 
-
 // TODO :: Add update and delete routes and functions
 
 // TODO :: Remove routes below
