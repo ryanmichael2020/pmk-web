@@ -14,7 +14,9 @@
                         <div class="input-group">
                             <input id="txtPosition" type="text" class="form-control" placeholder="Search job..">
                             <div class="input-group-append">
-                                <button id="btnSearch" class="btn btn-outline-primary" type="button">Search</button>
+                                <button id="btnSearch" class="btn btn-outline-primary" type="button"
+                                        style="height: 46px;">Search
+                                </button>
                             </div>
 
                             @if(request()->query('position') != null)
@@ -27,6 +29,44 @@
                         </div>
                     </div>
                 </div>
+
+                {{-- Mobile only recent applications --}}
+                <div class="card d-lg-none my-2">
+                    <div class="card-header">
+                        <h2 class="mb-0">
+                            Recent applications
+                        </h2>
+                    </div>
+
+                    <div class="card-body">
+                        @if(count($job_applications) > 0)
+                            @foreach($job_applications as $index => $job_application)
+                                <a href="#">
+                                    <p class="mb-0">
+                                        {{ $job_application->jobPost->position }}
+                                    </p>
+                                </a>
+                                <span class="p mb-0" style="font-size: 12px;" data-toggle="tooltip"
+                                      data-placement="right"
+                                      title="{{ $job_application->jobPost->created_at }}">
+                                    Submitted
+                                    <span>
+                                        {{ \Carbon\Carbon::createFromFormat('Y-m-d h:i:s', $job_application->jobPost->created_at)->diffForHumans() }}
+                                    </span>
+                                </span>
+
+                                @if($index != (count($job_applications) - 1))
+                                    <hr class="my-3">
+                                @endif
+                            @endforeach
+                        @else
+                            <p class="mb-0">
+                                No recent applications found
+                            </p>
+                        @endif
+                    </div>
+                </div>
+                {{-- End of mobile only recent applications --}}
 
                 @if(count($job_posts) > 0)
                     @foreach($job_posts as $job_post)
@@ -130,7 +170,7 @@
                 @endif
             </div>
 
-            <div class="col-sm-12 col-md-10 col-lg-4 mx-auto">
+            <div class="col-sm-12 col-md-10 d-md-none d-lg-inline col-lg-4 mx-auto">
                 <div class="card">
                     <div class="card-header">
                         <h2 class="mb-0">
@@ -141,19 +181,23 @@
                     <div class="card-body">
                         @if(count($job_applications) > 0)
                             @foreach($job_applications as $index => $job_application)
-                                <a href="#">
-                                    <p class="mb-0">
-                                        {{ $job_application->jobPost->position }}
-                                    </p>
-                                </a>
-                                <span class="p mb-0" style="font-size: 12px;" data-toggle="tooltip"
-                                      data-placement="right"
-                                      title="{{ $job_application->jobPost->created_at }}">
-                                    Submitted
-                                    <span>
-                                        {{ \Carbon\Carbon::createFromFormat('Y-m-d h:i:s', $job_application->jobPost->created_at)->diffForHumans() }}
+
+                                {{-- Only display up to 5 items for mobile only view --}}
+                                @if($index < 5)
+                                    <a href="#">
+                                        <p class="mb-0">
+                                            {{ $job_application->jobPost->position }}
+                                        </p>
+                                    </a>
+                                    <span class="p mb-0" style="font-size: 12px;" data-toggle="tooltip"
+                                          data-placement="right"
+                                          title="{{ $job_application->jobPost->created_at }}">
+                                        Submitted
+                                        <span>
+                                            {{ \Carbon\Carbon::createFromFormat('Y-m-d h:i:s', $job_application->jobPost->created_at)->diffForHumans() }}
+                                        </span>
                                     </span>
-                                </span>
+                                @endif
 
                                 @if($index != (count($job_applications) - 1))
                                     <hr class="my-3">
