@@ -26,8 +26,9 @@ class WebCompanyController extends Controller
     {
         $name = $request->name;
         $contact = $request->contact;
+        $image = ($request->has('image')) ? $request->image : null;
 
-        $response = CompanyController::create($name, $contact);
+        $response = CompanyController::create($name, $contact, $image);
         if ($response['status_code'] == Response::HTTP_OK) {
             session()->flash('response_type', 'success');
             session()->flash('message', $response['message']);
@@ -46,8 +47,9 @@ class WebCompanyController extends Controller
         $company_id = $request->company_id;
         $name = $request->name;
         $contact = $request->contact;
+        $image = ($request->has('image')) ? $request->image : null;
 
-        $response = CompanyController::update($company_id, $name, $contact);
+        $response = CompanyController::update($company_id, $name, $contact, $image);
         if ($response['status_code'] == Response::HTTP_OK) {
             session()->flash('response_type', 'success');
             session()->flash('message', $response['message']);

@@ -14,7 +14,7 @@ class Company extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'contact',
+        'name', 'contact', 'image',
     ];
 
     /**
@@ -40,7 +40,8 @@ class Company extends Model
         return $this->hasMany(Employer::class);
     }
 
-    public function employeeReviews() {
+    public function employeeReviews()
+    {
         return $this->hasMany(EmployeeReview::class);
     }
 }

@@ -8,7 +8,7 @@
 
         <ol class="breadcrumb breadcrumb-custom px-0">
             <li class="breadcrumb-item"><a href="/admin/management/companies">Company</a></li>
-            <li class="breadcrumb-item"><a href="/admin/management/companies">Create Company</a></li>
+            <li class="breadcrumb-item"><a href="#">Create Company</a></li>
         </ol>
 
         <div class="mt-4">
@@ -19,7 +19,7 @@
     </div>
 
     <div class="container">
-        <form method="post" action="/companies/create">
+        <form method="post" action="/companies/create" enctype="multipart/form-data">
             {{ csrf_field() }}
 
             <div class="col-sm-12 col-lg-6 mx-auto my-6">
@@ -33,6 +33,12 @@
 
                     <div class="card-body">
                         <h3>Company Details</h3>
+
+                        <div class="form-group">
+                            <label for="image">Image</label>
+                            <input type="file" name="image" id="image" class="form-control">
+                        </div>
+
                         <div class="form-group">
                             <label for="name">Company Name</label>
                             <input id="name" name="name" type="text" class="form-control" maxlength="128"

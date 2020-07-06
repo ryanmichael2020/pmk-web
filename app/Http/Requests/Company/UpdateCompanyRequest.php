@@ -29,6 +29,7 @@ class UpdateCompanyRequest extends FormRequest
             'company_id' => 'required|integer',
             'name' => 'required|string|max:128',
             'contact' => 'required|string|max:16',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg',
         ];
     }
 

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Log;
 
 class CompanyController extends Controller
 {
-    public static function create($name, $contact)
+    public static function create($name, $contact, $image = null)
     {
         $response = array();
 
@@ -21,6 +21,18 @@ class CompanyController extends Controller
             $company = new Company();
             $company->name = $name;
             $company->contact = $contact;
+
+            if ($image != null) {
+                $image_path = public_path() . '/images/companies';
+                $image_extension = $image->extension();
+                $image_name = uniqid() . '.' . $image_extension;
+                $image->move($image_path, $image_name);
+
+                // image path stored in database
+                $image_public_path = '/images/companies/' . $image_name;
+                $company->image = $image_public_path;
+            }
+
             $company->save();
 
             DB::commit();
@@ -68,7 +80,7 @@ class CompanyController extends Controller
         return $response;
     }
 
-    public static function update($company_id, $name, $contact)
+    public static function update($company_id, $name, $contact, $image = null)
     {
         $response = array();
 
@@ -81,6 +93,18 @@ class CompanyController extends Controller
 
                 $company->name = $name;
                 $company->contact = $contact;
+
+                if ($image != null) {
+                    $image_path = public_path() . '/images/companies';
+                    $image_extension = $image->extension();
+                    $image_name = uniqid() . '.' . $image_extension;
+                    $image->move($image_path, $image_name);
+
+                    // image path stored in database
+                    $image_public_path = '/images/companies/' . $image_name;
+                    $company->image = $image_public_path;
+                }
+
                 $company->save();
 
                 DB::commit();

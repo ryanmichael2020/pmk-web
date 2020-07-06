@@ -12,7 +12,7 @@
 
         <ol class="breadcrumb breadcrumb-custom px-0">
             <li class="breadcrumb-item"><a href="#">Company</a></li>
-            <li class="breadcrumb-item"><a href="/admin/management/companies">Management</a></li>
+            <li class="breadcrumb-item"><a href="#">Management</a></li>
         </ol>
 
         <div class="mt-4">
