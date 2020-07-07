@@ -1,3 +1,25 @@
+@font-face {
+    font-family: 'montserrat-regular';
+    src: url("../fonts/montserrat/Montserrat-Regular.ttf");
+}
+
+@font-face {
+    font-family: 'montserrat-medium';
+    src: url("../fonts/montserrat/Montserrat-Medium.ttf");
+}
+
+.primary-font {
+    font-family: montserrat-regular, sans-serif;
+}
+
+* {
+    font-family: montserrat-regular, sans-serif;
+}
+
+b, h1, h2, h3, h4 {
+    font-family: montserrat-medium, sans-serif !important;
+}
+
 .breadcrumb-custom {
     background-color: rgba(0, 0, 0, 0) !important;
     margin-bottom: 0 !important;
