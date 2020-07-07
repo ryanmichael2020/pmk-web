@@ -8,6 +8,8 @@ class WebEmployeeDashboardPageController extends Controller
 {
     public function displayDashboardPage()
     {
-        return view('employee.dashboard');
+        // TODO :: Update dashboard page
+        return redirect('/job_posts');
+        // return view('employee.dashboard');
     }
 }

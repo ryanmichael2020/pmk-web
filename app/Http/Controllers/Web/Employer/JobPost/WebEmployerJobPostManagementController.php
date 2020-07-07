@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web\Employer\JobPost;
 use App\Http\Controllers\Controller;
 use App\Models\JobPost\JobPost;
 use App\Models\JobPost\JobPostApplication;
+use Illuminate\Support\Facades\Log;
 
 class WebEmployerJobPostManagementController extends Controller
 {
@@ -16,7 +17,7 @@ class WebEmployerJobPostManagementController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        $job_post_ids = array();
+        $job_post_ids = [0];
         foreach ($job_posts as $job_post) {
             array_push($job_post_ids, $job_post->id);
         }
