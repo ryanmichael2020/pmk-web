@@ -29,6 +29,12 @@
                 @include('response_notifiers.response_card')
 
                 <div class="card">
+                    <div class="card-header">
+                        <h1 class="mb-0">
+                            Update Company
+                        </h1>
+                    </div>
+
                     <div class="card-body">
                         <h3>Company Details</h3>
 
@@ -56,7 +62,7 @@
                     </div>
 
                     <div class="card-footer">
-                        <button type="submit" class="btn bg-orange text-white form-control">
+                        <button type="submit" class="btn bg-orange text-white">
                             Update Company
                         </button>
                     </div>

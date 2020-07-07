@@ -118,7 +118,7 @@
                     </div>
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary form-control"
+                        <button type="submit" class="btn btn-primary"
                                 @if(count($companies) < 1) disabled @endif>
                             Create Employer
                         </button>
