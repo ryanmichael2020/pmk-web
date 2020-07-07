@@ -50,6 +50,7 @@ Route::post('/employers/create', 'Web\Employer\WebEmployerController@create');
 Route::post('/employer/update', 'Web\Employer\WebEmployerController@update');
 
 Route::get('/admin/management/employees', 'Web\Employee\WebEmployeeManagementController@displayListPage');
+Route::get('/admin/management/employee/{employee_id}/profile', 'Web\Employee\WebEmployeeManagementController@displayProfilePeekUnrelatedPage');
 
 Route::get('/employees/datatable', 'Web\Employee\WebEmployeeController@getDataTable');
 
