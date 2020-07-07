@@ -26,10 +26,10 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-auto mx-auto d-flex">
+                        <div class="col-auto mr-auto d-flex">
                             @if($company->image !=null)
-                                <img src="{{ asset($company->image) }}" style="max-height: 92px; max-width: 92px;"
-                                     class="mx-2">
+                                <img src="{{ asset($company->image) }}" class="rounded-circle mr-2"
+                                     style="max-height: 92px; max-width: 92px;">
 
                                 <h1 class="mb-0 mx-2 my-auto">
                                     {{ $company->name }}

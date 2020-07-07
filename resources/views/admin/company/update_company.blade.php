@@ -31,6 +31,15 @@
                 <div class="card">
                     <div class="card-body">
                         <h3>Company Details</h3>
+
+                        <div class="d-flex mb-3">
+                            <img src="{{ asset($company->image) }}" style="height: 64px; width: 64px;" class="rounded-circle my-auto mr-4"/>
+                            <div class="form-group flex-grow-1 mb-0">
+                                <label for="image">Image</label>
+                                <input type="file" name="image" id="image" class="form-control">
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <label for="name">Company Name</label>
                             <input id="name" name="name" type="text" class="form-control" maxlength="128"

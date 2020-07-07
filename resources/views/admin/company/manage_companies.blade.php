@@ -28,9 +28,10 @@
 
             <div class="card">
                 <div class="card-body px-0">
-                    <table id="tbl_companies" class="table table-flush table-hover" style="width: 100%">
+                    <table id="tbl_companies" class="table table-flush table-hover align-items-center" style="width: 100%">
                         <thead class="thead-light">
                         <tr>
+                            <th>Logo</th>
                             <th>ID</th>
                             <th>Name</th>
                             <th>Contact</th>
@@ -65,6 +66,17 @@
                     "type": "GET",
                 },
                 columns: [
+                    {
+                        data: 'image',
+                        name: 'image',
+                        render: function (data, type, row) {
+                            if (row['image'] != null) {
+                                return '<img src="http://{{ request()->getHttpHost()}}' + row['image'] + '" class="rounded-circle" style="width: 48px; height: 48px;"/>';
+                            } else {
+                                return 'N/A';
+                            }
+                        },
+                    },
                     {data: 'id', name: 'id',},
                     {data: 'name', name: 'type',},
                     {data: 'contact', name: 'contact',},
