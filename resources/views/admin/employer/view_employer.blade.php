@@ -74,7 +74,7 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group mb-0">
                             <label for="company_id">Company</label>
                             <select id="company_id" name="company_id" class="form-control" disabled>
                                 <option
