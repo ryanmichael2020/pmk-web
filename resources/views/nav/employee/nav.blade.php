@@ -42,7 +42,7 @@
                 <li class="nav-item dropdown text-white">
                     <a class="nav-link nav-link-icon py-0" href="#" id="navbar-user-icon-dropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="avatar rounded-circle py-0" src="{{ auth()->user()->userDetail->image }}"
+                        <img class="avatar rounded-circle py-0" src="{{ asset(auth()->user()->userDetail->image) }}"
                              style="height: 48px; width: 48px;">
                     </a>
 
