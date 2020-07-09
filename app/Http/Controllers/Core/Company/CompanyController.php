@@ -31,6 +31,8 @@ class CompanyController extends Controller
                 // image path stored in database
                 $image_public_path = '/images/companies/' . $image_name;
                 $company->image = $image_public_path;
+            } else {
+                $company->image = '/images/companies/company.png';
             }
 
             $company->save();

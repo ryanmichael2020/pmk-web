@@ -32,7 +32,7 @@ class AuthSignupRequest extends FormRequest
             'first_name' => 'required|string|max:64',
             'last_name' => 'required|string|max:32',
             'sex' => 'required|string|max:16',
-            'image' => 'required|image|mimes:jpeg,png,jpg',
+            'image' => 'image|mimes:jpeg,png,jpg',
         ];
     }
 

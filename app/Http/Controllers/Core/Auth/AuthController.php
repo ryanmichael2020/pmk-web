@@ -60,7 +60,7 @@ class AuthController extends Controller
         return $response;
     }
 
-    public static function signup($email, $password, $verify_password, $image, $first_name, $last_name, $sex)
+    public static function signup($email, $password, $verify_password, $first_name, $last_name, $sex, $image = null)
     {
         $response = array();
 
@@ -74,20 +74,24 @@ class AuthController extends Controller
                 $user->user_type_id = 3; // user type - employee
                 $user->save();
 
-                $image_path = public_path() . '/images/profile_pictures';
-                $image_extension = $image->extension();
-                $image_name = uniqid() . '.' . $image_extension;
-                $image->move($image_path, $image_name);
-
-                // image path stored in database
-                $image_public_path = '/images/profile_pictures/' . $image_name;
-
                 $user_detail = new UserDetail();
                 $user_detail->user_id = $user->id;
                 $user_detail->first_name = $first_name;
                 $user_detail->last_name = $last_name;
                 $user_detail->sex = $sex;
-                $user_detail->image = $image_public_path;
+
+                if ($image != null) {
+                    $image_path = public_path() . '/images/profile_pictures';
+                    $image_extension = $image->extension();
+                    $image_name = uniqid() . '.' . $image_extension;
+                    $image->move($image_path, $image_name);
+
+                    // image path stored in database
+                    $image_public_path = '/images/profile_pictures/' . $image_name;
+                    $user_detail->image = $image_public_path;
+                } else {
+                    $user_detail->image = (strtolower($sex) == 'male') ? 'images/profile_pictures/man.png' : 'images/profile_pictures/woman.png';
+                }
                 $user_detail->save();
 
                 $employee = new Employee();

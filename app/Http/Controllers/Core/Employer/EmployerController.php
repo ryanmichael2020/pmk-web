@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Log;
 
 class EmployerController extends Controller
 {
-    public static function create($email, $password, $verify_password, $first_name, $last_name, $sex, $company_id, $image)
+    public static function create($email, $password, $verify_password, $first_name, $last_name, $sex, $company_id, $image = null)
     {
         $response = array();
 
@@ -30,20 +30,24 @@ class EmployerController extends Controller
                 $user->user_type_id = UserType::$EMPLOYER;
                 $user->save();
 
-                $image_path = public_path() . '/images/profile_pictures';
-                $image_extension = $image->extension();
-                $image_name = uniqid() . '.' . $image_extension;
-                $image->move($image_path, $image_name);
-
-                // image path stored in database
-                $image_public_path = '/images/profile_pictures/' . $image_name;
-
                 $user_detail = new UserDetail();
                 $user_detail->user_id = $user->id;
                 $user_detail->first_name = $first_name;
                 $user_detail->last_name = $last_name;
                 $user_detail->sex = $sex;
-                $user_detail->image = $image_public_path;
+
+                if ($image != null) {
+                    $image_path = public_path() . '/images/profile_pictures';
+                    $image_extension = $image->extension();
+                    $image_name = uniqid() . '.' . $image_extension;
+                    $image->move($image_path, $image_name);
+
+                    // image path stored in database
+                    $image_public_path = '/images/profile_pictures/' . $image_name;
+                    $user_detail->image = $image_public_path;
+                } else {
+                    $user_detail->image = (strtolower($sex) == 'male') ? 'images/profile_pictures/man.png' : 'images/profile_pictures/woman.png';
+                }
                 $user_detail->save();
 
                 $employer = new Employer();
