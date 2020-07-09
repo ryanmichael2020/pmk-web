@@ -28,19 +28,21 @@
 
             <div class="card">
                 <div class="card-body px-0">
-                    <table id="tbl_companies" class="table table-flush table-hover align-items-center" style="width: 100%">
-                        <thead class="thead-light">
-                        <tr>
-                            <th>Logo</th>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Contact</th>
-                            <th>Created</th>
-                            <th>Updated</th>
-                            <th>Actions</th>
-                        </tr>
-                        </thead>
-                    </table>
+                    <div class="table-responsive">
+                        <table id="tbl_companies" class="table table-flush table-hover align-items-center" style="width: 100%">
+                            <thead class="thead-light">
+                            <tr>
+                                <th>Logo</th>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Contact</th>
+                                <th>Created</th>
+                                <th>Updated</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
