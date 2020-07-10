@@ -112,7 +112,7 @@
                                       title="{{ $job_application->jobPost->created_at }}">
                                     Submitted
                                     <span class="mr-2">
-                                        {{ \Carbon\Carbon::createFromFormat('Y-m-d h:i:s', $job_application->jobPost->created_at)->diffForHumans() }}
+                                        {{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $job_application->jobPost->created_at)->diffForHumans() }}
                                     </span>
                                 </span>
 
