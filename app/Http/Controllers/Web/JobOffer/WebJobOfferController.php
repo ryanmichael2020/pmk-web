@@ -7,14 +7,11 @@ use App\Http\Controllers\Core\JobOffer\JobOfferController;
 use App\Http\Requests\JobOffer\CreateJobOfferRequest;
 use Carbon\Carbon;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Log;
 
 class WebJobOfferController extends Controller
 {
     public function hireApplicant(CreateJobOfferRequest $request)
     {
-        Log::debug(json_encode($request->all()));
-
         $job_post_application_id = $request->job_post_application_id;
         $description = $request->description;
 

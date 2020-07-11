@@ -5,7 +5,6 @@ namespace App\Models\JobPost;
 use App\Models\Employee\Employee;
 use App\Models\JobOffer\JobOffer;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Log;
 
 class JobPostApplication extends Model
 {
@@ -67,11 +66,9 @@ class JobPostApplication extends Model
 
     public function hireable()
     {
-
         $job_offer = JobOffer::where('job_post_application_id', $this->id)->first();
         $has_sent_offer = ($job_offer == null) ? false : true;
 
-        Log::debug($job_offer);
         if ($this->job_post_application_status_id == JobPostApplicationStatus::$UNDER_REVIEW && !$has_sent_offer) {
             return true;
         }
