@@ -43,8 +43,10 @@ class JobOfferController extends Controller
 
                 DB::commit();
 
+                $job_post_application['job_offer'] = $job_offer;
+
                 $data = array();
-                $data['job_offer'] = $job_offer;
+                $data['job_post_application'] = $job_post_application;
 
                 $response['data'] = $data;
                 $response['message'] = 'Job offer sent.';
@@ -96,7 +98,7 @@ class JobOfferController extends Controller
         return $response;
     }
 
-    public static function acceptJobOffer($job_offer_id, $employee_id)
+    public static function acceptJobOffer($job_offer_id)
     {
         $response = array();
 
@@ -107,8 +109,6 @@ class JobOfferController extends Controller
 
                 DB::beginTransaction();
 
-                $company_id = $job_offer->jobPostApplication->jobPost->employer()->company;
-
                 $job_offer->job_offer_status_id = JobOfferStatus::$ACCEPTED;
                 $job_offer->save();
 
@@ -117,8 +117,8 @@ class JobOfferController extends Controller
                 $job_post_application->save();
 
                 $employee_company_history = new EmployeeCompanyHistory();
-                $employee_company_history->employee_id = $employee_id;
-                $employee_company_history->company_id = $company_id;
+                $employee_company_history->employee_id = $job_offer->employee_id;
+                $employee_company_history->company_id = $job_offer->company_id;
                 $employee_company_history->save();
 
                 DB::commit();
@@ -170,7 +170,7 @@ class JobOfferController extends Controller
         return $response;
     }
 
-    public static function declineJobOffer($job_offer_id)
+    public static function rejectJobOffer($job_offer_id)
     {
         $response = array();
 
@@ -184,10 +184,16 @@ class JobOfferController extends Controller
                 $job_offer->job_offer_status_id = JobOfferStatus::$REJECTED;
                 $job_offer->save();
 
+                $job_post_application = JobPostApplication::where('id', $job_offer->job_post_application_id)->first();
+                $job_post_application->job_post_application_status_id = JobPostApplicationStatus::$REJECTED;
+                $job_post_application->save();
+
                 DB::commit();
 
+                $job_post_application['job_offer'] = $job_offer;
+
                 $data = array();
-                $data['job_offer'] = $job_offer;
+                $data['job_post_application'] = $job_post_application;
 
                 $response['data'] = $data;
                 $response['message'] = 'Job offer successfully declined.';

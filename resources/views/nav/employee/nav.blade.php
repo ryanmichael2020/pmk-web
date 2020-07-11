@@ -39,6 +39,12 @@
                     </a>
                 </li>
 
+                <li class="nav-item text-white">
+                    <a href="/job_offers" class="nav-link nav-link-icon">
+                        Job Offers
+                    </a>
+                </li>
+
                 <li class="nav-item dropdown text-white">
                     <a class="nav-link nav-link-icon py-0" href="#" id="navbar-user-icon-dropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

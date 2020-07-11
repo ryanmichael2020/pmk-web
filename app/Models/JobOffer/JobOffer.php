@@ -49,4 +49,40 @@ class JobOffer extends Model
     {
         return $this->belongsTo(Employee::class);
     }
+
+    public function isAcceptable()
+    {
+        if ($this->job_offer_status_id == JobOfferStatus::$PENDING) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function isRejectable()
+    {
+        if ($this->job_offer_status_id == JobOfferStatus::$PENDING) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function isAccepted()
+    {
+        if ($this->job_offer_status_id == JobOfferStatus::$ACCEPTED) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function isRejected()
+    {
+        if ($this->job_offer_status_id == JobOfferStatus::$REJECTED) {
+            return true;
+        }
+
+        return false;
+    }
 }

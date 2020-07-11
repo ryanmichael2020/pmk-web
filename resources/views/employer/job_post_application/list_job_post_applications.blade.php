@@ -141,10 +141,10 @@
                                             Reject Application
                                         </button>
                                     @else
-                                        {{-- TODO :: Change to dismiss applicant --}}
-                                        <button type="button" class="btn btn-warning" disabled>
-                                            Reject Application
-                                        </button>
+                                        {{-- TODO :: Add dismiss applicant --}}
+{{--                                        <button type="button" class="btn btn-warning" disabled>--}}
+                                            {{--                                            Reject Application--}}
+                                            {{--                                        </button>--}}
                                     @endif
                                 @else
                                     <p class="mb-0 text-red" style="font-size: 14px;">

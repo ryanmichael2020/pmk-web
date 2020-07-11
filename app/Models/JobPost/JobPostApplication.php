@@ -87,13 +87,11 @@ class JobPostApplication extends Model
 
     public function rejectable()
     {
-        if ($this->job_post_application_status_id == JobPostApplicationStatus::$CANCELLED) {
-            return false;
-        } else if ($this->job_post_application_status_id == JobPostApplicationStatus::$REJECTED) {
-            return false;
+        if ($this->job_post_application_status_id == JobPostApplicationStatus::$PENDING) {
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     public function revokable()
