@@ -38,6 +38,9 @@ class JobOfferController extends Controller
                 $job_offer->date_due = $date_due;
                 $job_offer->save();
 
+                $job_post_application->job_post_application_status_id = JobPostApplicationStatus::$SENT_JOB_OFFER;
+                $job_post_application->save();
+
                 DB::commit();
 
                 $data = array();

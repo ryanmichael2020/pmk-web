@@ -114,7 +114,7 @@
                             </div>
 
                             <div class="card-footer">
-                                @if($job_post_application->job_post_application_status_id == \App\Models\JobPost\JobPostApplicationStatus::$SENT_JOB_OFFER)
+                                @if($job_post_application->job_post_application_status_id == \App\Models\JobPost\JobPostApplicationStatus::$HIRED)
                                     <span class="mb-0 d-inline-flex align-middle mr-2 text-green">
                                         <span class="my-auto mr-2"><b>Applicant Accepted</b></span>
                                         <i class="fas fa-check-circle text-green fa-2x my-auto"></i>
@@ -127,21 +127,23 @@
                                                 data-target="#review_job_application_{{ $job_post_application->id }}">
                                             Place under review
                                         </button>
-                                    @elseif($job_post_application->acceptable())
+                                    @elseif($job_post_application->hireable())
                                         <button type="button" class="btn btn-success" data-toggle="modal"
                                                 data-target="#accept_job_application_{{ $job_post_application->id }}">
                                             Hire Applicant
                                         </button>
                                     @endif
 
-                                    @if($job_post_application->cancellable())
+                                    {{-- TODO :: Add fallback for cancellable (if offer has already been sent) --}}
+                                    @if($job_post_application->rejectable())
                                         <button type="button" class="btn btn-warning" data-toggle="modal"
                                                 data-target="#cancel_job_application_{{ $job_post_application->id }}">
-                                            Cancel Application
+                                            Reject Application
                                         </button>
                                     @else
+                                        {{-- TODO :: Change to dismiss applicant --}}
                                         <button type="button" class="btn btn-warning" disabled>
-                                            Cancel Application
+                                            Reject Application
                                         </button>
                                     @endif
                                 @else
