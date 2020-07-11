@@ -114,7 +114,7 @@
                             </div>
 
                             <div class="card-footer">
-                                @if($job_post_application->job_post_application_status_id == \App\Models\JobPost\JobPostApplicationStatus::$HIRE)
+                                @if($job_post_application->job_post_application_status_id == \App\Models\JobPost\JobPostApplicationStatus::$SENT_JOB_OFFER)
                                     <span class="mb-0 d-inline-flex align-middle mr-2 text-green">
                                         <span class="my-auto mr-2"><b>Applicant Accepted</b></span>
                                         <i class="fas fa-check-circle text-green fa-2x my-auto"></i>
@@ -196,8 +196,8 @@
 
                             <input type="hidden" name="job_post_application_id"
                                    value="{{ $job_post_application->id }}">
-                            <input type="hidden" name="job_post_application_status_id"
-                                   value="{{ \App\Models\JobPost\JobPostApplicationStatus::$HIRE }}">
+                            {{--                            <input type="hidden" name="job_post_application_status_id"--}}
+                            {{--                                   value="{{ \App\Models\JobPost\JobPostApplicationStatus::$HIRE }}">--}}
 
                             <div class="modal fade" id="accept_job_application_{{ $job_post_application->id }}"
                                  tabindex="-1" role="dialog"
@@ -212,9 +212,15 @@
                                             </button>
                                         </div>
                                         <div class="modal-body py-0">
-                                            <p class="mb-0">
-                                                Are you sure you want to send this applicant a job offer?
-                                            </p>
+                                            <div class="form-group mb-0">
+                                                <p class="mb-2" style="font-size: 12px;">Add additional information like
+                                                    benefits for joining your company, etc..</p>
+
+                                                <label for="description">Job Offer Description</label>
+                                                <textarea id="description" name="description" minlength="128"
+                                                          maxlength="8096"
+                                                          class="form-control" required></textarea>
+                                            </div>
                                         </div>
 
                                         <div class="modal-footer">

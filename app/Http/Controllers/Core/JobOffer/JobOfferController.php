@@ -7,6 +7,7 @@ use App\Models\Employee\EmployeeCompanyHistory;
 use App\Models\JobOffer\JobOffer;
 use App\Models\JobOffer\JobOfferStatus;
 use App\Models\JobPost\JobPostApplication;
+use App\Models\JobPost\JobPostApplicationStatus;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +31,9 @@ class JobOfferController extends Controller
                 $job_offer->job_offer_status_id = JobOfferStatus::$PENDING;
                 $job_offer->job_post_application_id = $job_post_application_id;
                 $job_offer->job_post_id = $job_post_application->job_post_id;
-                $job_offer->company_id = $job_post_application->jobPost->employer()->company_id;
+                $job_offer->company_id = $job_post_application->jobPost->employer->company_id;
+                $job_offer->employer_id = $job_post_application->jobPost->employer->id;
+                $job_offer->employee_id = $job_post_application->employee_id;
                 $job_offer->description = $description;
                 $job_offer->date_due = $date_due;
                 $job_offer->save();
@@ -106,6 +109,10 @@ class JobOfferController extends Controller
                 $job_offer->job_offer_status_id = JobOfferStatus::$ACCEPTED;
                 $job_offer->save();
 
+                $job_post_application = JobPostApplication::where('id', $job_offer->job_post_application_id)->first();
+                $job_post_application->job_post_application_status_id = JobPostApplicationStatus::$HIRED;
+                $job_post_application->save();
+
                 $employee_company_history = new EmployeeCompanyHistory();
                 $employee_company_history->employee_id = $employee_id;
                 $employee_company_history->company_id = $company_id;
@@ -113,8 +120,10 @@ class JobOfferController extends Controller
 
                 DB::commit();
 
+                $job_post_application['job_offer'] = $job_offer;
+
                 $data = array();
-                $data['job_offer'] = $job_offer;
+                $data['job_post_application'] = $job_post_application;
                 $data['employee_company_history'] = $employee_company_history;
 
                 $response['data'] = $data;

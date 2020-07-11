@@ -77,7 +77,7 @@ class JobPostApplicationController extends Controller
                 if ($job_post_application_status_id != null) {
                     $job_post_application->job_post_application_status_id = $job_post_application_status_id;
 
-                    if ($job_post_application_status_id == JobPostApplicationStatus::$HIRE) {
+                    if ($job_post_application_status_id == JobPostApplicationStatus::$SENT_JOB_OFFER) {
                         $job_post = JobPost::where('id', $job_post_application->job_post_id)->first();
 
                         $job_post->approved_applicants++;

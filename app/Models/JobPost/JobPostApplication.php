@@ -57,7 +57,7 @@ class JobPostApplication extends Model
 
     public function isAccepted()
     {
-        if ($this->job_post_application_status_id == JobPostApplicationStatus::$HIRE) {
+        if ($this->job_post_application_status_id == JobPostApplicationStatus::$SENT_JOB_OFFER) {
             return true;
         }
 
@@ -95,7 +95,7 @@ class JobPostApplication extends Model
 
     public function revokable()
     {
-        if ($this->job_post_application_status_id == JobPostApplicationStatus::$HIRE) {
+        if ($this->job_post_application_status_id == JobPostApplicationStatus::$SENT_JOB_OFFER) {
             return true;
         }
 
@@ -106,7 +106,7 @@ class JobPostApplication extends Model
     {
         if ($this->job_post_application_status_id == JobPostApplicationStatus::$CANCELLED) {
             return false;
-        } else if ($this->job_post_application_status_id == JobPostApplicationStatus::$HIRE) {
+        } else if ($this->job_post_application_status_id == JobPostApplicationStatus::$SENT_JOB_OFFER) {
             return false;
         }
 
