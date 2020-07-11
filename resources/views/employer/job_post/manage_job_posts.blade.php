@@ -91,30 +91,50 @@
                     <div class="card-body">
                         @if(count($job_applications) > 0)
                             @foreach($job_applications as $index => $job_application)
-                                <a href="#">
+                                <div class="bg-transluscent border-rounded p-4">
+                                    <a href="#">
+                                        <p class="mb-0">
+                                            {{ $job_application->jobPost->position }}
+                                        </p>
+                                    </a>
+
+                                    <div class="row py-2">
+                                        <div class="col-auto my-auto pr-1">
+                                            <img class="avatar rounded-circle py-0"
+                                                 src="{{ asset($job_application->employee->user->userDetail->image) }}"
+                                                 style="height: 48px; width: 48px;">
+                                        </div>
+
+                                        <div class="col-auto my-auto">
+                                            <p class="mb-0">
+                                                {{--                                    /employee/{{ $job_application->employee_id }}/profile--}}
+                                                <strong>
+                                                    {{ $job_application->employee->user->userDetail->name() }}
+                                                </strong>
+                                            </p>
+
+                                            <p class="mb-0" style="font-size: 12px;">
+                                                {{ $job_application->employee->user->email }}
+                                            </p>
+                                        </div>
+                                    </div>
+
                                     <p class="mb-0">
-                                        {{ $job_application->jobPost->position }}
+                                        <a href="/employee/{{ $job_application->employee->id }}/profile"
+                                           style="font-size: 14px;">
+                                            View Profile
+                                        </a>
                                     </p>
-                                </a>
 
-                                <p class="mb-0">
-                                    <strong>
-                                        {{ $job_application->employee->user->userDetail->name() }}
-                                    </strong>
-                                </p>
-
-                                <p class="mb-0" style="font-size: 12px;">
-                                    {{ $job_application->employee->user->email }}
-                                </p>
-
-                                <span class="p mb-0" style="font-size: 12px;" data-toggle="tooltip"
-                                      data-placement="right"
-                                      title="{{ $job_application->jobPost->created_at }}">
-                                    Submitted
-                                    <span class="mr-2">
-                                        {{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $job_application->jobPost->created_at)->diffForHumans() }}
+                                    <span class="p mb-0" style="font-size: 12px;" data-toggle="tooltip"
+                                          data-placement="right"
+                                          title="{{ $job_application->jobPost->created_at }}">
+                                        Submitted
+                                        <span class="mr-2">
+                                            {{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $job_application->jobPost->created_at)->diffForHumans() }}
+                                        </span>
                                     </span>
-                                </span>
+                                </div>
 
                                 @if($index != (count($job_applications) - 1))
                                     <hr class="my-3">

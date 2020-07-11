@@ -8,7 +8,7 @@ class JobPostApplicationStatus extends Model
 {
     public static $PENDING = 1;
     public static $UNDER_REVIEW = 2;
-    public static $ACCEPTED = 3;
+    public static $HIRE = 3;
     public static $REJECTED = 4;
     public static $CANCELLED = 5;
 

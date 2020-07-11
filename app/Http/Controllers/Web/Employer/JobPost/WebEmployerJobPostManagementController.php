@@ -17,12 +17,9 @@ class WebEmployerJobPostManagementController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        $job_post_ids = [0];
-        foreach ($job_posts as $job_post) {
-            array_push($job_post_ids, $job_post->id);
-        }
+        $job_post_ids = $job_posts->pluck('id');
 
-        $job_applications = JobPostApplication::where('job_post_id', $job_post_ids)
+        $job_applications = JobPostApplication::whereIn('job_post_id', $job_post_ids)
             ->orderBy('created_at', 'desc')
             ->get();
 

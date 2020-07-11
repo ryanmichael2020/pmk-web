@@ -36,3 +36,11 @@ ol.breadcrumb-custom > li > a:hover {
 .bg-primary-dark {
     background-color: rgb(23, 43, 77)
 }
+
+.bg-transluscent {
+    background-color: rgba(192, 192, 192, 0.15);
+}
+
+.border-rounded {
+    border-radius: 4px;
+}
