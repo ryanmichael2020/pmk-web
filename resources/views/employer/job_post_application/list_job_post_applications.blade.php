@@ -191,7 +191,7 @@
                         </form>
 
                         {{-- Modal for accepting applicant --}}
-                        <form method="post" action="/job_application/update">
+                        <form method="post" action="/job_offer/create">
                             {{ csrf_field() }}
 
                             <input type="hidden" name="job_post_application_id"
@@ -206,14 +206,14 @@
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h2 class="modal-title mb-0">Accept Job Application</h2>
+                                            <h2 class="modal-title mb-0">Hire Applicant</h2>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body py-0">
                                             <p class="mb-0">
-                                                Are you sure you want to hire this applicant?
+                                                Are you sure you want to send this applicant a job offer?
                                             </p>
                                         </div>
 
@@ -270,7 +270,7 @@
                     <div class="card my-2">
                         <div class="card-body">
                             <p class="mb-0">
-                                No recent applicants found
+                                No applicants found
                             </p>
                         </div>
                     </div>

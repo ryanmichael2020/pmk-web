@@ -3,8 +3,8 @@
 namespace App\Models\JobPost;
 
 use App\Models\Employee\Employee;
+use App\Models\JobOffer\JobOffer;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Log;
 
 class JobPostApplication extends Model
 {
@@ -50,7 +50,13 @@ class JobPostApplication extends Model
         return $this->belongsTo(Employee::class);
     }
 
-    public function isAccepted() {
+    public function jobOffers()
+    {
+        return $this->hasOne(JobOffer::class);
+    }
+
+    public function isAccepted()
+    {
         if ($this->job_post_application_status_id == JobPostApplicationStatus::$HIRE) {
             return true;
         }

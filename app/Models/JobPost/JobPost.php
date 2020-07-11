@@ -3,6 +3,7 @@
 namespace App\Models\JobPost;
 
 use App\Models\Employer\Employer;
+use App\Models\JobOffer\JobOffer;
 use Illuminate\Database\Eloquent\Model;
 
 class JobPost extends Model
@@ -47,6 +48,11 @@ class JobPost extends Model
     public function jobPostApplications()
     {
         return $this->hasMany(JobPostApplication::class);
+    }
+
+    public function jobOffers()
+    {
+        return $this->hasMany(JobOffer::class);
     }
 
     public function hasApplication($employee_id)

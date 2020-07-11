@@ -41,19 +41,22 @@
                     <div class="card-body">
                         @if(count($job_applications) > 0)
                             @foreach($job_applications as $index => $job_application)
-                                <a href="#">
-                                    <p class="mb-0">
-                                        {{ $job_application->jobPost->position }}
-                                    </p>
-                                </a>
-                                <span class="p mb-0" style="font-size: 12px;" data-toggle="tooltip"
-                                      data-placement="right"
-                                      title="{{ $job_application->jobPost->created_at }}">
-                                    Submitted
-                                    <span>
-                                        {{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $job_application->jobPost->created_at)->diffForHumans() }}
+                                <div class="border-rounded bg-transluscent p-4">
+                                    <a href="#">
+                                        <p class="mb-0">
+                                            {{ $job_application->jobPost->position }}
+                                        </p>
+                                    </a>
+
+                                    <span class="p mb-0" style="font-size: 12px;" data-toggle="tooltip"
+                                          data-placement="right"
+                                          title="{{ $job_application->jobPost->created_at }}">
+                                        Submitted
+                                        <span>
+                                            {{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $job_application->jobPost->created_at)->diffForHumans() }}
+                                        </span>
                                     </span>
-                                </span>
+                                </div>
 
                                 @if($index != (count($job_applications) - 1))
                                     <hr class="my-3">
@@ -184,19 +187,22 @@
 
                                 {{-- Only display up to 5 items for mobile only view --}}
                                 @if($index < 5)
-                                    <a href="#">
-                                        <p class="mb-0">
-                                            {{ $job_application->jobPost->position }}
-                                        </p>
-                                    </a>
-                                    <span class="p mb-0" style="font-size: 12px;" data-toggle="tooltip"
-                                          data-placement="right"
-                                          title="{{ $job_application->jobPost->created_at }}">
-                                        Submitted
-                                        <span class="mr-2">
-                                            {{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $job_application->jobPost->created_at)->diffForHumans() }}
+                                    <div class="border-rounded bg-transluscent p-4">
+                                        <a href="#">
+                                            <p class="mb-0">
+                                                {{ $job_application->jobPost->position }}
+                                            </p>
+                                        </a>
+
+                                        <span class="p mb-0" style="font-size: 12px;" data-toggle="tooltip"
+                                              data-placement="right"
+                                              title="{{ $job_application->jobPost->created_at }}">
+                                            Submitted
+                                            <span class="mr-2">
+                                                {{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $job_application->jobPost->created_at)->diffForHumans() }}
+                                            </span>
                                         </span>
-                                    </span>
+                                    </div>
                                 @endif
 
                                 @if($index != (count($job_applications) - 1))
