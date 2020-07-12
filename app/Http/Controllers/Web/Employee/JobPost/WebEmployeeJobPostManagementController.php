@@ -27,4 +27,12 @@ class WebEmployeeJobPostManagementController extends Controller
             ->with('job_posts', $job_posts)
             ->with('job_applications', $job_applications);
     }
+
+    public function displayJobPostPage($job_post_id)
+    {
+        $job_post = JobPost::where('id', $job_post_id)->first();
+
+        return view('employee.job_post.view_job_post')
+            ->with('job_post', $job_post);
+    }
 }

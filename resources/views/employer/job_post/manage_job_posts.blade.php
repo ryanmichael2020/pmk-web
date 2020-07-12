@@ -35,12 +35,14 @@
                         <div class="card my-2" style="border-radius: 0px">
                             <div class="card-header">
                                 <div class="d-flex">
-                                    <h2 class="mb-0 flex-grow-1">{{ $job_post->position }}</h2>
+                                    <a href="/employer/job_post/{{ $job_post->id }}" class="mb-0 flex-grow-1">
+                                        <h2 class="mb-0">{{ $job_post->position }}</h2>
+                                    </a>
 
                                     <span class="mb-0 my-auto mx-4 pr-2" data-toggle="tooltip" data-placement="right"
                                           title="{{ $job_post->created_at }}">
-                                    {{ \Carbon\Carbon::createFromTimeString($job_post->created_at)->diffForHumans() }}
-                                </span>
+                                        {{ \Carbon\Carbon::createFromTimeString($job_post->created_at)->diffForHumans() }}
+                                    </span>
 
                                     <a href="/employer/job_post/update/{{ $job_post->id }}" class="my-auto text-orange">
                                         <i class="fas fa-edit"></i>
@@ -92,7 +94,7 @@
                         @if(count($job_applications) > 0)
                             @foreach($job_applications as $index => $job_application)
                                 <div class="bg-transluscent border-rounded p-4">
-                                    <a href="#">
+                                    <a href="/employer/job_post/{{ $job_application->job_post_id }}">
                                         <p class="mb-0">
                                             {{ $job_application->jobPost->position }}
                                         </p>

@@ -79,10 +79,12 @@ Route::post('/profile/trainings/add', 'Web\Employee\WebEmployeeProfileManagement
 
 // Job Post Routes (Employee)
 Route::get('/job_posts', 'Web\Employee\JobPost\WebEmployeeJobPostManagementController@displayListPage');
+Route::get('/job_post/{job_post_id}', 'Web\Employee\JobPost\WebEmployeeJobPostManagementController@displayJobPostPage');
 Route::post('/job_posts/apply', 'Web\Employee\JobPost\WebEmployeeJobPostController@apply');
 
 // Job Application Routes (Employee)
 Route::get('/job_applications', 'Web\Employee\JobPostApplication\WebEmployeeJobPostApplicationManagementController@displayListPage');
+Route::get('/job_application/{job_application_id}', 'Web\Employee\JobPostApplication\WebEmployeeJobPostApplicationManagementController@displayJobPostApplicationPage');
 Route::post('/job_application/update', 'Web\Employee\JobPostApplication\WebEmployeeJobPostApplicationController@updateJobPostApplication');
 
 // Job Offer Routes (Employee)
@@ -94,9 +96,11 @@ Route::post('/job_offer/reject', 'Web\JobOffer\WebJobOfferController@rejectJobOf
 Route::get('/employer/dashboard', 'Web\Employer\WebEmployerDashboardPageController@displayDashboardPage');
 
 //Job Post Routes (Employer)
-Route::get('/employer/job_posts', 'Web\Employer\JobPost\WebEmployerJobPostManagementController@displayListPage');
 Route::get('/employer/job_post/create', 'Web\Employer\JobPost\WebEmployerJobPostManagementController@displayCreatePage');
 Route::get('/employer/job_post/update/{job_post_id}', 'Web\Employer\JobPost\WebEmployerJobPostManagementController@displayUpdatePage');
+Route::get('/employer/job_posts', 'Web\Employer\JobPost\WebEmployerJobPostManagementController@displayListPage');
+Route::get('/employer/job_post/{job_post_id}', 'Web\Employer\JobPost\WebEmployerJobPostManagementController@displayJobPostPage');
+
 
 Route::post('/job_posts/create', 'Web\JobPost\WebJobPostController@create');
 Route::post('/job_post/update', 'Web\JobPost\WebJobPostController@update');

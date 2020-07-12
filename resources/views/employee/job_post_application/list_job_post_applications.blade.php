@@ -7,8 +7,12 @@
     <div class="bg-primary-dark">
         <div class="container">
             <div class="row pt-3 pb-4 mb-0">
-                <div class="col-sm-12 px-0">
+                <div class="col-sm-12">
                     <h1 class="mb-0 text-white">Job Applications</h1>
+
+                    <ol class="breadcrumb breadcrumb-custom px-0">
+                        <li class="breadcrumb-item"><a href="#">Job Applications</a></li>
+                    </ol>
                 </div>
             </div>
         </div>
@@ -17,7 +21,7 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-sm-12 col-md-10 col-lg-8 mx-auto my-4">
+            <div class="col-sm-12 col-md-10 col-lg-8 my-4">
                 @include('response_notifiers.response_card')
 
                 @if(count($job_post_applications) > 0)
@@ -26,7 +30,9 @@
                             <div class="card-header">
                                 <div class="row">
                                     <div class="col">
-                                        <h2 class="mb-0">{{ $job_post_application->jobPost->position }}</h2>
+                                        <a href="/job_application/{{ $job_post_application->id }}">
+                                            <h2 class="mb-0">{{ $job_post_application->jobPost->position }}</h2>
+                                        </a>
                                     </div>
 
                                     <div class="col-auto my-auto">
@@ -40,7 +46,7 @@
 
                             <div class="card-body">
                                 <p class="mb-0">
-                                    {{ $job_post_application->jobPost->description }}
+                                    {{ substr($job_post_application->jobPost->description, 0, 125) . '...' }}
                                 </p>
                             </div>
 

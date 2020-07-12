@@ -7,8 +7,12 @@
     <div class="bg-primary-dark">
         <div class="container">
             <div class="row pt-3 pb-4 mb-0">
-                <div class="col-sm-12 px-0">
+                <div class="col-sm-12">
                     <h1 class="mb-0 text-white">Job Offers</h1>
+
+                    <ol class="breadcrumb breadcrumb-custom px-0">
+                        <li class="breadcrumb-item"><a href="#">Job Offers</a></li>
+                    </ol>
                 </div>
             </div>
         </div>
@@ -17,7 +21,7 @@
     <div class="container my-4">
         <div class="row">
 
-            <div class="col-sm-12 col-md-10 col-lg-8 mx-auto">
+            <div class="col-sm-12 col-md-10 col-lg-8">
                 @include('response_notifiers.response_card')
 
                 @if(count($job_offers) > 0)
@@ -27,9 +31,9 @@
                                 <div class="d-flex">
                                     <h2 class="mb-0 my-auto flex-grow-1">{{ $job_offer->jobPostApplication->jobPost->position }}</h2>
 
-                                    <span class="mb-0 pr-2 my-auto" style="font-size: 12px;" data-toggle="tooltip"
+                                    <span class="mb-0 pr-2 my-auto" data-toggle="tooltip"
                                           data-placement="right" title="{{ $job_offer->created_at }}">
-                                        Sent {{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $job_offer->created_at)->diffForHumans() }}
+                                        Received {{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $job_offer->created_at)->diffForHumans() }}
                                     </span>
                                 </div>
                             </div>

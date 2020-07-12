@@ -29,6 +29,15 @@
                     @foreach($job_offers as $job_offer)
                         <div class="card my-2">
                             <div class="card-header">
+                                <p class="mb-0 text-small">Position</p>
+                                <a href="/employer/job_post/{{ $job_offer->job_post_id }}">
+                                    <h2 class="mb-0">
+                                        {{ $job_offer->jobPost->position }}
+                                    </h2>
+                                </a>
+                            </div>
+
+                            <div class="card-header">
                                 <div class="d-flex">
                                     <img src="{{ asset($job_offer->employee->user->userDetail->image) }}"
                                          class="avatar rounded-circle mr-2">
@@ -36,31 +45,40 @@
                                         <p class="mb-0">
                                             {{ $job_offer->employee->user->userDetail->name() }}
                                         </p>
-                                        <p class="mb-0" style="font-size: 12px;">
+                                        <p class="mb-0 text-smaller">
                                             {{ $job_offer->employee->user->email }}
                                         </p>
                                     </div>
                                 </div>
 
-                                <a href="/employee/{{ $job_offer->employee_id }}/profile" class="d-block mt-2 mb-0"
-                                   style="font-size: 14px;">
+                                <a href="/employee/{{ $job_offer->employee_id }}/profile"
+                                   class="d-block mt-2 mb-0 text-small">
                                     View Profile
                                 </a>
 
-                                <span class="mb-0 pr-2" data-toggle="tooltip"
-                                      data-placement="right" title="{{ $job_offer->created_at }}" style="font-size: 12px;">
+                                <span class="mb-0 text-smaller pr-2" data-toggle="tooltip"
+                                      data-placement="right" title="{{ $job_offer->created_at }}">
                                     Submitted
-                                    <span>
-                                        {{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $job_offer->created_at)->diffForHumans() }}
-                                    </span>
+                                    {{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $job_offer->created_at)->diffForHumans() }}
                                 </span>
                             </div>
 
                             <div class="card-body">
                                 <p class="mb-0">Job Offer Description</p>
-                                <p class="mb-0" style="font-size: 14px;">
+                                <p class="mb-0 text-small">
                                     {{ $job_offer->description }}
                                 </p>
+
+
+                                <p class="mt-4 mb-0 text-small">
+                                    Status: {{ $job_offer->jobOfferStatus->status }}
+                                </p>
+                                @if(\Carbon\Carbon::now() < $job_offer->date_due)
+                                    <span class="mb-0 text-smaller pr-2" data-toggle="tooltip"
+                                          data-placement="right" title="{{ $job_offer->date_due }}">
+                                        Expires {{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $job_offer->date_due)->diffForHumans() }}
+                                    </span>
+                                @endif
                             </div>
                         </div>
                     @endforeach

@@ -3,6 +3,21 @@
 @section('body')
     @include('nav.employee.nav')
 
+    <hr class="my-0 bg-default">
+    <div class="bg-primary-dark">
+        <div class="container">
+            <div class="row pt-3 pb-4 mb-0">
+                <div class="col-sm-12">
+                    <h1 class="mb-0 text-white">Job Posts</h1>
+
+                    <ol class="breadcrumb breadcrumb-custom px-0">
+                        <li class="breadcrumb-item"><a href="#">Job Posts</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container my-4">
         <div class="row">
 
@@ -42,7 +57,7 @@
                         @if(count($job_applications) > 0)
                             @foreach($job_applications as $index => $job_application)
                                 <div class="border-rounded bg-transluscent p-4">
-                                    <a href="#">
+                                    <a href="/job_post/{{ $job_application->job_post_id }}">
                                         <p class="mb-0">
                                             {{ $job_application->jobPost->position }}
                                         </p>
@@ -77,7 +92,9 @@
                             <div class="card-header">
                                 <div class="row">
                                     <div class="col">
-                                        <h2 class="mb-0">{{ $job_post->position }}</h2>
+                                        <a href="/job_post/{{ $job_post->id }}" class="mb-0">
+                                            <h2 class="mb-0">{{ $job_post->position }}</h2>
+                                        </a>
                                     </div>
 
                                     <div class="col-auto my-auto">
@@ -94,7 +111,7 @@
 
                             <div class="card-body">
                                 <p class="mb-0">
-                                    {{ $job_post->description }}
+                                    {{ substr($job_post->description, 0, 125) . '...' }}
                                 </p>
                             </div>
 
@@ -188,7 +205,7 @@
                                 {{-- Only display up to 5 items for mobile only view --}}
                                 @if($index < 5)
                                     <div class="border-rounded bg-transluscent p-4">
-                                        <a href="#">
+                                        <a href="/job_post/{{ $job_application->job_post_id }}">
                                             <p class="mb-0">
                                                 {{ $job_application->jobPost->position }}
                                             </p>
