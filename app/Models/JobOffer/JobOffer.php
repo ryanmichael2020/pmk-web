@@ -41,7 +41,13 @@ class JobOffer extends Model
         return $this->belongsTo(JobOfferStatus::class);
     }
 
-    public function jobPost() {
+    public function jobOfferUpdates()
+    {
+        return $this->hasMany(JobOfferUpdate::class);
+    }
+
+    public function jobPost()
+    {
         return $this->belongsTo(JobPost::class);
     }
 

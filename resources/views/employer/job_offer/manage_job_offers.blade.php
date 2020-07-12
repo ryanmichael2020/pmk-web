@@ -22,7 +22,7 @@
     <div class="container-fluid">
         <div class="row py-4">
 
-            <div class="col-sm-12 col-md-10 order-md-2 order-lg-1 col-lg-8 my-2 mx-auto">
+            <div class="order-2 order-lg-1 col-sm-12 col-md-10 order-md-2 order-lg-1 col-lg-8 my-2 mx-auto">
                 @include('response_notifiers.response_card')
 
                 @if(count($job_offers) > 0)
@@ -85,16 +85,52 @@
                 @endif
             </div>
 
-            <div class="col-sm-12 col-md-10 order-md-1 order-lg-2 col-lg-4 my-2 mx-auto">
+            <div class="order-1 order-lg-2 col-sm-12 col-md-10 order-md-1 order-lg-2 col-lg-4 my-2 mx-auto">
                 <div class="card my-2">
                     <div class="card-header">
                         <h2 class="mb-0">Job Offer Updates</h2>
                     </div>
 
                     <div class="card-body">
-                        <p class="mb-0">
-                            No recent job offer updates
-                        </p>
+                        @if(count($job_offer_updates) > 0)
+                            @foreach($job_offer_updates as $job_offer_update)
+                                <div class="bg-transluscent my-2 p-4">
+                                    <div class="d-flex">
+                                        <div class="flex-grow-1 d-flex">
+                                            <img class="avatar rounded-circle mr-2"
+                                                 src="{{ asset($job_offer_update->jobOffer->employee->user->userDetail->image) }}">
+
+                                            <div class="mb-2">
+                                                <p class="mb-0">
+                                                    {{ $job_offer_update->jobOffer->employee->user->userDetail->name() }}
+                                                </p>
+                                                <p class="mb-0 text-smaller">
+                                                    {{ $job_offer_update->jobOffer->employee->user->email }}
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <span class="flex-shrink-0 mb-0 text-smaller pr-2" data-toggle="tooltip"
+                                              data-placement="right" title="{{ $job_offer_update->created_at }}">
+                                            {{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $job_offer_update->created_at)->diffForHumans() }}
+                                        </span>
+                                    </div>
+
+                                    <a href="/employee/{{ $job_offer_update->jobOffer->employee->id }}/profile"
+                                       class="text-small">
+                                        View Profile
+                                    </a>
+
+                                    <p class="mb-0">
+                                        {{ $job_offer_update->description }}
+                                    </p>
+                                </div>
+                            @endforeach
+                        @else
+                            <p class="mb-0">
+                                No recent job offer updates
+                            </p>
+                        @endif
                     </div>
                 </div>
             </div>

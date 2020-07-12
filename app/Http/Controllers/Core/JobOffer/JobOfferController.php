@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Employee\EmployeeCompanyHistory;
 use App\Models\JobOffer\JobOffer;
 use App\Models\JobOffer\JobOfferStatus;
+use App\Models\JobOffer\JobOfferUpdate;
 use App\Models\JobPost\JobPostApplication;
 use App\Models\JobPost\JobPostApplicationStatus;
 use Illuminate\Database\QueryException;
@@ -37,6 +38,11 @@ class JobOfferController extends Controller
                 $job_offer->description = $description;
                 $job_offer->date_due = $date_due;
                 $job_offer->save();
+
+                $job_offer_update = new JobOfferUpdate();
+                $job_offer_update->job_offer_id = $job_offer->id;
+                $job_offer_update->description = 'Job offer sent.';
+                $job_offer_update->save();
 
                 $job_post_application->job_post_application_status_id = JobPostApplicationStatus::$SENT_JOB_OFFER;
                 $job_post_application->save();
@@ -116,6 +122,11 @@ class JobOfferController extends Controller
                 $job_post_application->job_post_application_status_id = JobPostApplicationStatus::$HIRED;
                 $job_post_application->save();
 
+                $job_offer_update = new JobOfferUpdate();
+                $job_offer_update->job_offer_id = $job_offer_id;
+                $job_offer_update->description = 'Job offer accepted.';
+                $job_offer_update->save();
+
                 $employee_company_history = new EmployeeCompanyHistory();
                 $employee_company_history->employee_id = $job_offer->employee_id;
                 $employee_company_history->company_id = $job_offer->company_id;
@@ -187,6 +198,11 @@ class JobOfferController extends Controller
                 $job_post_application = JobPostApplication::where('id', $job_offer->job_post_application_id)->first();
                 $job_post_application->job_post_application_status_id = JobPostApplicationStatus::$REJECTED;
                 $job_post_application->save();
+
+                $job_offer_update = new JobOfferUpdate();
+                $job_offer_update->job_offer_id = $job_offer_id;
+                $job_offer_update->description = 'Job offer rejected.';
+                $job_offer_update->save();
 
                 DB::commit();
 

@@ -43,8 +43,6 @@
                                     Job Offer Details
                                 </p>
 
-                                <hr class="my-2">
-
                                 <p class="mb-0" style="font-size: 14px;">
                                     {{ $job_offer->description }}
                                 </p>
@@ -52,7 +50,7 @@
                                 <p class="mt-4 mb-0">
                                     Job offer expires on
                                 </p>
-                                <span class="mb-0 text-orange pr-2" data-toggle="tooltip"
+                                <span class="mb-0 text-orange text-small pr-2" data-toggle="tooltip"
                                       data-placement="right" title="{{ $job_offer->date_due }}">
                                     {{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $job_offer->date_due)->format('F d, Y h:i A') }}
                                 </span>
