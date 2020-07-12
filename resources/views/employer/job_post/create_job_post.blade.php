@@ -11,7 +11,7 @@
                         <h1 class="mb-0 text-white mr-2">Create Job Post</h1>
 
                         <ol class="breadcrumb breadcrumb-custom px-0">
-                            <li class="breadcrumb-item"><a href="/employer/job_posts">Job Post</a></li>
+                            <li class="breadcrumb-item"><a href="/employer/job_posts">Job Posts</a></li>
                             <li class="breadcrumb-item"><a href="#">Create Job Post</a></li>
                         </ol>
 
