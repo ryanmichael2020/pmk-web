@@ -19,7 +19,10 @@ class JobPostApplicationStatusSeeder extends Seeder
                 'status' => 'Under Review',
             ],
             [
-                'status' => 'Accepted',
+                'status' => 'Sent Job Offer',
+            ],
+            [
+                'status' => 'Hired',
             ],
             [
                 'status' => 'Rejected',

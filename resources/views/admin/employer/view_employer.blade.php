@@ -1,7 +1,22 @@
 @extends('layouts.master')
 
 @section('body')
-    @include('nav.nav')
+    <div class="p-4 bg-primary-dark">
+        <div class="d-flex">
+            <h1 class="text-white my-auto">View Employer</h1>
+        </div>
+
+        <ol class="breadcrumb breadcrumb-custom px-0">
+            <li class="breadcrumb-item"><a href="/admin/management/employers">Employer</a></li>
+            <li class="breadcrumb-item"><a href="#">View Employer</a></li>
+        </ol>
+
+        <div class="mt-4">
+            <a href="/admin/management/employers" class="btn btn-primary">
+                Go Back
+            </a>
+        </div>
+    </div>
 
     <div class="container">
         <form method="post" action="/employer/update" enctype="multipart/form-data">
@@ -9,31 +24,20 @@
 
             <input id="employer_id" name="employer_id" type="hidden" value="{{ $employer->id }}">
 
-            <div class="col-sm-12 col-md-8 col-lg-6 mx-auto my-6">
+            <div class="col-sm-12 col-lg-10 mx-auto my-6">
 
                 @include('response_notifiers.response_card')
 
                 <div class="card">
                     <div class="card-header">
-                        <div class="row">
-                            <div class="col-auto">
-                                <a href="/admin/management/employers"
-                                   class="btn btn-secondary icon icon-shape rounded-circle">
-                                    <i class="fas fa-arrow-left"></i>
-                                </a>
-                            </div>
-
-                            <div class="col-auto my-auto">
-                                <h1 class="mb-auto">
-                                    <i class="fas fa-user-tie" style="margin-right: 8px;"></i>
-                                    Employer Details
-                                </h1>
-                            </div>
-                        </div>
+                        <h1 class="mb-auto">
+                            Employer Details
+                        </h1>
                     </div>
 
                     <div class="card-body">
                         <h3>User Credentials</h3>
+
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input id="email" name="email" type="text" class="form-control" maxlength="255"
@@ -70,7 +74,7 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group mb-0">
                             <label for="company_id">Company</label>
                             <select id="company_id" name="company_id" class="form-control" disabled>
                                 <option
@@ -82,7 +86,7 @@
                     <div class="card-footer">
                         <a href="/admin/management/employer/{{ $employer->id }}/update"
                            class="btn bg-orange text-white">
-                            Update Employer
+                            Edit Employer
                         </a>
                     </div>
                 </div>

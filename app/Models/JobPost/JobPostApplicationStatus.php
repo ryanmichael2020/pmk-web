@@ -8,9 +8,10 @@ class JobPostApplicationStatus extends Model
 {
     public static $PENDING = 1;
     public static $UNDER_REVIEW = 2;
-    public static $ACCEPTED = 3;
-    public static $REJECTED = 4;
-    public static $CANCELLED = 5;
+    public static $SENT_JOB_OFFER = 3;
+    public static $HIRED = 4;
+    public static $REJECTED = 5;
+    public static $CANCELLED = 6;
 
     /**
      * The attributes that are mass assignable.

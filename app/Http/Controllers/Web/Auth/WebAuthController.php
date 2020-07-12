@@ -43,12 +43,12 @@ class WebAuthController extends Controller
         $email = $request->email;
         $password = $request->password;
         $verify_password = $request->verify_password;
-        $image = $request->image;
         $first_name = $request->first_name;
         $last_name = $request->last_name;
         $sex = $request->sex;
+        $image = $request->image;
 
-        $response = AuthController::signup($email, $password, $verify_password, $image, $first_name, $last_name, $sex);
+        $response = AuthController::signup($email, $password, $verify_password, $first_name, $last_name, $sex, $image);
 
         if ($response['status_code'] == Response::HTTP_OK) {
             session()->flash('response_type', 'success');

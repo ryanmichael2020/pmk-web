@@ -3,8 +3,8 @@
 namespace App\Models\JobPost;
 
 use App\Models\Employee\Employee;
+use App\Models\JobOffer\JobOffer;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Log;
 
 class JobPostApplication extends Model
 {
@@ -50,17 +50,26 @@ class JobPostApplication extends Model
         return $this->belongsTo(Employee::class);
     }
 
-    public function isAccepted() {
-        if ($this->job_post_application_status_id == JobPostApplicationStatus::$ACCEPTED) {
+    public function jobOffers()
+    {
+        return $this->hasOne(JobOffer::class);
+    }
+
+    public function isAccepted()
+    {
+        if ($this->job_post_application_status_id == JobPostApplicationStatus::$SENT_JOB_OFFER) {
             return true;
         }
 
         return false;
     }
 
-    public function acceptable()
+    public function hireable()
     {
-        if ($this->job_post_application_status_id == JobPostApplicationStatus::$UNDER_REVIEW) {
+        $job_offer = JobOffer::where('job_post_application_id', $this->id)->first();
+        $has_sent_offer = ($job_offer == null) ? false : true;
+
+        if ($this->job_post_application_status_id == JobPostApplicationStatus::$UNDER_REVIEW && !$has_sent_offer) {
             return true;
         }
 
@@ -78,18 +87,16 @@ class JobPostApplication extends Model
 
     public function rejectable()
     {
-        if ($this->job_post_application_status_id == JobPostApplicationStatus::$CANCELLED) {
-            return false;
-        } else if ($this->job_post_application_status_id == JobPostApplicationStatus::$REJECTED) {
-            return false;
+        if ($this->job_post_application_status_id == JobPostApplicationStatus::$PENDING) {
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     public function revokable()
     {
-        if ($this->job_post_application_status_id == JobPostApplicationStatus::$ACCEPTED) {
+        if ($this->job_post_application_status_id == JobPostApplicationStatus::$SENT_JOB_OFFER) {
             return true;
         }
 
@@ -100,7 +107,7 @@ class JobPostApplication extends Model
     {
         if ($this->job_post_application_status_id == JobPostApplicationStatus::$CANCELLED) {
             return false;
-        } else if ($this->job_post_application_status_id == JobPostApplicationStatus::$ACCEPTED) {
+        } else if ($this->job_post_application_status_id == JobPostApplicationStatus::$SENT_JOB_OFFER) {
             return false;
         }
 

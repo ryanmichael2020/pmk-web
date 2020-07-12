@@ -2,8 +2,10 @@
 
 namespace App\Models\Company;
 
+use App\Models\Employee\EmployeeCompanyHistory;
 use App\Models\Employee\EmployeeReview;
 use App\Models\Employer\Employer;
+use App\Models\JobOffer\JobOffer;
 use Illuminate\Database\Eloquent\Model;
 
 class Company extends Model
@@ -14,7 +16,7 @@ class Company extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'contact',
+        'name', 'contact', 'image',
     ];
 
     /**
@@ -40,7 +42,18 @@ class Company extends Model
         return $this->hasMany(Employer::class);
     }
 
-    public function employeeReviews() {
+    public function employeeReviews()
+    {
         return $this->hasMany(EmployeeReview::class);
+    }
+
+    public function employeeCompanyHistory()
+    {
+        return $this->hasMany(EmployeeCompanyHistory::class);
+    }
+
+    public function jobOffers()
+    {
+        return $this->hasMany(JobOffer::class);
     }
 }

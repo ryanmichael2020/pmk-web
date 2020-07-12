@@ -1,7 +1,22 @@
 @extends('layouts.master')
 
 @section('body')
-    @include('nav.nav')
+    <div class="p-4 bg-primary-dark">
+        <div class="d-flex">
+            <h1 class="text-white my-auto">Create Employer</h1>
+        </div>
+
+        <ol class="breadcrumb breadcrumb-custom px-0">
+            <li class="breadcrumb-item"><a href="#">Employer</a></li>
+            <li class="breadcrumb-item"><a href="/admin/management/employers/create">Create Employer</a></li>
+        </ol>
+
+        <div class="mt-4">
+            <a href="/admin/management/employers" class="btn btn-primary">
+                Go Back
+            </a>
+        </div>
+    </div>
 
     <div class="container">
         <form method="post" action="/employers/create" enctype="multipart/form-data">
@@ -13,21 +28,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <div class="row">
-                            <div class="col-auto">
-                                <a href="/admin/management/employers"
-                                   class="btn btn-secondary icon icon-shape rounded-circle">
-                                    <i class="fas fa-arrow-left"></i>
-                                </a>
-                            </div>
-
-                            <div class="col-auto my-auto">
-                                <h1 class="mb-0">
-                                    <i class="fas fa-user-tie" style="margin-right: 8px;"></i>
-                                    Create Employer
-                                </h1>
-                            </div>
-                        </div>
+                        <h1 class="mb-0">Create Employer</h1>
                     </div>
 
                     <div class="card-body">
@@ -47,7 +48,7 @@
                                            placeholder="Enter password" required>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group mb-0">
                                     <label for="verify_password">Verify Password</label>
                                     <input id="verify_password" name="verify_password" type="password"
                                            class="form-control"
@@ -85,10 +86,10 @@
 
                                 <div class="form-group">
                                     <label for="image">Image</label>
-                                    <input type="file" name="image" id="image" class="form-control" required>
+                                    <input type="file" name="image" id="image" class="form-control">
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group mb-0">
                                     <label for="company_id">Company</label>
                                     <select id="company_id" name="company_id" class="form-control"
                                             @if(count($companies) < 1) disabled @endif>
@@ -117,7 +118,7 @@
                     </div>
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary form-control"
+                        <button type="submit" class="btn btn-primary"
                                 @if(count($companies) < 1) disabled @endif>
                             Create Employer
                         </button>

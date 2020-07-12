@@ -11,12 +11,12 @@ class WebEmployeeController extends Controller
 {
     private function detailedViewRoute($id)
     {
-        return "/admin/management/employee/$id";
+        return "/admin/management/employee/$id/profile";
     }
 
     private function editRoute($id)
     {
-        return "/admin/management/employee/$id/update";
+        return "/admin/management/employee/$id/profile/update";
     }
 
     public function getDataTable()
@@ -27,8 +27,8 @@ class WebEmployeeController extends Controller
 
         $data = DataTables::of($employees)
             ->addColumn('action', function ($data) {
-                $button = '<a href="' . $this->editRoute($data->id) . '" class="mx-1" title="Edit"><i class="fas fa-edit fa-lg"></i></a>';
-                $button .= '<a href="' . $this->detailedViewRoute($data->id) . '" class="mx-1" title="View"><i class="fas fa-eye fa-lg"></i></a>';
+                // $button = '<a href="' . $this->editRoute($data->id) . '" class="mx-1" title="Edit"><i class="fas fa-edit fa-lg"></i></a>';
+                $button = '<a href="' . $this->detailedViewRoute($data->id) . '" class="mx-1" title="View"><i class="fas fa-eye fa-lg"></i></a>';
                 return $button;
             })
             ->rawColumns(['action'])

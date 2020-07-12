@@ -17,4 +17,12 @@ class WebEmployeeJobPostApplicationManagementController extends Controller
         return view('employee.job_post_application.list_job_post_applications')
             ->with('job_post_applications', $job_post_applications);
     }
+
+    public function displayJobPostApplicationPage($job_post_application_id)
+    {
+        $job_post_application = JobPostApplication::where('id', $job_post_application_id)->first();
+
+        return view('employee.job_post_application.view_job_post_application')
+            ->with('job_post_application', $job_post_application);
+    }
 }

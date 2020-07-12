@@ -46,10 +46,17 @@
                     </div>
                 </li>
 
+                <li class="nav-item text-white my-auto">
+                    <a href="/employer/job_offers" class="nav-link nav-link-icon">
+                        Job Offers
+                    </a>
+                </li>
+
                 <li class="nav-item dropdown text-white">
                     <a class="nav-link nav-link-icon py-0" href="#" id="navbar-user-icon-dropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="avatar rounded-circle py-0" src="{{ auth()->user()->userDetail->image }}" style="height: 48px; width: 48px;">
+                        <img class="avatar rounded-circle py-0" src="{{ asset(auth()->user()->userDetail->image) }}"
+                             style="height: 48px; width: 48px;">
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-user-icon-dropdown">
@@ -58,7 +65,12 @@
                             <strong>
                                 {{ strtoupper(auth()->user()->userDetail->name()) }}
                             </strong>
+
+                            <p class="mb-0" style="font-size: 12px;">
+                                {{ strtolower(auth()->user()->email) }}
+                            </p>
                         </a>
+
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item" data-toggle="modal" data-target="#modal_logout">
                             <i class="fas fa-sign-out-alt"></i>

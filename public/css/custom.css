@@ -1,3 +1,58 @@
+@font-face {
+    font-family: 'montserrat-regular';
+    src: url("../fonts/montserrat/Montserrat-Regular.ttf");
+}
+
+@font-face {
+    font-family: 'montserrat-medium';
+    src: url("../fonts/montserrat/Montserrat-Medium.ttf");
+}
+
+.primary-font {
+    font-family: montserrat-regular, sans-serif;
+}
+
+* {
+    font-family: montserrat-regular, sans-serif;
+}
+
+b, h1, h2, h3, h4 {
+    font-family: montserrat-medium, sans-serif !important;
+}
+
+.text-small {
+    font-size: 14px;
+}
+
+.text-smaller {
+    font-size: 12px;
+}
+
+.text-smallest {
+    font-size: 10px;
+}
+
+.breadcrumb-custom {
+    background-color: rgba(0, 0, 0, 0) !important;
+    margin-bottom: 0 !important;
+}
+
+ol.breadcrumb-custom > li > a {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+ol.breadcrumb-custom > li > a:hover {
+    color: white !important;
+}
+
 .bg-primary-dark {
     background-color: rgb(23, 43, 77)
+}
+
+.bg-transluscent {
+    background-color: rgba(192, 192, 192, 0.15);
+}
+
+.border-rounded {
+    border-radius: 4px;
 }

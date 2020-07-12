@@ -5,7 +5,22 @@
 @endsection
 
 @section('body')
-    @include('nav.nav')
+    <div class="p-4 bg-primary-dark">
+        <div class="d-flex">
+            <h1 class="text-white my-auto">Employers</h1>
+        </div>
+
+        <ol class="breadcrumb breadcrumb-custom px-0">
+            <li class="breadcrumb-item"><a href="#">Employer</a></li>
+            <li class="breadcrumb-item"><a href="/admin/management/employers">Management</a></li>
+        </ol>
+
+        <div class="mt-4">
+            <a href="/admin/management/employers/create" class="btn btn-success">
+                Create
+            </a>
+        </div>
+    </div>
 
     <div class="container-fluid">
         <div class="my-4">
@@ -18,19 +33,21 @@
                 </div>
 
                 <div class="card-body px-0">
-                    <table id="tbl_employers" class="table table-flush table-hover" style="width: 100%">
-                        <thead class="thead-light">
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Contact</th>
-                            <th>Created</th>
-                            <th>Updated</th>
-                            <th>Actions</th>
-                        </tr>
-                        </thead>
-                    </table>
+                    <div class="table-responsive">
+                        <table id="tbl_employers" class="table table-flush table-hover" style="width: 100%">
+                            <thead class="thead-light">
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Contact</th>
+                                <th>Created</th>
+                                <th>Updated</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
