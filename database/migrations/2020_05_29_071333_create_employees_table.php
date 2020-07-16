@@ -16,9 +16,12 @@ class CreateEmployeesTable extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('company_id')->nullable();
             $table->string('age', 2)->nullable();
             $table->string('address', 512)->nullable();
             $table->string('mobile', 16)->nullable();
+
+            $table->foreign('company_id')->references('id')->on('companies');
             $table->timestamps();
         });
     }
