@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Web\Company;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Core\Company\CompanyController;
+use App\Http\Controllers\Core\Company\CompanyReviewController;
 use App\Http\Requests\Company\CreateCompanyRequest;
+use App\Http\Requests\Company\CreateCompanyReviewRequest;
 use App\Http\Requests\Company\UpdateCompanyRequest;
 use App\Models\Company\Company;
 use Illuminate\Http\Response;
@@ -40,6 +42,26 @@ class WebCompanyController extends Controller
 
             return redirect()->back();
         }
+    }
+
+    public function createReview(CreateCompanyReviewRequest $request)
+    {
+        $employee_id = $request->employee_id;
+        $company_id = $request->company_id;
+        $score = $request->score;
+        $comment = $request->comment;
+
+        $response = CompanyReviewController::createReview($employee_id, $company_id, $score, $comment);
+
+        if ($response['status_code'] == Response::HTTP_OK) {
+            session()->flash('response_type', 'success');
+            session()->flash('message', $response['message']);
+        } else {
+            session()->flash('response_type', 'error');
+            session()->flash('message', $response['message'] . ' ' . $response['error']['message']);
+        }
+
+        return redirect()->back();
     }
 
     public function update(UpdateCompanyRequest $request)

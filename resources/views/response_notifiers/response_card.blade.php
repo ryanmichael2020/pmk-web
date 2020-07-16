@@ -3,10 +3,13 @@
     $error_type = session()->get('response_type')
     ?>
 
-    <div class="card">
+    <div
+        class="card @if($error_type == 'error'){{ 'bg-red' }} @elseif($error_type == 'warning'){{ 'bg-orange' }} @elseif($error_type == 'success'){{ 'bg-green' }} @endif my-2">
         <div
-            class="text-white card-body @if($error_type == 'error'){{ 'bg-red' }} @elseif($error_type == 'warning'){{ 'bg-orange' }} @elseif($error_type == 'success'){{ 'bg-green' }} @endif">
-            {{ session()->get('message') }}
+            class="card-body text-white">
+            <p class="mb-0">
+                {{ session()->get('message') }}
+            </p>
         </div>
     </div>
 @endif

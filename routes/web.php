@@ -101,7 +101,6 @@ Route::get('/employer/job_post/update/{job_post_id}', 'Web\Employer\JobPost\WebE
 Route::get('/employer/job_posts', 'Web\Employer\JobPost\WebEmployerJobPostManagementController@displayListPage');
 Route::get('/employer/job_post/{job_post_id}', 'Web\Employer\JobPost\WebEmployerJobPostManagementController@displayJobPostPage');
 
-
 Route::post('/job_posts/create', 'Web\JobPost\WebJobPostController@create');
 Route::post('/job_post/update', 'Web\JobPost\WebJobPostController@update');
 
@@ -113,6 +112,12 @@ Route::post('/job_offer/create', 'Web\JobOffer\WebJobOfferController@hireApplica
 
 // Job Offer Routes (Employer)
 Route::get('/employer/job_offers', 'Web\Employer\JobOffer\WebEmployerJobOfferManagementController@displayJobOffers');
+
+// Company Routes
+Route::get('/company/{company_id}', 'Web\Company\WebCompanyDetailController@displayDetailPage');
+
+// Company Review Routes
+Route::Post('/company/review', 'Web\company\WebCompanyController@createReview');
 
 // TODO :: Add update and delete routes and functions
 

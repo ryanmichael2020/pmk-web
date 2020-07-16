@@ -63,11 +63,23 @@
                             </p>
                         </a>
 
+                        @if(auth()->user()->employee->company_id != null)
                         <div class="dropdown-divider"></div>
+
+                        <a href="/company/{{ auth()->user()->employee->company_id }}" class="dropdown-item">
+                            <img src="{{ asset(auth()->user()->employee->company->image) }}"
+                                 style="height: 32px; width: 32px;">
+                            {{ auth()->user()->employee->company->name }}
+                        </a>
+                        @endif
+
+                        <div class="dropdown-divider"></div>
+
                         <a class="dropdown-item" href="/profile">
                             <i class="fas fa-user"></i>
                             Profile
                         </a>
+
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item" data-toggle="modal" data-target="#modal_logout">
                             <i class="fas fa-sign-out-alt"></i>
