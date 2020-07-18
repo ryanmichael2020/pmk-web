@@ -93,13 +93,6 @@
                                 </div>
                             </div>
 
-                            {{--                        <div class="card-body">--}}
-                            {{--                            --}}{{-- TODO :: Replace with employee profile --}}
-                            {{--                            <p class="mb-0">--}}
-
-                            {{--                            </p>--}}
-                            {{--                        </div>--}}
-
                             <div class="card-footer">
                                 <p class="mb-0" style="width: auto; flex: fit-content; font-size: 14px;">
                                     Date applied:
@@ -113,6 +106,7 @@
                                 </p>
                             </div>
 
+                            @if(!$job_post_application->jobOfferSent())
                             <div class="card-footer">
                                 @if($job_post_application->job_post_application_status_id == \App\Models\JobPost\JobPostApplicationStatus::$HIRED)
                                     <span class="mb-0 d-inline-flex align-middle mr-2 text-green">
@@ -153,6 +147,7 @@
                                     </p>
                                 @endif
                             </div>
+                            @endif
                         </div>
 
                         {{-- Modal for placing applicant under review --}}
