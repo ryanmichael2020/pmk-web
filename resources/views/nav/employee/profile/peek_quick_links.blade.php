@@ -4,6 +4,10 @@
             Quick Links
         </div>
 
+        <a href="/employee/{{ $employee->id }}/reviews" class="list-group-item">
+            Employee Reviews
+        </a>
+
         <a href="#employee" class="list-group-item">
             Employee
         </a>

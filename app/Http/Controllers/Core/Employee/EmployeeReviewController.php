@@ -21,7 +21,7 @@ class EmployeeReviewController extends Controller
             $employee_review = EmployeeReview::where('company_id', $company_id)
                 ->where('employee_id', $employee_id)->first();
 
-            if ($employee_review != null) {
+            if ($employee_review == null) {
                 DB::beginTransaction();
 
                 // no employee review exists
@@ -30,6 +30,7 @@ class EmployeeReviewController extends Controller
                 $employee_review->score = $score_average;
                 $employee_review->company_id = $company_id;
                 $employee_review->employee_id = $employee_id;
+                $employee_review->save();
 
                 $emp_punc_score = new EmployeeReviewScore();
                 $emp_punc_score->employee_review_id = $employee_review->id;

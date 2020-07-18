@@ -77,6 +77,10 @@ Route::post('/profile/education/add', 'Web\Employee\WebEmployeeProfileManagement
 Route::post('/profile/skills/update', 'Web\Employee\WebEmployeeProfileManagementController@updateSkills');
 Route::post('/profile/trainings/add', 'Web\Employee\WebEmployeeProfileManagementController@addTraining');
 
+// Employee Review Routes
+Route::get('/employee/{employee_id}/reviews', 'Web\Employee\WebEmployeeProfileManagementPageController@displayProfileReviewPage');
+Route::post('/employee/review/create', 'Web\Employee\WebEmployeeProfileManagementController@addRating');
+
 // Job Post Routes (Employee)
 Route::get('/job_posts', 'Web\Employee\JobPost\WebEmployeeJobPostManagementController@displayListPage');
 Route::get('/job_post/{job_post_id}', 'Web\Employee\JobPost\WebEmployeeJobPostManagementController@displayJobPostPage');

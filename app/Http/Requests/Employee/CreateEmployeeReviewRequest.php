@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Employee;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Log;
 
 class CreateEmployeeReviewRequest extends FormRequest
 {
@@ -30,5 +32,11 @@ class CreateEmployeeReviewRequest extends FormRequest
             'performance_score' => 'required|integer',
             'personality_score' => 'required|integer',
         ];
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        Log::error($validator->getMessageBag());
+        parent::failedValidation($validator);
     }
 }
