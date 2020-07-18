@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\History;
+namespace App\Models\Login;
 
 use App\Models\User\User;
 use Illuminate\Database\Eloquent\Model;
 
-class LoginHistory extends Model
+class DailyLoginHistory extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -13,7 +13,7 @@ class LoginHistory extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id',
+        'user_id', 'user_type_id',
     ];
 
     /**
@@ -22,6 +22,15 @@ class LoginHistory extends Model
      * @var array
      */
     protected $hidden = [
+
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
 
     ];
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Core\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Core\Login\DailyLoginHistoryController;
 use App\Models\Employee\Employee;
 use App\Models\User\User;
 use App\Models\User\UserDetail;
@@ -25,6 +26,7 @@ class AuthController extends Controller
             if ($user != null) { // if user is found
                 if (Hash::check($password, $user->password)) { // if password matches
                     auth()->login($user);
+                    DailyLoginHistoryController::createDailyLoginHistory($user->id, $user->user_type_id);
 
                     $data = array();
                     $data['user'] = $user;
