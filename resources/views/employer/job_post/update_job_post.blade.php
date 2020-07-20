@@ -30,7 +30,7 @@
 
             {{ csrf_field() }}
 
-            <div class="col-sm-12 col-lg-6 mx-auto my-4">
+            <div class="col-sm-12 col-lg-6 px-2 my-4">
                 @include('response_notifiers.response_card')
 
                 <div class="card">

@@ -39,11 +39,11 @@
 
                     <div class="mt-4">
                         @if(auth()->user()->user_type_id == \App\Models\User\UserType::$EMPLOYEE)
-                            <a href="/profile" class="btn btn-success">
+                            <a href="/profile" class="btn btn-primary">
                                 Go Back
                             </a>
                         @else
-                            <a href="/employee/1/profile" class="btn btn-success">
+                            <a href="/employee/1/profile" class="btn btn-primary">
                                 Go Back
                             </a>
                         @endif
@@ -56,7 +56,7 @@
     <div class="container my-4">
         <div class="row">
 
-            <div class="col-sm-12 col-md-8 col-lg-6 mx-auto">
+            <div class="col-sm-12 col-md-8 px-0">
 
                 @include('response_notifiers.response_card')
 
@@ -72,15 +72,15 @@
                                     <img src="{{ asset($employee_review->company->image) }}"
                                          class="avatar rounded-circle my-auto" style="height: 48px; width: 48px;">
 
-                                    <div class="ml-2 my-auto">
+                                    <div class="ml-3 my-auto">
                                         <h2 class="mb-0">
                                             {{ $employee_review->company->name }}
                                         </h2>
 
                                         <span class="mb-0 pr-2 text-small" data-toggle="tooltip" data-placement="right"
                                               title="{{ $employee_review->created_at }}">
-                                        {{ \Carbon\Carbon::createFromTimeString($employee_review->created_at)->diffForHumans() }}
-                                    </span>
+                                            {{ \Carbon\Carbon::createFromTimeString($employee_review->created_at)->diffForHumans() }}
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -88,7 +88,8 @@
                             <div class="card-body">
                                 @foreach($employee_review->employeeReviewScores as $employeeReviewScore)
                                     <p class="mb-0">
-                                        <label style="width: 128px;">{{ $employeeReviewScore->employeeReviewType->type }}</label>
+                                        <label
+                                            style="width: 128px;">{{ $employeeReviewScore->employeeReviewType->type }}</label>
 
                                         @for($i = 0; $i < $employeeReviewScore->score; $i++)
                                             <i class="fas fa-star text-yellow"></i>

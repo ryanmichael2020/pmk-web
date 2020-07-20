@@ -27,7 +27,7 @@
     <div class="container-fluid">
         <div class="row">
 
-            <div class="col-sm-12 col-md-8 col-lg-6 mx-auto my-6">
+            <div class="col-sm-12 col-md-8 col-lg-6 mx-2 my-5">
 
                 @include('response_notifiers.response_card')
 

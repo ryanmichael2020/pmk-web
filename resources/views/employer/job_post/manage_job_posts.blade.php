@@ -24,9 +24,9 @@
     </div>
 
     <div class="container-fluid">
-        <div class="row py-4">
+        <div class="row py-4 px-2">
 
-            <div class="col-sm-12 col-md-10 order-md-2 order-lg-1 col-lg-8 my-2 mx-auto">
+            <div class="col-sm-12 col-md-10 order-md-2 order-lg-1 col-lg-8 my-2">
 
                 @include('response_notifiers.response_card')
 

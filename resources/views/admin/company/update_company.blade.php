@@ -18,13 +18,13 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container-fluid">
         <form method="post" action="/company/update">
             {{ csrf_field() }}
 
             <input id="company_id" name="company_id" type="hidden" value="{{ $company->id }}">
 
-            <div class="col-sm-12 col-lg-6 mx-auto my-6">
+            <div class="col-sm-12 col-lg-6 px-0 my-4">
 
                 @include('response_notifiers.response_card')
 
@@ -39,7 +39,8 @@
                         <h3>Company Details</h3>
 
                         <div class="d-flex mb-3">
-                            <img src="{{ asset($company->image) }}" style="height: 64px; width: 64px;" class="rounded-circle my-auto mr-4"/>
+                            <img src="{{ asset($company->image) }}" style="height: 64px; width: 64px;"
+                                 class="rounded-circle my-auto mr-4"/>
                             <div class="form-group flex-grow-1 mb-0">
                                 <label for="image">Image</label>
                                 <input type="file" name="image" id="image" class="form-control">

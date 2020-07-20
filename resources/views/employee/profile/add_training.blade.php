@@ -17,7 +17,7 @@
                     </ol>
 
                     <div class="mt-4">
-                        <a href="/profile/trainings/management" class="btn btn-success">
+                        <a href="/profile/trainings/management" class="btn btn-primary">
                             Go Back
                         </a>
                     </div>

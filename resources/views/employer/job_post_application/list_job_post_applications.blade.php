@@ -25,9 +25,9 @@
     </div>
 
     <div class="container-fluid">
-        <div class="row">
+        <div class="row py-4">
 
-            <div class="col-sm-12 col-md-10 col-lg-8 mx-auto my-4">
+            <div class="col-sm-12 col-md-10 col-lg-8 mx-2">
                 @include('response_notifiers.response_card')
 
                 <div class="card my-2">
@@ -107,46 +107,46 @@
                             </div>
 
                             @if(!$job_post_application->jobOfferSent())
-                            <div class="card-footer">
-                                @if($job_post_application->job_post_application_status_id == \App\Models\JobPost\JobPostApplicationStatus::$HIRED)
-                                    <span class="mb-0 d-inline-flex align-middle mr-2 text-green">
-                                        <span class="my-auto mr-2"><b>Applicant Accepted</b></span>
-                                        <i class="fas fa-check-circle text-green fa-2x my-auto"></i>
-                                    </span>
-                                @endif
-
-                                @if($job_post->max_applicants > $job_post->approved_applicants)
-                                    @if($job_post_application->reviewable())
-                                        <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                data-target="#review_job_application_{{ $job_post_application->id }}">
-                                            Place under review
-                                        </button>
-                                    @elseif($job_post_application->hireable())
-                                        <button type="button" class="btn btn-success" data-toggle="modal"
-                                                data-target="#accept_job_application_{{ $job_post_application->id }}">
-                                            Hire Applicant
-                                        </button>
+                                <div class="card-footer">
+                                    @if($job_post_application->job_post_application_status_id == \App\Models\JobPost\JobPostApplicationStatus::$HIRED)
+                                        <span class="mb-0 d-inline-flex align-middle mr-2 text-green">
+                                            <span class="my-auto mr-2"><b>Applicant Accepted</b></span>
+                                            <i class="fas fa-check-circle text-green fa-2x my-auto"></i>
+                                        </span>
                                     @endif
 
-                                    {{-- TODO :: Add fallback for cancellable (if offer has already been sent) --}}
-                                    @if($job_post_application->rejectable())
-                                        <button type="button" class="btn btn-warning" data-toggle="modal"
-                                                data-target="#cancel_job_application_{{ $job_post_application->id }}">
-                                            Reject Application
-                                        </button>
-                                    @else
-                                        {{-- TODO :: Add dismiss applicant --}}
-{{--                                        <button type="button" class="btn btn-warning" disabled>--}}
+                                    @if($job_post->max_applicants > $job_post->approved_applicants)
+                                        @if($job_post_application->reviewable())
+                                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                    data-target="#review_job_application_{{ $job_post_application->id }}">
+                                                Place under review
+                                            </button>
+                                        @elseif($job_post_application->hireable())
+                                            <button type="button" class="btn btn-success" data-toggle="modal"
+                                                    data-target="#accept_job_application_{{ $job_post_application->id }}">
+                                                Hire Applicant
+                                            </button>
+                                        @endif
+
+                                        {{-- TODO :: Add fallback for cancellable (if offer has already been sent) --}}
+                                        @if($job_post_application->rejectable())
+                                            <button type="button" class="btn btn-warning" data-toggle="modal"
+                                                    data-target="#cancel_job_application_{{ $job_post_application->id }}">
+                                                Reject Application
+                                            </button>
+                                        @else
+                                            {{-- TODO :: Add dismiss applicant --}}
+                                            {{--                                        <button type="button" class="btn btn-warning" disabled>--}}
                                             {{--                                            Reject Application--}}
                                             {{--                                        </button>--}}
+                                        @endif
+                                    @else
+                                        <p class="mb-0 text-red" style="font-size: 14px;">
+                                            Max applicants reached. If you wish to accept more applicants for this
+                                            position, update the job posting, and increase the number of max applicants.
+                                        </p>
                                     @endif
-                                @else
-                                    <p class="mb-0 text-red" style="font-size: 14px;">
-                                        Max applicants reached. If you wish to accept more applicants for this
-                                        position, update the job posting, and increase the number of max applicants.
-                                    </p>
-                                @endif
-                            </div>
+                                </div>
                             @endif
                         </div>
 
