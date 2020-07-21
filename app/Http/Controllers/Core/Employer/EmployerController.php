@@ -55,6 +55,8 @@ class EmployerController extends Controller
                 $employer->user_id = $user->id;
                 $employer->save();
 
+                $user->sendVerificationEmail();
+
                 DB::commit();
 
                 $data = array();

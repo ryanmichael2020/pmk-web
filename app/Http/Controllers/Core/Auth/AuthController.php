@@ -7,6 +7,7 @@ use App\Http\Controllers\Core\Login\DailyLoginHistoryController;
 use App\Models\Employee\Employee;
 use App\Models\User\User;
 use App\Models\User\UserDetail;
+use Carbon\Carbon;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -100,6 +101,8 @@ class AuthController extends Controller
                 $employee->user_id = $user->id;
                 $employee->save();
 
+                $user->sendVerificationEmail();
+
                 DB::commit();
 
                 $data = array();
@@ -169,6 +172,61 @@ class AuthController extends Controller
 
             $response['error'] = $error;
             $response['message'] = 'Logout failed.';
+            $response['status_code'] = Response::HTTP_INTERNAL_SERVER_ERROR;
+        }
+
+        return $response;
+    }
+
+    public static function verifyEmail($user_id)
+    {
+        $user = User::where('id', $user_id)->first();
+
+        try {
+            if ($user->email_verified_at == null) {
+                DB::beginTransaction();
+
+                $user->email_verified_at = Carbon::now();
+                $user->save();
+
+                DB::commit();
+
+                $data = array();
+                $data['user'] = $user;
+
+                $response['data'] = $data;
+                $response['message'] = 'Email verification successful.';
+                $response['status_code'] = Response::HTTP_OK;
+            } else {
+                $error = array();
+                $error['message'] = 'Email has already been verified.';
+
+                $response['error'] = $error;
+                $response['message'] = 'Email verification failed.';
+                $response['status_code'] = Response::HTTP_BAD_REQUEST;
+            }
+        } catch (QueryException $exception) {
+            Log::error($exception->getMessage());
+            Log::error($exception->getTraceAsString());
+
+            $error_code = $exception->errorInfo[1];
+            Log::error($error_code);
+
+            $error = array();
+            $error['message'] = 'Query exception occurred.';
+
+            $response['error'] = $error;
+            $response['message'] = 'Email verification failed.';
+            $response['status_code'] = Response::HTTP_BAD_REQUEST;
+        } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
+            Log::error($exception->getTraceAsString());
+
+            $error = array();
+            $error['message'] = 'Unknown error occurred.';
+
+            $response['error'] = $error;
+            $response['message'] = 'Email verification failed.';
             $response['status_code'] = Response::HTTP_INTERNAL_SERVER_ERROR;
         }
 
