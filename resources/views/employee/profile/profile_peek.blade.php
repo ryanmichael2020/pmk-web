@@ -7,14 +7,120 @@
     <div class="bg-primary-dark">
         <div class="container">
             <div class="row pt-3 pb-4">
-                <div class="col-sm-12 px-0">
-                    <h1 class="mb-0 my-auto pl-4 text-white">
+                <div class="col-sm-12 px-0 pl-4">
+                    <h1 class="mb-0 my-auto text-white">
                         Employee Profile
                     </h1>
+
+                    <ol class="breadcrumb breadcrumb-custom px-0">
+                        <li class="breadcrumb-item"><a href="#">Employee Profile</a></li>
+                    </ol>
+
+                    <div class="mt-4">
+                        @if(auth()->user()->user_type_id == \App\Models\User\UserType::$EMPLOYER)
+                            <a href="/company/{{ auth()->user()->employer->company_id }}/employees" type="button"
+                               class="mt-2 btn btn-primary">
+                                Go Back
+                            </a>
+                        @endif
+
+                        @if(auth()->user()->user_type_id == \App\Models\User\UserType::$EMPLOYER)
+                            @if(auth()->user()->employer->company_id == $employee->company_id)
+                                <button type="button" class="mt-2 btn btn-danger" data-toggle="modal"
+                                        data-target="#dismiss_employee_modal">
+                                    Dismiss Employee
+                                </button>
+                            @endif
+                        @elseif(auth()->user()->user_type_id == \App\Models\User\UserType::$ADMIN)
+                            @if($employee->company_id != null)
+                                <button type="button" class="mt-2 btn btn-danger" data-toggle="modal"
+                                        data-target="#dismiss_employee_modal">
+                                    Dismiss Employee
+                                </button>
+                            @endif
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    {{-- Dismiss Employee Modal --}}
+    @if(auth()->user()->user_type_id == \App\Models\User\UserType::$ADMIN)
+        <form method="post" action="/employee/dismiss">
+            {{ csrf_field() }}
+
+            <input type="hidden" name="employee_id"
+                   value="{{ $employee->id }}">
+
+            <input type="hidden" name="employer_id"
+                   value="0">
+
+            <div class="modal fade" id="dismiss_employee_modal"
+                 tabindex="-1" role="dialog"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title mb-0">Dismiss Employee</h2>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body py-0">
+                            <p class="mb-0">
+                                Are you sure you want to dismiss this employee?
+                            </p>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                            </button>
+                            <button type="submit" class="btn btn-danger">Dismiss Employee</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    @elseif(auth()->user()->user_type_id == \App\Models\User\UserType::$EMPLOYER)
+        @if(auth()->user()->employer->company_id == $employee->company_id)
+            <form method="post" action="/employee/dismiss">
+                {{ csrf_field() }}
+
+                <input type="hidden" name="employee_id"
+                       value="{{ $employee->id }}">
+
+                <input type="hidden" name="employer_id"
+                       value="{{ auth()->user()->employer->id }}">
+
+                <div class="modal fade" id="dismiss_employee_modal"
+                     tabindex="-1" role="dialog"
+                     aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 class="modal-title mb-0">Dismiss Employee</h2>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body py-0">
+                                <p class="mb-0">
+                                    Are you sure you want to dismiss this employee?
+                                </p>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                </button>
+                                <button type="submit" class="btn btn-danger">Dismiss Employee</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        @endif
+    @endif
 
     <div class="container my-4">
         <div class="row">

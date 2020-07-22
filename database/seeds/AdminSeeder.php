@@ -15,6 +15,7 @@ class AdminSeeder extends Seeder
         $user->user_type_id = \App\Models\User\UserType::$ADMIN;
         $user->email = "admin@admin.com";
         $user->password = \Illuminate\Support\Facades\Hash::make("admin");
+        $user->email_verified_at = \Carbon\Carbon::now();
         $user->save();
 
         $userDetail = new \App\Models\User\UserDetail();

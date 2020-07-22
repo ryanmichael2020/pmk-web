@@ -18,13 +18,13 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container-fluid">
         <form method="post" action="/employer/update" enctype="multipart/form-data">
             {{ csrf_field() }}
 
             <input id="employer_id" name="employer_id" type="hidden" value="{{ $employer->id }}">
 
-            <div class="col-sm-12 col-lg-10 mx-auto my-6">
+            <div class="col-sm-12 col-lg-10 px-0 my-4">
 
                 @include('response_notifiers.response_card')
 

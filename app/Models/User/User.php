@@ -2,12 +2,14 @@
 
 namespace App\Models\User;
 
+use App\Mail\VerifyEmail;
 use App\Models\Employee\Employee;
 use App\Models\Employer\Employer;
-use App\Models\History\LoginHistory;
+use App\Models\Login\DailyLoginHistory;
 use App\Models\Notification\Notification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Mail;
 
 class User extends Authenticatable
 {
@@ -30,6 +32,11 @@ class User extends Authenticatable
     protected $hidden = [
 
     ];
+
+    public function sendVerificationEmail()
+    {
+        Mail::to($this->email)->send(new VerifyEmail($this->id));
+    }
 
     /**
      * The attributes that should be cast to native types.
@@ -65,8 +72,8 @@ class User extends Authenticatable
         return $this->hasMany(Notification::class);
     }
 
-    public function loginHistory()
+    public function dailyLoginHistories()
     {
-        return $this->hasMany(LoginHistory::class);
+        return $this->hasMany(DailyLoginHistory::class);
     }
 }

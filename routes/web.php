@@ -20,6 +20,7 @@ Route::get('/', function () {
 // Auth Routes
 Route::get('/login', 'Web\Auth\WebAuthPageController@displayLoginPage');
 Route::get('/signup', 'Web\Auth\WebAuthPageController@displaySignupPage');
+Route::get('/user/{user_id}/email/verify', 'Web\Auth\WebAuthPageController@verifyEmailPage')->name('user.verify.email');
 
 Route::post('/login', 'Web\Auth\WebAuthController@login');
 Route::post('/signup', 'Web\Auth\WebAuthController@signup');
@@ -53,6 +54,8 @@ Route::get('/admin/management/employees', 'Web\Employee\WebEmployeeManagementCon
 Route::get('/admin/management/employee/{employee_id}/profile', 'Web\Employee\WebEmployeeManagementController@displayProfilePeekUnrelatedPage');
 
 Route::get('/employees/datatable', 'Web\Employee\WebEmployeeController@getDataTable');
+Route::get('/company/{company_id}/employees/datatable', 'Web\Employee\WebEmployeeController@getDataTableByCompanyId');
+Route::post('/employee/dismiss', 'Web\Employee\WebEmployeeController@dismissEmployee');
 
 // Employee Routes
 Route::get('/dashboard', 'Web\Employee\WebEmployeeDashboardPageController@displayDashboardPage');
@@ -76,6 +79,10 @@ Route::post('/profile/details/update', 'Web\Employee\WebEmployeeProfileManagemen
 Route::post('/profile/education/add', 'Web\Employee\WebEmployeeProfileManagementController@addEmployeeEducation');
 Route::post('/profile/skills/update', 'Web\Employee\WebEmployeeProfileManagementController@updateSkills');
 Route::post('/profile/trainings/add', 'Web\Employee\WebEmployeeProfileManagementController@addTraining');
+
+// Employee Review Routes
+Route::get('/employee/{employee_id}/reviews', 'Web\Employee\WebEmployeeProfileManagementPageController@displayProfileReviewPage');
+Route::post('/employee/review/create', 'Web\Employee\WebEmployeeProfileManagementController@addRating');
 
 // Job Post Routes (Employee)
 Route::get('/job_posts', 'Web\Employee\JobPost\WebEmployeeJobPostManagementController@displayListPage');
@@ -101,7 +108,6 @@ Route::get('/employer/job_post/update/{job_post_id}', 'Web\Employer\JobPost\WebE
 Route::get('/employer/job_posts', 'Web\Employer\JobPost\WebEmployerJobPostManagementController@displayListPage');
 Route::get('/employer/job_post/{job_post_id}', 'Web\Employer\JobPost\WebEmployerJobPostManagementController@displayJobPostPage');
 
-
 Route::post('/job_posts/create', 'Web\JobPost\WebJobPostController@create');
 Route::post('/job_post/update', 'Web\JobPost\WebJobPostController@update');
 
@@ -113,6 +119,13 @@ Route::post('/job_offer/create', 'Web\JobOffer\WebJobOfferController@hireApplica
 
 // Job Offer Routes (Employer)
 Route::get('/employer/job_offers', 'Web\Employer\JobOffer\WebEmployerJobOfferManagementController@displayJobOffers');
+
+// Company Routes
+Route::get('/company/{company_id}', 'Web\Company\WebCompanyDetailController@displayDetailPage');
+Route::get('/company/{company_id}/employees', 'Web\Company\WebCompanyDetailController@displayCompanyEmployeesPage');
+
+// Company Review Routes
+Route::Post('/company/review', 'Web\company\WebCompanyController@createReview');
 
 // TODO :: Add update and delete routes and functions
 

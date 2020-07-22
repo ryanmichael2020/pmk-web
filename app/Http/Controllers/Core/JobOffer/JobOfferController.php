@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Core\JobOffer;
 
 use App\Http\Controllers\Controller;
+use App\Models\Employee\Employee;
 use App\Models\Employee\EmployeeCompanyHistory;
 use App\Models\JobOffer\JobOffer;
 use App\Models\JobOffer\JobOfferStatus;
@@ -131,6 +132,10 @@ class JobOfferController extends Controller
                 $employee_company_history->employee_id = $job_offer->employee_id;
                 $employee_company_history->company_id = $job_offer->company_id;
                 $employee_company_history->save();
+
+                $employee = Employee::where('id', $job_offer->employee_id)->first();
+                $employee->company_id = $job_offer->company_id;
+                $employee->save();
 
                 DB::commit();
 

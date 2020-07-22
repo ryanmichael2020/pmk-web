@@ -2,6 +2,7 @@
 
 namespace App\Models\Company;
 
+use App\Models\Employee\Employee;
 use App\Models\Employee\EmployeeCompanyHistory;
 use App\Models\Employee\EmployeeReview;
 use App\Models\Employer\Employer;
@@ -42,6 +43,11 @@ class Company extends Model
         return $this->hasMany(Employer::class);
     }
 
+    public function employees()
+    {
+        return $this->hasMany(Employee::class);
+    }
+
     public function employeeReviews()
     {
         return $this->hasMany(EmployeeReview::class);
@@ -55,5 +61,10 @@ class Company extends Model
     public function jobOffers()
     {
         return $this->hasMany(JobOffer::class);
+    }
+
+    public function companyReviews()
+    {
+        return $this->hasMany(CompanyReview::class);
     }
 }

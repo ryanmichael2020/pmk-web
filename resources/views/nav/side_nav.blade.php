@@ -5,8 +5,9 @@
             <a class="navbar-brand" href="/admin/dashboard">
                 P.E.S.O Makati
             </a>
+
             <div class="ml-auto">
-                <div class="sidenav-toggler d-none d-xl-block" data-action="sidenav-unpin" data-target="#sidenav-main">
+                <div class="sidenav-toggler" data-action="sidenav-unpin" data-target="#sidenav-main">
                     <div class="sidenav-toggler-inner">
                         <i class="sidenav-toggler-line"></i>
                         <i class="sidenav-toggler-line"></i>

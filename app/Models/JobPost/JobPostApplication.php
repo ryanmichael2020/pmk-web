@@ -113,4 +113,13 @@ class JobPostApplication extends Model
 
         return true;
     }
+
+    public function jobOfferSent()
+    {
+        if ($this->job_post_application_status_id == JobPostApplicationStatus::$SENT_JOB_OFFER) {
+            return true;
+        }
+
+        return false;
+    }
 }

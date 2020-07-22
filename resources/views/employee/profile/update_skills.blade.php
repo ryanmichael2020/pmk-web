@@ -24,7 +24,7 @@
                     </ol>
 
                     <div class="mt-4">
-                        <a href="/profile" class="btn btn-success">
+                        <a href="/profile" class="btn btn-primary">
                             Go Back
                         </a>
                     </div>

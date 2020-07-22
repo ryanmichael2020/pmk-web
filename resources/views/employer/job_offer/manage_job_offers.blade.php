@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <div class="container-fluid">
+    <div class="container-fluid px-4">
         <div class="row py-4">
 
             <div class="order-2 order-lg-1 col-sm-12 col-md-10 order-md-2 order-lg-1 col-lg-8 my-2 mx-auto">
@@ -82,6 +82,14 @@
                             </div>
                         </div>
                     @endforeach
+                @else
+                    <div class="card my-2">
+                        <div class="card-body">
+                            <p class="mb-0">
+                                No job offers sent.
+                            </p>
+                        </div>
+                    </div>
                 @endif
             </div>
 

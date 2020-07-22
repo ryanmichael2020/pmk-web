@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Web\Employee;
 use App\Http\Controllers\Controller;
 use App\Models\Employee\Employee;
 use App\Models\Employee\EmployeeEducation;
+use App\Models\Employee\EmployeeReview;
 use App\Models\Employee\EmployeeSkill;
 use App\Models\Employee\EmployeeTraining;
 use App\Models\User\User;
+use App\Models\User\UserType;
 
 class WebEmployeeProfileManagementPageController extends Controller
 {
@@ -19,6 +21,33 @@ class WebEmployeeProfileManagementPageController extends Controller
         return view('employee.profile.profile_peek')
             ->with('user', $user)
             ->with('employee', $employee);
+    }
+
+    public function displayProfileReviewPage($employee_id)
+    {
+        $employee = Employee::where('id', $employee_id)->first();
+        $employee_reviews = EmployeeReview::where('employee_id', $employee_id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $can_create_review = false;
+        if (auth()->user()->user_type_id == UserType::$EMPLOYER) {
+            $employer_company_id = auth()->user()->employer->company_id;
+            $employee_reviews_from_company = EmployeeReview::where('employee_id', $employee_id)
+                ->where('company_id', $employer_company_id)
+                ->get();
+
+            if (count($employee_reviews_from_company) < 1 && $employee->company_id == $employer_company_id) {
+                $can_create_review = true;
+            }
+        }
+
+        // TODO :: Allow employee review for admin
+
+        return view('employee.profile.view_employee_reviews')
+            ->with('employee', $employee)
+            ->with('employee_reviews', $employee_reviews)
+            ->with('can_create_review', $can_create_review);
     }
 
     public function displayProfileDashboardPage()

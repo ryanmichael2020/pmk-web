@@ -1,0 +1,26 @@
+<?php
+
+use Illuminate\Database\Seeder;
+
+class EmployeeReviewTypeSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        \Illuminate\Support\Facades\DB::table('employee_review_types')->insert([
+            [
+                'type' => 'Punctuality',
+            ],
+            [
+                'type' => 'Performance',
+            ],
+            [
+                'type' => 'Personality',
+            ],
+        ]);
+    }
+}

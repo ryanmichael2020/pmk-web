@@ -7,6 +7,7 @@ use App\Models\Employer\Employer;
 use App\Models\User\User;
 use App\Models\User\UserDetail;
 use App\Models\User\UserType;
+use Carbon\Carbon;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -54,6 +55,13 @@ class EmployerController extends Controller
                 $employer->company_id = $company_id;
                 $employer->user_id = $user->id;
                 $employer->save();
+
+                if (config('app.env') == 'production') {
+                    $user->sendVerificationEmail();
+                } else {
+                    $user->email_verified_at = Carbon::now();
+                    $user->save();
+                }
 
                 DB::commit();
 

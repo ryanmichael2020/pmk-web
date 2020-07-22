@@ -5,15 +5,18 @@ namespace App\Http\Controllers\Web\Employee;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Core\Employee\EmployeeController;
 use App\Http\Controllers\Core\Employee\EmployeeEducationController;
+use App\Http\Controllers\Core\Employee\EmployeeReviewController;
 use App\Http\Controllers\Core\Employee\EmployeeSkillController;
 use App\Http\Controllers\Core\Employee\EmployeeTrainingController;
 use App\Http\Controllers\Core\User\UserController;
 use App\Http\Requests\Employee\CreateEmployeeEducationRequest;
+use App\Http\Requests\Employee\CreateEmployeeReviewRequest;
 use App\Http\Requests\Employee\CreateEmployeeTrainingRequest;
 use App\Http\Requests\Employee\UpdateEmployeeRequest;
 use App\Http\Requests\Employee\UpdateEmployeeSkillsRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 
 class WebEmployeeProfileManagementController extends Controller
 {
@@ -114,5 +117,25 @@ class WebEmployeeProfileManagementController extends Controller
         }
 
         return redirect('/profile/trainings/management');
+    }
+
+    public function addRating(CreateEmployeeReviewRequest $request)
+    {
+        $company_id = $request->company_id;
+        $employee_id = $request->employee_id;
+        $punctuality_score = $request->punctuality_score;
+        $performance_score = $request->performance_score;
+        $personality_score = $request->personality_score;
+
+        $response = EmployeeReviewController::createReview($company_id, $employee_id, $punctuality_score, $performance_score, $personality_score);
+        if ($response['status_code'] == Response::HTTP_OK) {
+            session()->flash('response_type', 'success');
+            session()->flash('message', $response['message']);
+        } else {
+            session()->flash('response_type', 'error');
+            session()->flash('message', $response['message'] . ' ' . $response['error']['message']);
+        }
+
+        return redirect()->back();
     }
 }

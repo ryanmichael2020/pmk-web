@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class EmployeeReviewType extends Model
 {
+    static $PUNCTUALITY = 1;
+    static $PERFORMANCE = 2;
+    static $PERSONALITY = 3;
+
     /**
      * The attributes that are mass assignable.
      *
