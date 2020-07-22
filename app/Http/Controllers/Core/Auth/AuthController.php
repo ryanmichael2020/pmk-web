@@ -25,19 +25,28 @@ class AuthController extends Controller
                 ->where('email', $email)
                 ->first();
             if ($user != null) { // if user is found
-                if (Hash::check($password, $user->password)) { // if password matches
-                    auth()->login($user);
-                    DailyLoginHistoryController::createDailyLoginHistory($user->id, $user->user_type_id);
+                if ($user->email_verified_at != null) {
+                    if (Hash::check($password, $user->password)) { // if password matches
+                        auth()->login($user);
+                        DailyLoginHistoryController::createDailyLoginHistory($user->id, $user->user_type_id);
 
-                    $data = array();
-                    $data['user'] = $user;
+                        $data = array();
+                        $data['user'] = $user;
 
-                    $response['data'] = $data;
-                    $response['message'] = 'Login successful.';
-                    $response['status_code'] = Response::HTTP_OK;
-                } else { // if password does not match
+                        $response['data'] = $data;
+                        $response['message'] = 'Login successful.';
+                        $response['status_code'] = Response::HTTP_OK;
+                    } else { // if password does not match
+                        $error = array();
+                        $error['message'] = 'Invalid email/password.';
+
+                        $response['error'] = $error;
+                        $response['message'] = 'Login failed.';
+                        $response['status_code'] = Response::HTTP_BAD_REQUEST;
+                    }
+                } else {
                     $error = array();
-                    $error['message'] = 'Invalid email/password.';
+                    $error['message'] = 'Account not verified. Please verify your email via the email sent to you upon signup before logging in to your account.';
 
                     $response['error'] = $error;
                     $response['message'] = 'Login failed.';
@@ -101,7 +110,12 @@ class AuthController extends Controller
                 $employee->user_id = $user->id;
                 $employee->save();
 
-                $user->sendVerificationEmail();
+                if (config('app.env') == 'production') {
+                    $user->sendVerificationEmail();
+                } else {
+                    $user->email_verified_at = Carbon::now();
+                    $user->save();
+                }
 
                 DB::commit();
 
