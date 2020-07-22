@@ -55,6 +55,7 @@ Route::get('/admin/management/employee/{employee_id}/profile', 'Web\Employee\Web
 
 Route::get('/employees/datatable', 'Web\Employee\WebEmployeeController@getDataTable');
 Route::get('/company/{company_id}/employees/datatable', 'Web\Employee\WebEmployeeController@getDataTableByCompanyId');
+Route::post('/employee/dismiss', 'Web\Employee\WebEmployeeController@dismissEmployee');
 
 // Employee Routes
 Route::get('/dashboard', 'Web\Employee\WebEmployeeDashboardPageController@displayDashboardPage');

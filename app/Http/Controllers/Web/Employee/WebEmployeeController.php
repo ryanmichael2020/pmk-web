@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Web\Employee;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Core\Employee\EmployeeController;
+use App\Http\Requests\Employee\DismissEmployeeRequest;
 use App\Models\Employee\Employee;
 use App\Models\User\User;
 use App\Models\User\UserType;
+use Illuminate\Http\Response;
 use Yajra\DataTables\DataTables;
 
 class WebEmployeeController extends Controller
@@ -22,6 +25,24 @@ class WebEmployeeController extends Controller
     private function editRoute($id)
     {
         return "/admin/management/employee/$id/profile/update";
+    }
+
+    public function dismissEmployee(DismissEmployeeRequest $request)
+    {
+        $employee_id = $request->employee_id;
+        $employer_id = $request->employer_id;
+
+        // TODO :: use employer id for action logs
+        $response = EmployeeController::dismissEmployee($employee_id);
+        if ($response['status_code'] == Response::HTTP_OK) {
+            session()->flash('response_type', 'success');
+            session()->flash('message', $response['message']);
+        } else {
+            session()->flash('response_type', 'error');
+            session()->flash('message', $response['message'] . ' ' . $response['error']['message']);
+        }
+
+        return redirect()->back();
     }
 
     public function getDataTable()
