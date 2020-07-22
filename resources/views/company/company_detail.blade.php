@@ -9,7 +9,7 @@
 
     <hr class="my-0 bg-default">
     <div class="bg-primary-dark">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row pt-3 pb-4 mb-0">
                 <div class="col-sm-12">
                     <div class="d-flex">
@@ -24,15 +24,27 @@
                         </div>
                     </div>
 
-                    {{--                    <ol class="breadcrumb breadcrumb-custom px-0">--}}
-                    {{--                        <li class="breadcrumb-item"><a href="#">Job Offers</a></li>--}}
-                    {{--                    </ol>--}}
+                    <ol class="breadcrumb breadcrumb-custom px-0">
+                        <li class="breadcrumb-item"><a href="#">Company</a></li>
+                    </ol>
+
+                    @if(auth()->user()->user_type_id == \App\Models\User\UserType::$EMPLOYER)
+                        @if(auth()->user()->employer->company_id == $company->id)
+                            <a href="/company/{{ $company->id }}/employees" class="btn btn-secondary mt-2">
+                                View Employees
+                            </a>
+                        @endif
+                    @elseif(auth()->user()->user_type_id == \App\Models\User\UserType::$ADMIN)
+                        <a href="/company/{{ $company->id }}/employees" class="btn btn-secondary mt-2">
+                            View Employees
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="container my-4">
+    <div class="container-fluid my-4">
         <div class="row">
 
             @if($can_submit_review)

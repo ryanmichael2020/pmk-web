@@ -54,6 +54,7 @@ Route::get('/admin/management/employees', 'Web\Employee\WebEmployeeManagementCon
 Route::get('/admin/management/employee/{employee_id}/profile', 'Web\Employee\WebEmployeeManagementController@displayProfilePeekUnrelatedPage');
 
 Route::get('/employees/datatable', 'Web\Employee\WebEmployeeController@getDataTable');
+Route::get('/company/{company_id}/employees/datatable', 'Web\Employee\WebEmployeeController@getDataTableByCompanyId');
 
 // Employee Routes
 Route::get('/dashboard', 'Web\Employee\WebEmployeeDashboardPageController@displayDashboardPage');
@@ -120,6 +121,7 @@ Route::get('/employer/job_offers', 'Web\Employer\JobOffer\WebEmployerJobOfferMan
 
 // Company Routes
 Route::get('/company/{company_id}', 'Web\Company\WebCompanyDetailController@displayDetailPage');
+Route::get('/company/{company_id}/employees', 'Web\Company\WebCompanyDetailController@displayCompanyEmployeesPage');
 
 // Company Review Routes
 Route::Post('/company/review', 'Web\company\WebCompanyController@createReview');
