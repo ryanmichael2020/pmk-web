@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Core\JobPost;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Core\Notification\NotificationController;
 use App\Models\JobPost\JobPost;
 use App\Models\JobPost\JobPostApplication;
 use App\Models\JobPost\JobPostApplicationStatus;
+use App\Models\Notification\NotificationType;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -25,6 +27,12 @@ class JobPostApplicationController extends Controller
             $job_post_application->employee_id = $employee_id;
             $job_post_application->job_post_application_status_id = JobPostApplicationStatus::$PENDING;
             $job_post_application->save();
+
+            $sender_id = $job_post_application->employee->user->id;
+            $recipient_id = $job_post_application->jobPost->employer->user->id;
+            $applicant_name = $job_post_application->employee->user->userDetail->name();
+            $job_post_title = $job_post_application->jobPost->position;
+            NotificationController::createNotification($sender_id, $recipient_id, NotificationType::$JOB_APPLICATION_NEW, "New job applicant ($applicant_name) for the job post $job_post_title");
 
             DB::commit();
 
@@ -62,6 +70,7 @@ class JobPostApplicationController extends Controller
         return $response;
     }
 
+    // TODO :: remove unused
     public static function update($job_post_application_id, $job_post_application_status_id = null)
     {
         $response = array();
