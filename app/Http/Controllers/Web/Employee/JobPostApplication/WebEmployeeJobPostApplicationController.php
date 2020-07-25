@@ -10,7 +10,6 @@ use Illuminate\Http\Response;
 
 class WebEmployeeJobPostApplicationController extends Controller
 {
-    // TODO :: remove unused
     public function updateJobPostApplication(UpdateJobPostApplicationRequest $request)
     {
         $job_post_application_id = $request->job_post_application_id;

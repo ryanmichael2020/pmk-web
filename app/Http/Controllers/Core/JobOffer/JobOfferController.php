@@ -9,6 +9,7 @@ use App\Models\Employee\EmployeeCompanyHistory;
 use App\Models\JobOffer\JobOffer;
 use App\Models\JobOffer\JobOfferStatus;
 use App\Models\JobOffer\JobOfferUpdate;
+use App\Models\JobPost\JobPost;
 use App\Models\JobPost\JobPostApplication;
 use App\Models\JobPost\JobPostApplicationStatus;
 use App\Models\Notification\NotificationType;
@@ -125,6 +126,10 @@ class JobOfferController extends Controller
 
                 $job_offer->job_offer_status_id = JobOfferStatus::$ACCEPTED;
                 $job_offer->save();
+
+                $job_post = JobPost::where('id', $job_offer->job_post_id)->first();
+                $job_post->approved_applicants++;
+                $job_post->save();
 
                 $job_post_application = JobPostApplication::where('id', $job_offer->job_post_application_id)->first();
                 $job_post_application->job_post_application_status_id = JobPostApplicationStatus::$HIRED;
