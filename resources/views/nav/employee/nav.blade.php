@@ -18,8 +18,11 @@ $nav_notifications = \App\Models\Notification\Notification::where('recipient_id'
             <div class="navbar-collapse-header">
                 <div class="row">
                     <div class="col-6 collapse-brand">
-                        <a href="/">
-                            LOGO
+                        <a href="#" class="d-flex">
+                            <img src="{{ asset('/old/pesologo.png') }}" style="height: 64px; width: 64px; ">
+                            <h2 class="mb-0 ml-2 my-auto">
+                                P.E.S.O Makati
+                            </h2>
                         </a>
                     </div>
                     <div class="col-6 collapse-close">
