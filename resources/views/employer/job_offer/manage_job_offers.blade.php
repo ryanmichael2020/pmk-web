@@ -66,7 +66,7 @@
                             <div class="card-body">
                                 <p class="mb-0">Job Offer Description</p>
                                 <p class="mb-0 text-small">
-                                    {{ $job_offer->description }}
+                                    {!! nl2br(e($job_post->description)) !!}
                                 </p>
 
 
@@ -130,7 +130,7 @@
                                     </a>
 
                                     <p class="mb-0">
-                                        {{ $job_offer_update->description }}
+                                        {!! nl2br(e($job_offer_update->description)) !!}
                                     </p>
                                 </div>
                             @endforeach

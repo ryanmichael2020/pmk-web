@@ -50,7 +50,7 @@
 
                         <h4 class="">Job Description</h4>
                         <p class="mb-0" style="font-size: 14px;">
-                            {{ $job_post->description }}
+                            {!! nl2br(e($job_post->description)) !!}
                         </p>
                     </div>
 

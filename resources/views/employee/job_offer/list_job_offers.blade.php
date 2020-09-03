@@ -44,7 +44,7 @@
                                 </p>
 
                                 <p class="mb-0" style="font-size: 14px;">
-                                    {{ $job_offer->description }}
+                                    {!! nl2br(e($job_offer->description)) !!}
                                 </p>
 
                                 <p class="mt-4 mb-0">

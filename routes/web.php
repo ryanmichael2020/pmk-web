@@ -20,11 +20,16 @@ Route::get('/', function () {
 // Auth Routes
 Route::get('/login', 'Web\Auth\WebAuthPageController@displayLoginPage');
 Route::get('/signup', 'Web\Auth\WebAuthPageController@displaySignupPage');
+Route::get('/logout', 'Web\Auth\WebAuthController@logout');
 Route::get('/user/{user_id}/email/verify', 'Web\Auth\WebAuthPageController@verifyEmailPage')->name('user.verify.email');
+Route::get('/forgot-password', 'Web\Auth\WebAuthPageController@displayForgotPasswordPage')->name('user.forgot.password');
+Route::get('/password-reset', 'Web\Auth\WebAuthPageController@displayResetPasswordPage')->name('user.reset.password');
 
 Route::post('/login', 'Web\Auth\WebAuthController@login');
 Route::post('/signup', 'Web\Auth\WebAuthController@signup');
 Route::post('/logout', 'Web\Auth\WebAuthController@logout');
+Route::post('/forgot-password', 'Web\Auth\WebAuthController@forgotPassword')->name('user.forgot.password');
+Route::post('/password-reset', 'Web\Auth\WebAuthController@resetPassword')->name('user.reset.password');
 
 // ADMIN Routes
 Route::get('/admin/dashboard', 'Web\Admin\WebAdminDashboardPageController@displayDashboardPage');

@@ -13,6 +13,25 @@ class WebAuthPageController extends Controller
         return view('auth.login');
     }
 
+    public function displayForgotPasswordPage()
+    {
+        return view('auth.forgot_password');
+    }
+
+    public function displayResetPasswordPage()
+    {
+        $user_id = request()->query('user_id');
+        if ($user_id == null) {
+            session()->flash('response_type', 'error');
+            session()->flash('message', 'Invalid password reset link.');
+
+            return redirect('/login');
+        }
+
+        return view('auth.reset_password')
+            ->with('user_id', $user_id);
+    }
+
     public function displaySignupPage()
     {
         return view('auth.signup');

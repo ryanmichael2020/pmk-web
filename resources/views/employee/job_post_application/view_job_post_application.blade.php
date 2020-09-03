@@ -47,7 +47,7 @@
 
                     <div class="card-body">
                         <p class="mb-0">
-                            {{ $job_post_application->jobPost->description }}
+                            {!! nl2br(e($job_post_application->jobPost->description)) !!}
                         </p>
                     </div>
 

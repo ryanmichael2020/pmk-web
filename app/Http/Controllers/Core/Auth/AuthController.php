@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Core\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Core\Login\DailyLoginHistoryController;
+use App\Mail\ResetPasswordEmail;
 use App\Models\Employee\Employee;
 use App\Models\User\User;
 use App\Models\User\UserDetail;
@@ -13,6 +14,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -72,6 +74,98 @@ class AuthController extends Controller
         return $response;
     }
 
+    public static function sendPasswordResetEmail($email)
+    {
+        try {
+            $user = User::where('email', $email)->first();
+
+            if ($user != null) {
+                Mail::to($user->email)->send(new ResetPasswordEmail($user->email, $user->id));
+
+                $response['message'] = 'Password reset email sent.';
+                $response['status_code'] = Response::HTTP_OK;
+            } else {
+                $error = array();
+                $error['message'] = 'Invalid email provided.';
+
+                $response['error'] = $error;
+                $response['message'] = 'Password reset failed.';
+                $response['status_code'] = Response::HTTP_BAD_REQUEST;
+            }
+        } catch (QueryException $exception) {
+            Log::error($exception->getMessage());
+            Log::error($exception->getTraceAsString());
+
+            $error = array();
+            $error['message'] = 'Query exception occurred.';
+
+            $response['error'] = $error;
+            $response['message'] = 'Password reset failed.';
+            $response['status_code'] = Response::HTTP_BAD_REQUEST;
+        } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
+            Log::error($exception->getTraceAsString());
+
+            $error = array();
+            $error['message'] = 'Internal error occurred.';
+
+            $response['error'] = $error;
+            $response['message'] = 'Password reset failed.';
+            $response['status_code'] = Response::HTTP_INTERNAL_SERVER_ERROR;
+        }
+
+        return $response;
+    }
+
+    public static function resetPassword($user_id, $password, $verify_password)
+    {
+        $response = array();
+
+        try {
+            $user = User::where('id', $user_id)->first();
+
+            if ($user != null) {
+                if ($password == $verify_password) {
+                    $user->password = Hash::make($password);
+                    $user->save();
+
+                    $response['message'] = 'Password reset successful.';
+                    $response['status_code'] = Response::HTTP_OK;
+                } else {
+                    $error = array();
+                    $error['message'] = 'Passwords do not match.';
+
+                    $response['error'] = $error;
+                    $response['message'] = 'Password reset failed.';
+                    $response['status_code'] = Response::HTTP_BAD_REQUEST;
+                }
+            } else {
+                $error = array();
+                $error['message'] = 'User not found.';
+
+                $response['error'] = $error;
+                $response['message'] = 'Password reset failed.';
+                $response['status_code'] = Response::HTTP_BAD_REQUEST;
+            }
+        } catch (QueryException $exception) {
+            $error = array();
+            $error['message'] = 'Query exception occurred.';
+
+            $response['error'] = $error;
+            $response['message'] = 'Password reset failed.';
+            $response['status_code'] = Response::HTTP_BAD_REQUEST;
+        } catch (\Exception $exception) {
+            $error = array();
+            $error['message'] = 'Unknown error occurred.';
+
+            $response['error'] = $error;
+            $response['message'] = 'Password reset failed.';
+            $response['status_code'] = Response::HTTP_INTERNAL_SERVER_ERROR;
+        }
+
+        return $response;
+    }
+
     public static function signup($email, $password, $verify_password, $first_name, $last_name, $sex, $image = null)
     {
         $response = array();
@@ -124,7 +218,7 @@ class AuthController extends Controller
                 $data['user']['user_detail'] = $user_detail;
 
                 $response['data'] = $data;
-                $response['message'] = 'Signup successful.';
+                $response['message'] = 'Signup successful. An account activation email will be sent to the email you provided within the next few minutes. Please activate your account before logging in.';
                 $response['status_code'] = Response::HTTP_OK;
             } else {
                 $error = array();

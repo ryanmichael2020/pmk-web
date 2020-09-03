@@ -49,6 +49,16 @@ Header
 
         <nav class="main-nav float-right d-none d-lg-block">
             <ul>
+                @if(auth()->check())
+                    @if(auth()->user()->user_type_id == \App\Models\User\UserType::$ADMIN)
+                        <li><a href="/admin/dashboard">Dashboard</a></li>
+                    @elseif(auth()->user()->user_type_id == \App\Models\User\UserType::$EMPLOYER)
+                        <li><a href="/employer/job_posts">Dashboard</a></li>
+                    @elseif(auth()->user()->user_type_id == \App\Models\User\UserType::$EMPLOYEE)
+                        <li><a href="/job_posts">Dashboard</a></li>
+                    @endif
+                @endif
+
                 <li class="active"><a href="{{auth()->check() ? '/' : '#intro'}}">Home</a></li>
                 <li><a href="#about">About Us</a></li>
                 <li><a href="#services">Services</a></li>
@@ -56,6 +66,10 @@ Header
                 @if(!auth()->check())
                     <li><a href="/login">Login</a></li>
                     <li><a href="/signup">Signup</a></li>
+                @else
+                    <li>
+                        <a href="/logout">Logout</a>
+                    </li>
                 @endif
             </ul>
         </nav><!-- .main-nav -->

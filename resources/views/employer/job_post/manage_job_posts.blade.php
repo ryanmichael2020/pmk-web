@@ -51,8 +51,8 @@
                             </div>
 
                             <div class="card-body">
-                                <p>
-                                    {{ $job_post->description }}
+                                <p class="mb-0">
+                                    {!! nl2br(e($job_post->description)) !!}
                                 </p>
                             </div>
 

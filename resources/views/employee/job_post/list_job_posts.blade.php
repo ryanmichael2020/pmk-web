@@ -111,7 +111,8 @@
 
                             <div class="card-body">
                                 <p class="mb-0">
-                                    {{ substr($job_post->description, 0, 125) . '...' }}
+                                    {!! nl2br(e(substr($job_post->description, 0, 125) . '...')) !!}
+                                    {{-- {{ substr($job_post->description, 0, 125) . '...' }} --}}
                                 </p>
                             </div>
 
