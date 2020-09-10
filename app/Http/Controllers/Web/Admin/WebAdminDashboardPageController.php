@@ -27,8 +27,7 @@ class WebAdminDashboardPageController extends Controller
 
         $job_applications_submitted = JobPostApplication::count();
         $job_applications_accepted = JobPostApplication::where('job_post_application_status_id', JobPostApplicationStatus::$HIRED)->count();
-        $job_applications_rejected = JobPostApplication::where('job_post_application_status_id', JobPostApplicationStatus::$REJECTED)->count();
-
+        $job_applications_rejected = JobPostApplication::whereIn('job_post_application_status_id', [JobPostApplicationStatus::$REJECTED, JobPostApplicationStatus::$RETRACTED_JOB_OFFER, JobPostApplicationStatus::$CANCELLED])->count();
 
         return view('admin.dashboard')
             ->with('daily_login_total', $daily_login_total)

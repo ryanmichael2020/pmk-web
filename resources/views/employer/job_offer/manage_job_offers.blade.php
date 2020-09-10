@@ -66,9 +66,8 @@
                             <div class="card-body">
                                 <p class="mb-0">Job Offer Description</p>
                                 <p class="mb-0 text-small">
-                                    {!! nl2br(e($job_post->description)) !!}
+                                    {!! nl2br(e($job_offer->description)) !!}
                                 </p>
-
 
                                 <p class="mt-4 mb-0 text-small">
                                     Status: {{ $job_offer->jobOfferStatus->status }}

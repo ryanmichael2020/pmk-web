@@ -128,7 +128,6 @@ class EmployerController extends Controller
                     if ($password != null && $verify_password != null) {
                         $user->password = Hash::make($password);
                     }
-                    $user->user_type_id = 1;
                     $user->save();
 
                     if ($image != null) {

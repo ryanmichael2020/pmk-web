@@ -59,6 +59,28 @@
                             {{ $company->contact }}
                         </p>
                     </div>
+
+                    <div class="d-flex">
+                        <h3 class="mb-0 mr-4 my-auto">
+                            Address
+                        </h3>
+
+                        <p class="mb-0 my-auto">
+                            {{ ($company->address != null) ? $company->address : 'N/A' }}
+                        </p>
+                    </div>
+
+                    <h3 class="mb-0 mr-4">
+                        Description
+                    </h3>
+                    <p class="mb-0 my-auto">
+                        @if($company->description == null)
+                            N/A
+                        @else
+                            {!! nl2br(e($company->description)) !!}
+                        @endif
+                        {{ ($company->description != null) ? $company->address : 'N/A' }}
+                    </p>
                 </div>
 
                 <div class="card-footer">

@@ -43,9 +43,15 @@
                                 Go Back
                             </a>
                         @else
-                            <a href="/employee/1/profile" class="btn btn-primary">
-                                Go Back
-                            </a>
+                            @if(auth()->user()->user_type_id == \App\Models\User\UserType::$ADMIN)
+                                <a href="/admin/management/employee/{{ $employee->id }}/profile" class="btn btn-primary">
+                                    Go Back
+                                </a>
+                            @else
+                                <a href="/employee/{{ $employee->id }}/profile" class="btn btn-primary">
+                                    Go Back
+                                </a>
+                            @endif
                         @endif
                     </div>
                 </div>

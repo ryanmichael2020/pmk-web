@@ -1,6 +1,6 @@
 <nav class="navbar navbar-horizontal navbar-expand-lg navbar-dark bg-default">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">P.E.S.O Makati</a>
+        <a class="navbar-brand" href="/admin/dashboard">P.E.S.O Makati</a>
 
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbar-default"
                 aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation">

@@ -87,7 +87,7 @@ class JobPostApplication extends Model
 
     public function rejectable()
     {
-        if ($this->job_post_application_status_id == JobPostApplicationStatus::$PENDING) {
+        if ($this->job_post_application_status_id == JobPostApplicationStatus::$PENDING || $this->job_post_application_status_id == JobPostApplicationStatus::$UNDER_REVIEW) {
             return true;
         }
 

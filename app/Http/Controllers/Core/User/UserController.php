@@ -82,5 +82,7 @@ class UserController extends Controller
             $response['message'] = 'Failed to update account.';
             $response['status_code'] = Response::HTTP_INTERNAL_SERVER_ERROR;
         }
+
+        return $response;
     }
 }

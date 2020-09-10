@@ -59,7 +59,7 @@ class WebEmployerController extends Controller
         $company_id = $request->company_id;
         $image = $request->image;
 
-        $response = EmployerController::update($employer_id, $email, $first_name, $last_name, $sex, $company_id, $image);
+        $response = EmployerController::update($employer_id, $email, $first_name, $last_name, $sex, $company_id, $image, $password, $verify_password);
 
         if ($response['status_code'] == Response::HTTP_OK) {
             session()->flash('response_type', 'success');

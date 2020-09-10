@@ -29,6 +29,8 @@ class CreateCompanyRequest extends FormRequest
             'name' => 'required|string|max:128',
             'contact' => 'required|string|max:16',
             'image' => 'nullable|image|mimes:jpeg,png,jpg',
+            'address' => 'nullable|string|max:256',
+            'description' => 'nullable|string|max:8096',
         ];
     }
 

@@ -13,10 +13,10 @@ class WebEmployeeManagementController extends Controller
         return view('admin.employee.manage_employees');
     }
 
-    public function displayProfilePeekUnrelatedPage($user_id)
+    public function displayProfilePeekUnrelatedPage($employee_id)
     {
-        $user = User::where('id', $user_id)->first();
-        $employee = Employee::where('id', $user->employee->id)->first();
+        $employee = Employee::where('id', $employee_id)->first();
+        $user = User::where('id', $employee->user_id)->first();
 
         return view('employee.profile.profile_peek_unrelated')
             ->with('user', $user)

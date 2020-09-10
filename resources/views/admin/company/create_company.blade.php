@@ -45,11 +45,24 @@
                                    placeholder="Enter company name" required>
                         </div>
 
-                        <div class="form-group mb-0">
+                        <div class="form-group">
                             <label for="contact">Contact Number</label>
                             <input id="contact" name="contact" type="text" class="form-control"
                                    maxlength="16"
                                    placeholder="Enter contact number (landline/mobile)" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input id="address" name="address" type="text" class="form-control"
+                                   maxlength="256"
+                                   placeholder="Enter address">
+                        </div>
+
+                        <div class="form-group mb-0">
+                            <label for="description">Description</label>
+                            <textarea id="description" name="description" class="form-control"
+                                      maxlength="8096" placeholder="Enter description"></textarea>
                         </div>
                     </div>
 

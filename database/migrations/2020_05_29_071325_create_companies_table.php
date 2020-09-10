@@ -18,6 +18,8 @@ class CreateCompaniesTable extends Migration
             $table->string('name', 128)->unique();
             $table->string('image', 512)->nullable();
             $table->string('contact', 16);
+            $table->string('address', 256)->nullable();
+            $table->string('description', 8096)->nullable();
             $table->timestamps();
         });
     }

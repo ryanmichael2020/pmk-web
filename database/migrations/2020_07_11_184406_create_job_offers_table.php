@@ -23,7 +23,7 @@ class CreateJobOffersTable extends Migration
 
             $table->foreignId('employer_id')->references('id')->on('employers');
             $table->foreignId('employee_id')->references('id')->on('employees');
-            $table->string('description', 8096);
+            $table->string('description', 8096)->nullable();
 
             $table->foreign('job_post_application_id')->references('id')->on('job_post_applications');
             $table->timestamp('date_due');

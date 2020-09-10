@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Log;
 
 class CompanyController extends Controller
 {
-    public static function create($name, $contact, $image = null)
+    public static function create($name, $contact, $image = null, $address = null, $description = null)
     {
         $response = array();
 
@@ -21,6 +21,8 @@ class CompanyController extends Controller
             $company = new Company();
             $company->name = $name;
             $company->contact = $contact;
+            $company->address = $address;
+            $company->description = $description;
 
             if ($image != null) {
                 $image_path = public_path() . '/images/companies';
@@ -82,7 +84,7 @@ class CompanyController extends Controller
         return $response;
     }
 
-    public static function update($company_id, $name, $contact, $image = null)
+    public static function update($company_id, $name, $contact, $image = null, $address = null, $description = null)
     {
         $response = array();
 
@@ -95,6 +97,8 @@ class CompanyController extends Controller
 
                 $company->name = $name;
                 $company->contact = $contact;
+                $company->address = $address;
+                $company->description = $description;
 
                 if ($image != null) {
                     $image_path = public_path() . '/images/companies';

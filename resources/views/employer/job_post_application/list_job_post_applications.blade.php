@@ -214,9 +214,8 @@
                                                     benefits for joining your company, etc..</p>
 
                                                 <label for="description">Job Offer Description</label>
-                                                <textarea id="description" name="description" minlength="128"
-                                                          maxlength="8096"
-                                                          class="form-control" required></textarea>
+                                                <textarea id="description" name="description" maxlength="8096"
+                                                          class="form-control"></textarea>
                                             </div>
                                         </div>
 
@@ -237,8 +236,13 @@
                             <input type="hidden" name="job_post_application_id"
                                    value="{{ $job_post_application->id }}">
 
-                            <input type="hidden" name="job_post_application_status_id"
-                                   value="{{ \App\Models\JobPost\JobPostApplicationStatus::$CANCELLED }}">
+                            @if(auth()->user()->user_type_id == \App\Models\User\UserType::$ADMIN || auth()->user()->user_type_id == \App\Models\User\UserType::$EMPLOYER)
+                                <input type="hidden" name="job_post_application_status_id"
+                                       value="{{ \App\Models\JobPost\JobPostApplicationStatus::$REJECTED }}">
+                            @else
+                                <input type="hidden" name="job_post_application_status_id"
+                                       value="{{ \App\Models\JobPost\JobPostApplicationStatus::$CANCELLED }}">
+                            @endif
 
                             <div class="modal fade" id="cancel_job_application_{{ $job_post_application->id }}"
                                  tabindex="-1" role="dialog"
@@ -247,22 +251,40 @@
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h2 class="modal-title mb-0">Cancel Job Application</h2>
+                                            <h2 class="modal-title mb-0">
+                                                @if(auth()->user()->user_type_id == \App\Models\User\UserType::$ADMIN || auth()->user()->user_type_id == \App\Models\User\UserType::$EMPLOYER)
+                                                    Reject Job Application
+                                                @else
+                                                    Cancel Job Application
+                                                @endif
+                                            </h2>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body py-0">
                                             <p class="mb-0">
-                                                Are you sure you want to cancel your job application for the
-                                                position {{ $job_post_application->jobPost->position }}
+                                                @if(auth()->user()->user_type_id == \App\Models\User\UserType::$ADMIN || auth()->user()->user_type_id == \App\Models\User\UserType::$EMPLOYER)
+                                                    Are you sure you want to dismiss this job application for the
+                                                    position {{ $job_post_application->jobPost->position }}
+                                                @else
+                                                    Are you sure you want to cancel your job application for the
+                                                    position {{ $job_post_application->jobPost->position }}
+                                                @endif
                                             </p>
                                         </div>
 
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
                                             </button>
-                                            <button type="submit" class="btn btn-danger">Cancel Application</button>
+
+                                            <button type="submit" class="btn btn-danger">
+                                                @if(auth()->user()->user_type_id == \App\Models\User\UserType::$ADMIN || auth()->user()->user_type_id == \App\Models\User\UserType::$EMPLOYER)
+                                                    Reject Application
+                                                @else
+                                                    Cancel Application
+                                                @endif
+                                            </button>
                                         </div>
                                     </div>
                                 </div>

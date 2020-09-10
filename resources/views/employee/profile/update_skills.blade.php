@@ -55,7 +55,7 @@
                         <div class="card-body pb-0">
                             <label for="skills">Skills</label>
                             <div class="card bg-gray">
-                                <div style="margin: 2px;">
+                                <div style="margin: 4px;">
                                     <input id="skills" name="skills" type="text" class="form-control"
                                            value="{{ $employee_skills_imploded }}" placeholder="Add a skill" data-toggle="tags"/>
                                 </div>

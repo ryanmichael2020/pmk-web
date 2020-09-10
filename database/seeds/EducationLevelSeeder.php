@@ -18,6 +18,9 @@ class EducationLevelSeeder extends Seeder
             [
                 'level' => 'Secondary',
             ],
+            [
+                'level' => 'College/Graduate',
+            ],
         ]);
     }
 }

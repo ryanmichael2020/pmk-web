@@ -54,7 +54,7 @@ class WebEmployeeController extends Controller
         $data = DataTables::of($employees)
             ->addColumn('action', function ($data) {
                 // $button = '<a href="' . $this->editRoute($data->id) . '" class="mx-1" title="Edit"><i class="fas fa-edit fa-lg"></i></a>';
-                $button = '<a href="' . $this->detailedViewRoute($data->id) . '" class="mx-1" title="View"><i class="fas fa-eye fa-lg"></i></a>';
+                $button = '<a href="' . $this->detailedViewRoute($data->employee->id) . '" class="mx-1" title="View"><i class="fas fa-eye fa-lg"></i></a>';
                 return $button;
             })
             ->rawColumns(['action'])
