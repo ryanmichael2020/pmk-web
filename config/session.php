@@ -46,7 +46,8 @@ return [
     |
     */
 
-    'encrypt' => ((strtolower(config('app.env')) == 'production' || strtolower(config('app.env')) == 'uat')) ? true : false,
+//    'encrypt' => ((strtolower(config('app.env')) == 'production' || strtolower(config('app.env')) == 'uat')) ? true : false,
+    'encrypt' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -128,7 +129,7 @@ return [
 
     'cookie' => env(
         'SESSION_COOKIE',
-        Str::slug(env('APP_NAME', 'laravel'), '_').'_session'
+        Str::slug(env('APP_NAME', 'laravel'), '_') . '_session'
     ),
 
     /*
@@ -168,7 +169,8 @@ return [
     |
     */
 
-    'secure' => env('SESSION_SECURE_COOKIE', ((strtolower(config('app.env')) == 'production' || strtolower(config('app.env')) == 'uat')) ? true : false),
+//    'secure' => env('SESSION_SECURE_COOKIE', ((strtolower(config('app.env')) == 'production' || strtolower(config('app.env')) == 'uat')) ? true : false),
+    'secure' => false,
 
     /*
     |--------------------------------------------------------------------------

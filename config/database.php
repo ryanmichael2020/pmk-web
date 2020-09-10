@@ -46,10 +46,10 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', 'pmk-rds.ckcugtyobtiz.ap-southeast-1.rds.amazonaws.com'),
+            'host' => env('DB_HOST', 'pmk-rds.c4kxps5njwec.ap-southeast-1.rds.amazonaws.com'),
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'pmk'),
-            'username' => env('DB_USERNAME', 'pmk'),
+            'username' => env('DB_USERNAME', 'admin'),
             'password' => env('DB_PASSWORD', 'bknls920kk'),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
