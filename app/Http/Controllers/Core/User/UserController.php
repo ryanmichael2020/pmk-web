@@ -8,11 +8,12 @@ use App\Models\User\UserDetail;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
-    public static function update($user_id, $email, $first_name, $last_name, $sex)
+    public static function update($user_id, $email, $first_name, $last_name, $sex, $password = null, $verify_password = null, $image = null)
     {
         try {
             $user = User::where('id', $user_id)->first();
@@ -24,7 +25,34 @@ class UserController extends Controller
                 DB::beginTransaction();
 
                 $user->email = $email;
+
+                if ($password != null && $verify_password != null) {
+                    if ($password == $verify_password) {
+                        $user->password = Hash::make($password);
+                    } else {
+                        $error = array();
+                        $error['message'] = 'Passwords do not match.';
+
+                        $response['error'] = $error;
+                        $response['message'] = 'Failed to update account.';
+                        $response['status_code'] = Response::HTTP_BAD_REQUEST;
+
+                        return $response;
+                    }
+                }
+
                 $user->save();
+
+                if ($image != null) {
+                    $image_path = public_path() . '/images/profile_pictures';
+                    $image_extension = $image->extension();
+                    $image_name = uniqid() . '.' . $image_extension;
+                    $image->move($image_path, $image_name);
+
+                    // image path stored in database
+                    $image_public_path = '/images/profile_pictures/' . $image_name;
+                    $user_detail->image = $image_public_path;
+                }
 
                 $user_detail->first_name = $first_name;
                 $user_detail->last_name = $last_name;

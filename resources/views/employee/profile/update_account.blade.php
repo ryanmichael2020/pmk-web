@@ -29,7 +29,7 @@
         <div class="row">
             <div class="col-sm-12 col-md-8 col-lg-6 mx-auto">
 
-                <form method="post" action="/profile/account/update">
+                <form method="post" action="/profile/account/update" enctype="multipart/form-data">
                     {{ csrf_field() }}
 
                     @include('response_notifiers.response_card')
@@ -44,12 +44,38 @@
                         </div>
 
                         <div class="card-body">
-                            <p class="text-orange mb-0" style="font-size: 12px;">* Updating your email will change your login credentials.</p>
+                            <div class="form-group">
+                                <label for="image">Image</label>
+                                <input type="file" name="image" id="image" class="form-control">
+                            </div>
 
+                            <p class="text-orange mb-0" style="font-size: 12px;">* Updating your email will change your login credentials.</p>
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input id="email" name="email" type="text" class="form-control" maxlength="255"
                                        placeholder="Enter email" value="{{ $user->email }}" required>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class="text-orange mb-0" style="font-size: 12px;">* Leave empty if you're not changing your password.</p>
+                                </div>
+
+                                <div class="col-sm-12 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input id="password" name="password" type="password" class="form-control" maxlength="32"
+                                               placeholder="Enter password">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="verify_password">Verify Password</label>
+                                        <input id="verify_password" name="verify_password" type="password" class="form-control" maxlength="32"
+                                               placeholder="Re-enter password">
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="row">

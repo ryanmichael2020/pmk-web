@@ -20,6 +20,7 @@ class CreateNotificationsTable extends Migration
             $table->foreignId('notification_type_id')->references('id')->on('notification_types');
             $table->string('title', 32);
             $table->string('message', 512);
+            $table->boolean('read')->default(false);
 
             $table->foreign('sender_id')->references('id')->on('users');
             $table->timestamps();

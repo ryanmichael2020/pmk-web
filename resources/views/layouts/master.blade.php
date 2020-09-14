@@ -81,7 +81,24 @@
 
 <!-- Argon JS -->
 <script src="{{ asset('js/argon.js') }}"></script>
-
+<script>
+    @if(auth()->check())
+    $('#nav_notifications').on('click', function () {
+        $.post({
+            type: 'POST',
+            url: '/api/notifications/read',
+            data: {
+                'user_id': {{ auth()->user()->id }},
+            },
+        }).done(function () {
+            console.log('notification marked as read');
+            $('#new_notifications_count').remove();
+        }).fail(function () {
+            console.log('notification failed to mark as read');
+        });
+    });
+    @endif
+</script>
 </body>
 
 </html>

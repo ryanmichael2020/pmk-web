@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/notifications/read', 'API\Notification\ApiNotificationController@markAllRecentAsRead');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });

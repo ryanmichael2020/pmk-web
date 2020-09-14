@@ -16,21 +16,22 @@ use App\Http\Requests\Employee\UpdateEmployeeRequest;
 use App\Http\Requests\Employee\UpdateEmployeeSkillsRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Log;
 
 class WebEmployeeProfileManagementController extends Controller
 {
     public function updateEmployeeAccount(UpdateUserRequest $request)
     {
         $email = $request->email;
+        $password = $request->password;
+        $verify_password = $request->verify_password;
         $first_name = $request->first_name;
         $last_name = $request->last_name;
         $sex = $request->sex;
+        $image = $request->image;
 
         $user_id = auth()->user()->id;
 
-        $response = UserController::update($user_id, $email, $first_name, $last_name, $sex);
-        Log::debug($response);
+        $response = UserController::update($user_id, $email, $first_name, $last_name, $sex, $password, $verify_password, $image);
         if ($response['status_code'] == Response::HTTP_OK) {
             session()->flash('response_type', 'success');
             session()->flash('message', $response['message']);

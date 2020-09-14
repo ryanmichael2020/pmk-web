@@ -26,7 +26,10 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
+            'image' => 'nullable|image|mimes:jpeg,png,jpg',
             'email' => 'required|email|max:255',
+            'password' => 'string|max:32',
+            'verify_password' => 'required_with:password|string|max:32',
             'first_name' => 'required|string|max:64',
             'last_name' => 'required|string|max:32',
             'sex' => 'required|string|max:16',

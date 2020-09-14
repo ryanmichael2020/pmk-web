@@ -67,11 +67,22 @@ $nav_notifications = \App\Models\Notification\Notification::where('recipient_id'
                 </li>
                 {{-- End of Job Offers --}}
 
+                <?php
+                $new_notifications_count = 0;
+                foreach ($nav_notifications as $notification) {
+                    if (!$notification->read)
+                        $new_notifications_count++;
+                }
+                ?>
+
                 {{-- Notifications --}}
-                <li class="nav-item dropdown text-white">
+                <li id="nav_notifications" class="nav-item dropdown text-white">
                     <a href="#" class="nav-link nav-link-icon d-none d-lg-block" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Notifications
+                        @if($new_notifications_count > 0)
+                            <span id="new_notifications_count" class="ml-2 badge badge-primary">{{ $new_notifications_count }}</span>
+                        @endif
                     </a>
 
                     <a href="#" class="nav-link nav-link-icon d-lg-none" role="button"

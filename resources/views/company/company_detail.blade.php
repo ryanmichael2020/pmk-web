@@ -28,6 +28,22 @@
                         <li class="breadcrumb-item"><a href="#">Company</a></li>
                     </ol>
 
+                    @if($company->address != null)
+                        <p class="mb-0 text-white">
+                            Address: {{ $company->address }}
+                        </p>
+                    @endif
+
+                    <p class="mb-0 text-white">
+                        Contact: {{ $company->contact }}
+                    </p>
+
+                    @if($company->description != null)
+                    <p class="mb-0 text-white">
+                        {!! nl2br(e($company->description)) !!}
+                    </p>
+                    @endif
+
                     @if(auth()->user()->user_type_id == \App\Models\User\UserType::$EMPLOYER)
                         @if(auth()->user()->employer->company_id == $company->id)
                             <a href="/company/{{ $company->id }}/employees" class="btn btn-secondary mt-2">

@@ -36,6 +36,7 @@
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Contact</th>
+                                <th>Address</th>
                                 <th>Created</th>
                                 <th>Updated</th>
                                 <th>Actions</th>
@@ -82,6 +83,7 @@
                     {data: 'id', name: 'id',},
                     {data: 'name', name: 'type',},
                     {data: 'contact', name: 'contact',},
+                    {data: 'address', name: 'address',},
                     {data: 'created_at', name: 'created_at',},
                     {data: 'updated_at', name: 'updated_at',},
                     {data: 'action', name: 'action', orderable: false,},
