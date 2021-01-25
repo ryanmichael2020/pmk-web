@@ -17,11 +17,13 @@ class CreateEmployeesTable extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('company_id')->nullable();
+            $table->unsignedBigInteger('job_post_id')->nullable();
             $table->string('age', 2)->nullable();
             $table->string('address', 512)->nullable();
             $table->string('mobile', 16)->nullable();
 
             $table->foreign('company_id')->references('id')->on('companies');
+            $table->foreign('job_post_id')->references('id')->on('job_posts');
             $table->timestamps();
         });
     }

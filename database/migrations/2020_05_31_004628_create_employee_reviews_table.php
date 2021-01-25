@@ -17,6 +17,8 @@ class CreateEmployeeReviewsTable extends Migration
             $table->id();
             $table->foreignId('company_id')->references('id')->on('companies');
             $table->foreignId('employee_id')->references('id')->on('employees');
+            $table->foreignId('job_post_id')->references('id')->on('job_posts');
+            $table->text('comment')->nullable();
             $table->decimal('score');
             $table->timestamps();
         });

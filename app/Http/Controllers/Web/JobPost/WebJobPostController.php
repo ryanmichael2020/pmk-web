@@ -28,8 +28,9 @@ class WebJobPostController extends Controller
         $description = $request->description;
         $max_applicants = $request->max_applicants;
         $employer_id = auth()->user()->employer->id;
+        $company_id = auth()->user()->employer->company_id;
 
-        $response = JobPostController::create($employer_id, $position, $description, $max_applicants);
+        $response = JobPostController::create($employer_id, $company_id, $position, $description, $max_applicants);
 
         if ($response['status_code'] == Response::HTTP_OK) {
             session()->flash('response_type', 'success');

@@ -60,6 +60,7 @@ Route::get('/admin/management/employee/{employee_id}/profile', 'Web\Employee\Web
 
 Route::get('/employees/datatable', 'Web\Employee\WebEmployeeController@getDataTable');
 Route::get('/company/{company_id}/employees/datatable', 'Web\Employee\WebEmployeeController@getDataTableByCompanyId');
+Route::get('/company/{company_id}/employees/dismissed/datatable', 'Web\Employee\WebEmployeeController@getDismissedDataTableByCompanyId');
 Route::post('/employee/dismiss', 'Web\Employee\WebEmployeeController@dismissEmployee');
 
 // Employee Routes
@@ -68,7 +69,7 @@ Route::get('/dashboard', 'Web\Employee\WebEmployeeDashboardPageController@displa
 // Employee Profile Routes
 Route::get('/employee/{employee_id}/profile', 'Web\Employee\WebEmployeeProfileManagementPageController@displayProfilePeekPage');
 
-Route::get('/profile', 'Web\Employee\WebEmployeeProfileManagementPageController@displayProfileDashboardPage');
+    Route::get('/profile', 'Web\Employee\WebEmployeeProfileManagementPageController@displayProfileDashboardPage');
 Route::get('/profile/account/update', 'Web\Employee\WebEmployeeProfileManagementPageController@displayProfileAccountUpdatePage');
 Route::get('/profile/details/update', 'Web\Employee\WebEmployeeProfileManagementPageController@displayProfileDetailsUpdatePage');
 Route::get('/profile/skills/update', 'Web\Employee\WebEmployeeProfileManagementPageController@displayProfileSkillsUpdatePage');
@@ -128,6 +129,7 @@ Route::get('/employer/job_offers', 'Web\Employer\JobOffer\WebEmployerJobOfferMan
 // Company Routes
 Route::get('/company/{company_id}', 'Web\Company\WebCompanyDetailController@displayDetailPage');
 Route::get('/company/{company_id}/employees', 'Web\Company\WebCompanyDetailController@displayCompanyEmployeesPage');
+Route::get('/company/{company_id}/employees/dismissed', 'Web\Company\WebCompanyDetailController@displayCompanyDismissedEmployeesPage');
 
 // Company Review Routes
 Route::Post('/company/review', 'Web\company\WebCompanyController@createReview');

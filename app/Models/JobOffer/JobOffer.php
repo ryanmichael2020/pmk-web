@@ -7,6 +7,7 @@ use App\Models\Employer\Employer;
 use App\Models\JobPost\JobPost;
 use App\Models\JobPost\JobPostApplication;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class JobOffer extends Model
 {
@@ -69,11 +70,22 @@ class JobOffer extends Model
 
     public function isAcceptable()
     {
-        if ($this->job_offer_status_id == JobOfferStatus::$PENDING) {
-            return true;
-        }
+        try {
+            if (auth()->user()->employee->job_post_id != null) {
+                return false;
+            }
 
-        return false;
+            if ($this->job_offer_status_id == JobOfferStatus::$PENDING) {
+                return true;
+            }
+
+            return false;
+        } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
+            Log::error($exception->getTraceAsString());
+
+            return false;
+        }
     }
 
     public function isRejectable()

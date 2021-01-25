@@ -31,7 +31,10 @@ class NotificationTypeSeeder extends Seeder
             [
                 'type' => 'Job Offer Declined',
                 // Receiver is employer (job offer is declined)
-            ]
+            ],
+            [
+                'type' => 'Employee Dismissed',
+            ],
         ]);
     }
 }

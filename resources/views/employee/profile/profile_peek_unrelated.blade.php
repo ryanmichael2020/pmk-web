@@ -44,8 +44,17 @@
                     </div>
 
                     <div class="card-body">
-                        <strong>Email</strong>
-                        <p>{{ $user->email }}</p>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6">
+                                <strong>Email</strong>
+                                <p>{{ $user->email }}</p>
+                            </div>
+
+                            <div class="col-sm-12 col-md-6">
+                                <strong>Status</strong>
+                                <p>{{ ($user->employee->company_id != null) ? 'Employed' : 'Unemployed' }}</p>
+                            </div>
+                        </div>
 
                         <div class="row">
                             <div class="col-sm-12 col-md-6">

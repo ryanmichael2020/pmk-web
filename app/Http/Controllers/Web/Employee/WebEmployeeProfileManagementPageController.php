@@ -8,6 +8,8 @@ use App\Models\Employee\EmployeeEducation;
 use App\Models\Employee\EmployeeReview;
 use App\Models\Employee\EmployeeSkill;
 use App\Models\Employee\EmployeeTraining;
+use App\Models\JobPost\JobPost;
+use App\Models\JobPost\JobPostApplication;
 use App\Models\User\User;
 use App\Models\User\UserType;
 
@@ -30,6 +32,18 @@ class WebEmployeeProfileManagementPageController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
+        $job_post_application_ids = JobPostApplication::where('employee_id', $employee_id)->get()->pluck('job_post_id');
+        $job_posts = JobPost::whereIn('id', $job_post_application_ids)
+            ->get();
+
+        foreach ($job_posts as $job_post_key => $job_post) {
+            foreach ($employee_reviews as $employee_review_key => $employee_review) {
+                if ($job_post->id == $employee_review->job_post_id) {
+                    unset($job_posts[$job_post_key]);
+                }
+            }
+        }
+
         $can_create_review = false;
         if (auth()->user()->user_type_id == UserType::$EMPLOYER) {
             $employer_company_id = auth()->user()->employer->company_id;
@@ -39,12 +53,15 @@ class WebEmployeeProfileManagementPageController extends Controller
 
             if (count($employee_reviews_from_company) < 1 && $employee->company_id == $employer_company_id) {
                 $can_create_review = true;
+            } else if (count($job_posts) > 0) {
+                $can_create_review = true;
             }
         }
 
         // TODO :: Allow employee review for admin
 
         return view('employee.profile.view_employee_reviews')
+            ->with('job_posts', $job_posts)
             ->with('employee', $employee)
             ->with('employee_reviews', $employee_reviews)
             ->with('can_create_review', $can_create_review);

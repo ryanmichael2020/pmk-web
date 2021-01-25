@@ -5,6 +5,7 @@ namespace App\Models\Employee;
 use App\Models\Company\Company;
 use App\Models\Company\CompanyReview;
 use App\Models\JobOffer\JobOffer;
+use App\Models\JobPost\JobPost;
 use App\Models\JobPost\JobPostApplication;
 use App\Models\User\User;
 use Illuminate\Database\Eloquent\Model;
@@ -17,7 +18,7 @@ class Employee extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'age', 'address', 'mobile', 'company_id',
+        'user_id', 'age', 'address', 'mobile', 'company_id', 'job_post_id',
     ];
 
     /**
@@ -61,6 +62,11 @@ class Employee extends Model
     public function employeeReviews()
     {
         return $this->hasMany(EmployeeReview::class);
+    }
+
+    public function jobPost()
+    {
+        return $this->belongsTo(JobPost::class);
     }
 
     public function jobPostApplications()

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Log;
 
 class EmployeeReviewController extends Controller
 {
-    public static function createReview($company_id, $employee_id, $punctuality_score, $performance_score, $personality_score)
+    public static function createReview($company_id, $employee_id, $job_post_id, $punctuality_score, $performance_score, $personality_score, $comment = '')
     {
         $response = array();
 
@@ -30,6 +30,8 @@ class EmployeeReviewController extends Controller
                 $employee_review->score = $score_average;
                 $employee_review->company_id = $company_id;
                 $employee_review->employee_id = $employee_id;
+                $employee_review->job_post_id = $job_post_id;
+                $employee_review->comment = $comment;
                 $employee_review->save();
 
                 $emp_punc_score = new EmployeeReviewScore();

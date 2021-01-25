@@ -3,6 +3,7 @@
 namespace App\Models\Employee;
 
 use App\Models\Company\Company;
+use App\Models\JobPost\JobPost;
 use Illuminate\Database\Eloquent\Model;
 
 class EmployeeReview extends Model
@@ -13,7 +14,7 @@ class EmployeeReview extends Model
      * @var array
      */
     protected $fillable = [
-        'company_id', 'employee_id', 'score',
+        'company_id', 'employee_id', 'job_post_id', 'score', 'comment',
     ];
 
     /**
@@ -42,6 +43,11 @@ class EmployeeReview extends Model
     public function employee()
     {
         return $this->belongsTo(Employee::class);
+    }
+
+    public function jobPost()
+    {
+        return $this->belongsTo(JobPost::class);
     }
 
     public function employeeReviewScores()

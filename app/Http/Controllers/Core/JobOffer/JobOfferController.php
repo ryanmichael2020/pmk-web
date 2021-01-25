@@ -143,10 +143,12 @@ class JobOfferController extends Controller
                 $employee_company_history = new EmployeeCompanyHistory();
                 $employee_company_history->employee_id = $job_offer->employee_id;
                 $employee_company_history->company_id = $job_offer->company_id;
+                $employee_company_history->job_post_id = $job_post->id;
                 $employee_company_history->save();
 
                 $employee = Employee::where('id', $job_offer->employee_id)->first();
                 $employee->company_id = $job_offer->company_id;
+                $employee->job_post_id = $job_post->id;
                 $employee->save();
 
                 $sender_id = $job_offer->employee->user->id;

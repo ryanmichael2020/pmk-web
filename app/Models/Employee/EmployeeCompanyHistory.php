@@ -3,6 +3,7 @@
 namespace App\Models\Employee;
 
 use App\Models\Company\Company;
+use App\Models\JobPost\JobPost;
 use Illuminate\Database\Eloquent\Model;
 
 class EmployeeCompanyHistory extends Model
@@ -13,7 +14,7 @@ class EmployeeCompanyHistory extends Model
      * @var array
      */
     protected $fillable = [
-        'employee_id', 'company_id',
+        'employee_id', 'company_id', 'job_post_id', 'dismissed_at',
     ];
 
     /**
@@ -33,5 +34,10 @@ class EmployeeCompanyHistory extends Model
     public function company()
     {
         return $this->belongsTo(Company::class);
+    }
+
+    public function jobPost()
+    {
+        return $this->belongsTo(JobPost::class);
     }
 }

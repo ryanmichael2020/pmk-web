@@ -105,9 +105,8 @@ class JobPostApplication extends Model
 
     public function cancellable()
     {
-        if ($this->job_post_application_status_id == JobPostApplicationStatus::$CANCELLED) {
-            return false;
-        } else if ($this->job_post_application_status_id == JobPostApplicationStatus::$SENT_JOB_OFFER) {
+        if ($this->job_post_application_status_id == JobPostApplicationStatus::$CANCELLED ||
+            $this->job_post_application_status_id == JobPostApplicationStatus::$HIRED) {
             return false;
         }
 

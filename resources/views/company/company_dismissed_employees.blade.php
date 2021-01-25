@@ -37,8 +37,8 @@
                         Go Back
                     </a>
 
-                    <a href="/company/{{ $company->id }}/employees/dismissed" class="btn btn-secondary mt-2">
-                        View Dismissed Employees
+                    <a href="/company/{{ $company->id }}/employees" class="btn btn-secondary mt-2">
+                        View Current Employees
                     </a>
                 </div>
             </div>
@@ -93,7 +93,7 @@
                     }
                 },
                 ajax: {
-                    url: "/company/{{ $company->id }}/employees/datatable",
+                    url: "/company/{{ $company->id }}/employees/dismissed/datatable",
                     "dataType": "json",
                     "type": "GET",
                 },
@@ -102,7 +102,7 @@
                     {
                         data: null,
                         render: function (data, type, row) {
-                            return row.user_detail.first_name + ' ' + row.user_detail.last_name;
+                            return row.employee.user.user_detail.first_name + ' ' + row.employee.user.user_detail.last_name;
                         },
                     },
                     {
@@ -120,7 +120,7 @@
                             return (row.employee.age != null) ? row.employee.age : 'N/A';
                         },
                     },
-                    {data: 'user_detail.sex', name: 'user_detail.sex',},
+                    {data: 'employee.user.user_detail.sex', name: 'employee.user.user_detail.sex',},
                     {
                         data: null,
                         render: function (data, type, row) {

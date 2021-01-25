@@ -15,7 +15,9 @@ use App\Http\Requests\Employee\CreateEmployeeTrainingRequest;
 use App\Http\Requests\Employee\UpdateEmployeeRequest;
 use App\Http\Requests\Employee\UpdateEmployeeSkillsRequest;
 use App\Http\Requests\User\UpdateUserRequest;
+use App\Models\JobPost\JobPost;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 
 class WebEmployeeProfileManagementController extends Controller
 {
@@ -123,13 +125,16 @@ class WebEmployeeProfileManagementController extends Controller
 
     public function addRating(CreateEmployeeReviewRequest $request)
     {
-        $company_id = $request->company_id;
         $employee_id = $request->employee_id;
+        $job_post_id = $request->job_post_id;
         $punctuality_score = $request->punctuality_score;
         $performance_score = $request->performance_score;
         $personality_score = $request->personality_score;
+        $comment = $request->comment;
 
-        $response = EmployeeReviewController::createReview($company_id, $employee_id, $punctuality_score, $performance_score, $personality_score);
+        $job_post = JobPost::where('id', $job_post_id)->first();
+
+        $response = EmployeeReviewController::createReview($job_post->company_id, $employee_id, $job_post_id, $punctuality_score, $performance_score, $personality_score, $comment);
         if ($response['status_code'] == Response::HTTP_OK) {
             session()->flash('response_type', 'success');
             session()->flash('message', $response['message']);

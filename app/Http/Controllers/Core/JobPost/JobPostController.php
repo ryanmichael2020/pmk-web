@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Log;
 
 class JobPostController extends Controller
 {
-    public static function create($employer_id, $position, $description, $max_applicants)
+    public static function create($employer_id, $company_id, $position, $description, $max_applicants)
     {
         $response = array();
 
@@ -23,6 +23,7 @@ class JobPostController extends Controller
 
             $job_post = new JobPost();
             $job_post->employer_id = $employer_id;
+            $job_post->company_id = $company_id;
             $job_post->position = $position;
             $job_post->description = $description;
             $job_post->max_applicants = $max_applicants;

@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Core\Employee\EmployeeController;
 use App\Http\Requests\Employee\DismissEmployeeRequest;
 use App\Models\Employee\Employee;
+use App\Models\Employee\EmployeeCompanyHistory;
 use App\Models\User\User;
 use App\Models\User\UserType;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\DataTables;
 
 class WebEmployeeController extends Controller
@@ -70,6 +72,38 @@ class WebEmployeeController extends Controller
             ->whereIn('id', $employee_user_ids)->get();
 
         $data = DataTables::of($employees)
+            ->addColumn('action', function ($data) {
+                // $button = '<a href="' . $this->editRoute($data->id) . '" class="mx-1" title="Edit"><i class="fas fa-edit fa-lg"></i></a>';
+                $button = '<a href="' . $this->detailedViewRoute($data->employee->id) . '" class="mx-1" title="View"><i class="fas fa-eye fa-lg"></i></a>';
+                return $button;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+
+        return $data;
+    }
+
+    public function getDismissedDataTableByCompanyId($company_id)
+    {
+        $current_employees = Employee::where('company_id', $company_id)
+            ->with('user.userDetail')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $recorded_employees = EmployeeCompanyHistory::where('company_id', $company_id)
+            ->with('employee.user.userDetail')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        foreach ($recorded_employees as $recorded_employee_key => $recorded_employee) {
+            foreach ($current_employees as $current_employee_key => $current_employee) {
+                if ($recorded_employee->employee_id != $current_employee->employee_id) {
+                    unset($recorded_employees[$recorded_employee_key]);
+                }
+            }
+        }
+
+        $data = DataTables::of($recorded_employees)
             ->addColumn('action', function ($data) {
                 // $button = '<a href="' . $this->editRoute($data->id) . '" class="mx-1" title="Edit"><i class="fas fa-edit fa-lg"></i></a>';
                 $button = '<a href="' . $this->detailedViewRoute($data->employee->id) . '" class="mx-1" title="View"><i class="fas fa-eye fa-lg"></i></a>';

@@ -23,5 +23,9 @@
         <a href="#trainings" class="list-group-item">
             Trainings
         </a>
+
+        <a href="#employment_history" class="list-group-item">
+            Employment History
+        </a>
     </div>
 </div>

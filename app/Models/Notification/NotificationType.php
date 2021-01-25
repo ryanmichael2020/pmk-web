@@ -12,6 +12,8 @@ class NotificationType extends Model
     static $JOB_OFFER_ACCEPTED = 4;
     static $JOB_OFFER_DECLINED = 5;
 
+    static $EMPLOYEE_DISMISSED = 6;
+
     /**
      * The attributes that are mass assignable.
      *

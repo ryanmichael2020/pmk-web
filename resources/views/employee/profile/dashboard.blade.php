@@ -44,8 +44,17 @@
                     </div>
 
                     <div class="card-body">
-                        <strong>Email</strong>
-                        <p>{{ auth()->user()->email }}</p>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6">
+                                <strong>Email</strong>
+                                <p>{{ auth()->user()->email }}</p>
+                            </div>
+
+                            <div class="col-sm-12 col-md-6">
+                                <strong>Status</strong>
+                                <p>{{ (auth()->user()->employee->company_id != null) ? 'Employed' : 'Unemployed' }}</p>
+                            </div>
+                        </div>
 
                         <div class="row">
                             <div class="col-sm-12 col-md-6">
@@ -242,6 +251,54 @@
                                 </li>
                             @endif
                         </ul>
+                    </div>
+                </div>
+
+                {{-- Employment History --}}
+                <div id="employment_history" class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-auto">
+                                <h1 class="my-0">Employment History</h1>
+                            </div>
+
+                            <div class="col-auto ml-auto my-auto">
+                                <a href="#">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        @if(count(auth()->user()->employee->employeeCompanyHistory) > 0)
+                            @foreach(auth()->user()->employee->employeeCompanyHistory as $employeeCompanyHistory)
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="mb-0">
+                                            <b class="h3">{{ $employeeCompanyHistory->jobPost->position }}</b> at
+                                            <b class="h3">
+                                                <a href="/company/{{ $employeeCompanyHistory->id }}">
+                                                    {{ $employeeCompanyHistory->company->name }}
+                                                </a>
+                                            </b>
+                                        </p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <p class="mb-0" style="font-size: 14px;">
+                                            Date Hired: {{ $employeeCompanyHistory->created_at }}
+                                        </p>
+
+                                        @if($employeeCompanyHistory->dismissed_at != null)
+                                            <p class="mb-0" style="font-size: 14px;">
+                                                Date Dismissed: {{ $employeeCompanyHistory->dismissed_at }}
+                                            </p>
+                                        @endif
+                                    </div>
+                                </div>
+                            @endforeach
+                        @else
+                            <span class="badge badge-pill badge-default" style="font-size: 14px;">None</span>
+                        @endif
                     </div>
                 </div>
             </div>

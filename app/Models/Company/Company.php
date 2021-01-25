@@ -7,6 +7,7 @@ use App\Models\Employee\EmployeeCompanyHistory;
 use App\Models\Employee\EmployeeReview;
 use App\Models\Employer\Employer;
 use App\Models\JobOffer\JobOffer;
+use App\Models\JobPost\JobPost;
 use Illuminate\Database\Eloquent\Model;
 
 class Company extends Model
@@ -56,6 +57,11 @@ class Company extends Model
     public function employeeCompanyHistory()
     {
         return $this->hasMany(EmployeeCompanyHistory::class);
+    }
+
+    public function jobPosts()
+    {
+        return $this->hasMany(JobPost::class);
     }
 
     public function jobOffers()

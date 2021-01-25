@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 class CreateEmployeeCompanyHistoriesTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the migrations.e
      *
      * @return void
      */
@@ -17,6 +17,8 @@ class CreateEmployeeCompanyHistoriesTable extends Migration
             $table->id();
             $table->foreignId('employee_id')->references('id')->on('employees');
             $table->foreignId('company_id')->references('id')->on('companies');
+            $table->foreignId('job_post_id')->references('id')->on('job_posts');
+            $table->timestamp('dismissed_at')->nullable();
             $table->timestamps();
         });
     }

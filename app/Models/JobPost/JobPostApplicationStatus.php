@@ -21,6 +21,7 @@ class JobPostApplicationStatus extends Model
     // job offer is sent or retracted by employer
     public static $SENT_JOB_OFFER = 3;
     public static $RETRACTED_JOB_OFFER = 7;
+    public static $FULFILLED_JOB_OFFER = 8;
 
     /**
      * The attributes that are mass assignable.

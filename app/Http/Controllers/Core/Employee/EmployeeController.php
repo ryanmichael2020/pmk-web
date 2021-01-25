@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Core\Employee;
 
 use App\Http\Controllers\Controller;
 use App\Models\Employee\Employee;
+use App\Models\Employee\EmployeeCompanyHistory;
+use App\Models\Notification\Notification;
+use App\Models\Notification\NotificationType;
+use Carbon\Carbon;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -88,7 +92,21 @@ class EmployeeController extends Controller
                 $company_name = $employee->company->name;
 
                 $employee->company_id = null;
+                $employee->job_post_id = null;
                 $employee->save();
+
+                $employee_company_history = EmployeeCompanyHistory::where('company_id', $employee->company->id)
+                    ->where('employee_id', $employee_id)->first();
+                $employee_company_history->dismissed_at = Carbon::now();
+                $employee_company_history->save();
+
+                $notification = new Notification();
+                $notification->sender_id = auth()->user()->id;
+                $notification->recipient_id = $employee->user_id;
+                $notification->notification_type_id = NotificationType::$EMPLOYEE_DISMISSED;
+                $notification->title = 'Employment Dismissed';
+                $notification->message = 'You have been dismissed from your employment by your company.';
+                $notification->save();
 
                 DB::commit();
 

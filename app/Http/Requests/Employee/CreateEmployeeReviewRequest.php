@@ -26,7 +26,6 @@ class CreateEmployeeReviewRequest extends FormRequest
     public function rules()
     {
         return [
-            'company_id' => 'required|integer',
             'employee_id' => 'required|integer',
             'punctuality_score' => 'required|integer',
             'performance_score' => 'required|integer',
