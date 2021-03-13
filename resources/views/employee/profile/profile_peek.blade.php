@@ -353,7 +353,7 @@
                                         <p class="mb-0">
                                             <b class="h3">{{ $employeeCompanyHistory->jobPost->position }}</b> at
                                             <b class="h3">
-                                                <a href="/company/{{ $employeeCompanyHistory->id }}">
+                                                <a href="/company/{{ $employeeCompanyHistory->company_id }}">
                                                     {{ $employeeCompanyHistory->company->name }}
                                                 </a>
                                             </b>

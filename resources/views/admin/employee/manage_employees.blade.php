@@ -38,6 +38,7 @@
                                 <th>Age</th>
                                 <th>Sex</th>
                                 <th>Mobile</th>
+                                <th>Status</th>
                                 <th>Created</th>
                                 <th>Updated</th>
                                 <th>Actions</th>
@@ -88,6 +89,12 @@
                         data: null,
                         render: function (data, type, row) {
                             return (row.employee.mobile != null) ? row.employee.mobile : 'N/A';
+                        },
+                    },
+                    {
+                        data: null,
+                        render: function (data, type, row) {
+                            return (row.deleted_at !== null) ? 'ACTIVE' : 'SUSPENDED';
                         },
                     },
                     {data: 'created_at', name: 'created_at',},

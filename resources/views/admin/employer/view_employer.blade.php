@@ -15,6 +15,18 @@
             <a href="/admin/management/employers" class="btn btn-primary">
                 Go Back
             </a>
+
+            @if($employer->user->deleted_at == null)
+                <a href="/" class="btn btn-danger" data-toggle="modal"
+                   data-target="#suspend_user_modal">
+                    Suspend Account
+                </a>
+            @else
+                <a href="/" class="btn btn-secondary" data-toggle="modal"
+                   data-target="#restore_user_modal">
+                    Restore Account
+                </a>
+            @endif
         </div>
     </div>
 
@@ -83,15 +95,81 @@
                         </div>
                     </div>
 
-                    <div class="card-footer">
-                        <a href="/admin/management/employer/{{ $employer->id }}/update"
-                           class="btn bg-orange text-white">
-                            Edit Employer
-                        </a>
-                    </div>
+                    @if($employer->user->deleted_at == null)
+                        <div class="card-footer">
+                            <a href="/admin/management/employer/{{ $employer->id }}/update"
+                               class="btn bg-orange text-white">
+                                Edit Employer
+                            </a>
+                        </div>
+                    @endif
                 </div>
 
             </div>
         </form>
     </div>
+
+    <form method="post" action="/user/suspend">
+        {{ csrf_field() }}
+        <input type="hidden" name="user_id" value="{{ $employer->user->id }}">
+
+        <div class="modal fade" id="suspend_user_modal"
+             tabindex="-1" role="dialog"
+             aria-labelledby="suspend_user_modal"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title mb-0">Suspend Account</h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body py-0">
+                        <p class="mb-0">
+                            Are you sure you want to suspend this account?
+                        </p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                        </button>
+                        <button type="submit" class="btn btn-danger">Suspend Account</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <form method="post" action="/user/restore">
+        {{ csrf_field() }}
+        <input type="hidden" name="user_id" value="{{ $employer->user->id }}">
+
+        <div class="modal fade" id="restore_user_modal"
+             tabindex="-1" role="dialog"
+             aria-labelledby="restore_user_modal"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title mb-0">Restore Account</h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body py-0">
+                        <p class="mb-0">
+                            Are you sure you want to restore this account?
+                        </p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                        </button>
+                        <button type="submit" class="btn btn-primary">Restore Account</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 @endsection

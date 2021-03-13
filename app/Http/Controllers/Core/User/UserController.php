@@ -113,4 +113,110 @@ class UserController extends Controller
 
         return $response;
     }
+
+    public static function suspendAccount($user_id)
+    {
+        $response = [];
+
+        try {
+            DB::beginTransaction();
+
+            $user = User::where('id', $user_id)->first();
+
+            if ($user != null) {
+                $user->delete();
+
+                DB::commit();
+
+                $response['message'] = 'Account successfully suspended.';
+                $response['status_code'] = Response::HTTP_OK;
+            } else {
+                $error = [
+                    'message' => 'Invalid user provided.',
+                ];
+
+                $response['error'] = $error;
+                $response['message'] = 'Failed to suspend account.';
+                $response['status_code'] = Response::HTTP_BAD_REQUEST;
+            }
+
+            DB::commit();
+        } catch (QueryException $exception) {
+            Log::error($exception->getMessage());
+            Log::error($exception->getTraceAsString());
+
+            $error = array();
+            $error['message'] = 'Query exception occurred.';
+
+            $response['error'] = $error;
+            $response['message'] = 'Failed to suspend account.';
+            $response['status_code'] = Response::HTTP_BAD_REQUEST;
+        } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
+            Log::error($exception->getTraceAsString());
+
+            $error = array();
+            $error['message'] = 'Unknown error occurred.';
+
+            $response['error'] = $error;
+            $response['message'] = 'Failed to suspend account.';
+            $response['status_code'] = Response::HTTP_INTERNAL_SERVER_ERROR;
+        }
+
+        return $response;
+    }
+
+    public static function restoreAccount($user_id)
+    {
+        $response = [];
+
+        try {
+            DB::beginTransaction();
+
+            $user = User::where('id', $user_id)
+                ->withTrashed()
+                ->first();
+
+            if ($user != null) {
+                $user->restore();
+
+                DB::commit();
+
+                $response['message'] = 'Account successfully restored.';
+                $response['status_code'] = Response::HTTP_OK;
+            } else {
+                $error = [
+                    'message' => 'Invalid user provided.',
+                ];
+
+                $response['error'] = $error;
+                $response['message'] = 'Failed to restore account.';
+                $response['status_code'] = Response::HTTP_BAD_REQUEST;
+            }
+
+            DB::commit();
+        } catch (QueryException $exception) {
+            Log::error($exception->getMessage());
+            Log::error($exception->getTraceAsString());
+
+            $error = array();
+            $error['message'] = 'Query exception occurred.';
+
+            $response['error'] = $error;
+            $response['message'] = 'Failed to restore account.';
+            $response['status_code'] = Response::HTTP_BAD_REQUEST;
+        } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
+            Log::error($exception->getTraceAsString());
+
+            $error = array();
+            $error['message'] = 'Unknown error occurred.';
+
+            $response['error'] = $error;
+            $response['message'] = 'Failed to restore account.';
+            $response['status_code'] = Response::HTTP_INTERNAL_SERVER_ERROR;
+        }
+
+        return $response;
+    }
 }

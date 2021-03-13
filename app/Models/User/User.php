@@ -7,13 +7,15 @@ use App\Models\Employee\Employee;
 use App\Models\Employer\Employer;
 use App\Models\Login\DailyLoginHistory;
 use App\Models\Notification\Notification;
+use App\Scope\WithTrashedScope;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Mail;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -32,6 +34,13 @@ class User extends Authenticatable
     protected $hidden = [
 
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::addGlobalScope(new WithTrashedScope);
+    }
+
 
     public function sendVerificationEmail()
     {

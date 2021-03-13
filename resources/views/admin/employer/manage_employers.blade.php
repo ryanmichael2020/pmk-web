@@ -41,6 +41,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Contact</th>
+                                <th>Status</th>
                                 <th>Created</th>
                                 <th>Updated</th>
                                 <th>Actions</th>
@@ -82,6 +83,12 @@
                     },
                     {data: 'email', name: 'email',},
                     {data: 'employer.company.contact', name: 'employer.company.contact',},
+                    {
+                        data: null,
+                        render: function (data, type, row) {
+                            return (row.deleted_at !== null) ? 'ACTIVE' : 'SUSPENDED';
+                        },
+                    },
                     {data: 'created_at', name: 'created_at',},
                     {data: 'updated_at', name: 'updated_at',},
                     {data: 'action', name: 'action', orderable: false,},

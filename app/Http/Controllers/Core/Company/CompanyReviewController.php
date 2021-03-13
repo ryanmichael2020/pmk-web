@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Core\Company;
 
 use App\Http\Controllers\Controller;
 use App\Models\Company\CompanyReview;
+use App\Models\Employee\EmployeeCompanyHistory;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
@@ -21,9 +22,14 @@ class CompanyReviewController extends Controller
                 ->where('employee_id', $employee_id)->first();
 
             if ($company_reviews == null) {
+                $last_employment = EmployeeCompanyHistory::where('company_id', $company_id)
+                    ->where('employee_id', $employee_id)
+                    ->orderBy('created_at', 'desc')->first();
+
                 $company_review = new CompanyReview();
                 $company_review->employee_id = $employee_id;
                 $company_review->company_id = $company_id;
+                $company_review->job_post_id = $last_employment->job_post_id;
                 $company_review->score = $score;
                 $company_review->comment = $comment;
                 $company_review->save();

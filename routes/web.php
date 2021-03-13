@@ -69,7 +69,7 @@ Route::get('/dashboard', 'Web\Employee\WebEmployeeDashboardPageController@displa
 // Employee Profile Routes
 Route::get('/employee/{employee_id}/profile', 'Web\Employee\WebEmployeeProfileManagementPageController@displayProfilePeekPage');
 
-    Route::get('/profile', 'Web\Employee\WebEmployeeProfileManagementPageController@displayProfileDashboardPage');
+Route::get('/profile', 'Web\Employee\WebEmployeeProfileManagementPageController@displayProfileDashboardPage');
 Route::get('/profile/account/update', 'Web\Employee\WebEmployeeProfileManagementPageController@displayProfileAccountUpdatePage');
 Route::get('/profile/details/update', 'Web\Employee\WebEmployeeProfileManagementPageController@displayProfileDetailsUpdatePage');
 Route::get('/profile/skills/update', 'Web\Employee\WebEmployeeProfileManagementPageController@displayProfileSkillsUpdatePage');
@@ -135,6 +135,8 @@ Route::get('/company/{company_id}/employees/dismissed', 'Web\Company\WebCompanyD
 Route::Post('/company/review', 'Web\company\WebCompanyController@createReview');
 
 // TODO :: Add update and delete routes and functions
+Route::post('/user/suspend', [\App\Http\Controllers\Web\User\WebUserController::class, 'suspend']);
+Route::post('/user/restore', [\App\Http\Controllers\Web\User\WebUserController::class, 'restore']);
 
 // TODO :: Remove routes below
 Route::get('/admin/management/jobpost', 'Web\JobPost\WebJobPostManagementController@displayListPage');
