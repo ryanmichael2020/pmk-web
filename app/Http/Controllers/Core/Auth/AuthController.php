@@ -25,7 +25,9 @@ class AuthController extends Controller
         try {
             $user = User::with('userType', 'userDetail')
                 ->where('email', $email)
+                ->where('deleted_at', '=', null)
                 ->first();
+
             if ($user != null) { // if user is found
                 if ($user->email_verified_at != null) {
                     if (Hash::check($password, $user->password)) { // if password matches

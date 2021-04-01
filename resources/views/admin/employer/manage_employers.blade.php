@@ -76,17 +76,15 @@
                 columns: [
                     {data: 'employer.id', name: 'employer.id',},
                     {
-                        data: null,
-                        render: function (data, type, row) {
-                            return row.user_detail.first_name + ' ' + row.user_detail.last_name;
-                        },
+                        data: 'user_detail.full_name',
+                        name: 'user_detail.full_name',
                     },
                     {data: 'email', name: 'email',},
                     {data: 'employer.company.contact', name: 'employer.company.contact',},
                     {
                         data: null,
                         render: function (data, type, row) {
-                            return (row.deleted_at !== null) ? 'ACTIVE' : 'SUSPENDED';
+                            return (row.deleted_at === null) ? 'ACTIVE' : 'SUSPENDED';
                         },
                     },
                     {data: 'created_at', name: 'created_at',},

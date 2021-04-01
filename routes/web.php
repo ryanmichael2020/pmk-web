@@ -132,7 +132,7 @@ Route::get('/company/{company_id}/employees', 'Web\Company\WebCompanyDetailContr
 Route::get('/company/{company_id}/employees/dismissed', 'Web\Company\WebCompanyDetailController@displayCompanyDismissedEmployeesPage');
 
 // Company Review Routes
-Route::Post('/company/review', 'Web\company\WebCompanyController@createReview');
+Route::Post('/company/review', 'Web\Company\WebCompanyController@createReview');
 
 // TODO :: Add update and delete routes and functions
 Route::post('/user/suspend', [\App\Http\Controllers\Web\User\WebUserController::class, 'suspend']);

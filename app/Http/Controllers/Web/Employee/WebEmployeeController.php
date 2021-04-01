@@ -78,6 +78,7 @@ class WebEmployeeController extends Controller
                 return $button;
             })
             ->rawColumns(['action'])
+
             ->make(true);
 
         return $data;

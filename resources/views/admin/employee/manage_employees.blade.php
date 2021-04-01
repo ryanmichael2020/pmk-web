@@ -73,10 +73,8 @@
                 columns: [
                     {data: 'employee.id', name: 'employee.id',},
                     {
-                        data: null,
-                        render: function (data, type, row) {
-                            return row.user_detail.first_name + ' ' + row.user_detail.last_name;
-                        },
+                        data: 'user_detail.full_name',
+                        name: 'user_detail.full_name',
                     },
                     {
                         data: null,
@@ -94,7 +92,7 @@
                     {
                         data: null,
                         render: function (data, type, row) {
-                            return (row.deleted_at !== null) ? 'ACTIVE' : 'SUSPENDED';
+                            return (row.deleted_at === null) ? 'ACTIVE' : 'SUSPENDED';
                         },
                     },
                     {data: 'created_at', name: 'created_at',},
