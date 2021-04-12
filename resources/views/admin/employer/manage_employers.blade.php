@@ -81,12 +81,13 @@
                     },
                     {data: 'email', name: 'email',},
                     {data: 'employer.company.contact', name: 'employer.company.contact',},
-                    {
-                        data: null,
-                        render: function (data, type, row) {
-                            return (row.deleted_at === null) ? 'ACTIVE' : 'SUSPENDED';
-                        },
-                    },
+                    // {
+                    //     data: null,
+                    //     render: function (data, type, row) {
+                    //         return (row.deleted_at === null) ? 'ACTIVE' : 'SUSPENDED';
+                    //     },
+                    // },
+                    {data: "employer.status", name: 'employer.status'},
                     {data: 'created_at', name: 'created_at',},
                     {data: 'updated_at', name: 'updated_at',},
                     {data: 'action', name: 'action', orderable: false,},

@@ -9,6 +9,7 @@ use App\Models\JobPost\JobPost;
 use App\Models\JobPost\JobPostApplication;
 use App\Models\User\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class Employee extends Model
 {
@@ -38,6 +39,14 @@ class Employee extends Model
     protected $casts = [
 
     ];
+
+    public function getAgeAttribute($value) {
+        return ($this->attributes['age'] == null) ? 'N/A' : $this->age;
+    }
+
+    public function getMobileAttribute($value) {
+        return ($this->attributes['mobile'] == null) ? 'N/A' : $this->mobile;
+    }
 
     public function user()
     {

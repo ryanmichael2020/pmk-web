@@ -35,6 +35,10 @@ class User extends Authenticatable
 
     ];
 
+    protected $appends = [
+        'status',
+    ];
+
     protected static function boot()
     {
         parent::boot();
@@ -84,5 +88,9 @@ class User extends Authenticatable
     public function dailyLoginHistories()
     {
         return $this->hasMany(DailyLoginHistory::class);
+    }
+
+    public function getStatusAttribute($value) {
+        return ($this->attributes['deleted_at'] == null) ? 'ACTIVE' : 'INACTIVE';
     }
 }

@@ -81,7 +81,7 @@
                         },
                     },
                     {data: 'id', name: 'id',},
-                    {data: 'name', name: 'type',},
+                    {data: 'name', name: 'name',},
                     {data: 'contact', name: 'contact',},
                     {data: 'address', name: 'address',},
                     {data: 'created_at', name: 'created_at',},

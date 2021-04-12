@@ -77,23 +77,20 @@
                         name: 'user_detail.full_name',
                     },
                     {
-                        data: null,
-                        render: function (data, type, row) {
-                            return (row.employee.age != null) ? row.employee.age : 'N/A';
-                        },
+                        data: 'employee.age',
+                        name: 'employee.age',
+                        // render: function (data, type, row) {
+                        //     return (row.employee.age != null) ? row.employee.age : 'N/A';
+                        // },
                     },
                     {data: 'user_detail.sex', name: 'user_detail.sex',},
                     {
-                        data: null,
-                        render: function (data, type, row) {
-                            return (row.employee.mobile != null) ? row.employee.mobile : 'N/A';
-                        },
+                        data: 'employee.mobile',
+                        name: 'employee.mobile',
                     },
                     {
-                        data: null,
-                        render: function (data, type, row) {
-                            return (row.deleted_at === null) ? 'ACTIVE' : 'SUSPENDED';
-                        },
+                        data: 'status',
+                        name: 'status',
                     },
                     {data: 'created_at', name: 'created_at',},
                     {data: 'updated_at', name: 'updated_at',},

@@ -36,9 +36,14 @@ class Employer extends Model
     protected $casts = [
 
     ];
-    /**
-     * @var mixed
-     */
+
+    protected $appends = [
+        'status',
+    ];
+
+    public function getStatusAttribute() {
+        return ($this->deleted_at == null) ? 'ACTIVE' : 'INACTIVE';
+    }
 
     public function company()
     {
