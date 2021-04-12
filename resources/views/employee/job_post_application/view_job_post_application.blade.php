@@ -52,6 +52,30 @@
                     </div>
 
                     <div class="card-footer">
+                        <div class="row">
+                            <div class="col-12 mx-1 mb-2">
+                                <a href="/company/{{ $job_post_application->jobPost->company_id }}">
+                                    <div class="row">
+                                        <div class="my-auto mx-2">
+                                            <img class="rounded-circle"
+                                                 src="{{ asset($job_post_application->jobPost->company->image) }}"
+                                                 style="height: 48px; width: 48px;"/>
+                                        </div>
+
+                                        <div class="col my-auto">
+                                            <p class="mb-0" style="font-size: 12px;">
+                                                Company
+                                            </p>
+
+                                            <p class="mb-0">
+                                                {{ $job_post_application->jobPost->company->name }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
                         <p class="mb-0" style="width: auto; flex: fit-content; font-size: 14px;">
                             Date applied:
                             <span class="pr-2" data-toggle="tooltip" data-placement="right"

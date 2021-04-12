@@ -2,6 +2,7 @@
 
 namespace App\Models\JobOffer;
 
+use App\Models\Company\Company;
 use App\Models\Employee\Employee;
 use App\Models\Employer\Employer;
 use App\Models\JobPost\JobPost;
@@ -66,6 +67,11 @@ class JobOffer extends Model
     public function employee()
     {
         return $this->belongsTo(Employee::class);
+    }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
     }
 
     public function isAcceptable()

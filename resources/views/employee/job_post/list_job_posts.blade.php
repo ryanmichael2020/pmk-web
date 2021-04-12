@@ -119,12 +119,25 @@
                             <div class="card-footer">
                                 <div class="row">
                                     <div class="col my-auto">
-                                        <p class="mb-0" style="font-size: 12px;">
-                                            Company
-                                        </p>
-                                        <p class="mb-0">
-                                            {{ $job_post->employer->company->name }}
-                                        </p>
+                                        <a href="/company/{{ $job_post->company_id }}">
+                                            <div class="row">
+                                                <div class="my-auto mx-2">
+                                                    <img class="rounded-circle"
+                                                         src="{{ asset($job_post->company->image) }}"
+                                                         style="height: 48px; width: 48px;"/>
+                                                </div>
+
+                                                <div class="col my-auto">
+                                                    <p class="mb-0" style="font-size: 12px;">
+                                                        Company
+                                                    </p>
+
+                                                    <p class="mb-0">
+                                                        {{ $job_post->company->name }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </a>
                                     </div>
 
                                     <div class="col text-right my-auto">

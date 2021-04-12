@@ -57,6 +57,32 @@
                             </div>
 
                             <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-12 mx-1 mb-2">
+                                        <a href="/company/{{ $job_offer->company_id }}">
+                                            <div class="row">
+                                                <div class="my-auto mx-2">
+                                                    <img class="rounded-circle"
+                                                         src="{{ asset($job_offer->company->image) }}"
+                                                         style="height: 48px; width: 48px;"/>
+                                                </div>
+
+                                                <div class="col my-auto">
+                                                    <p class="mb-0" style="font-size: 12px;">
+                                                        Company
+                                                    </p>
+
+                                                    <p class="mb-0">
+                                                        {{ $job_offer->company->name }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer">
                                 @if($job_offer->isAccepted())
                                     <p class="mb-0 text-success">
                                         You have accepted this job offer.
